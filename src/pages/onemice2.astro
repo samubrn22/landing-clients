@@ -96,10 +96,36 @@
 			/* ── HERO ── */
 			.hero {
 				position: relative;
-				padding: 180px 56px 120px;
-				max-width: 860px;
+				padding: 160px 56px 100px;
+				max-width: 1100px;
 				margin: 0 auto;
-				text-align: center;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 64px;
+				align-items: center;
+			}
+			.hero-text {
+				text-align: left;
+			}
+			.hero-image {
+				position: relative;
+				border-radius: 6px;
+				overflow: hidden;
+				aspect-ratio: 4/3;
+			}
+			.hero-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				filter: saturate(0.7) contrast(1.05);
+			}
+			.hero-image::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				border: 1px solid var(--border-strong);
+				border-radius: 6px;
+				pointer-events: none;
 			}
 
 			.hero-label {
@@ -135,7 +161,7 @@
 				color: var(--ink-sub);
 				line-height: 1.7;
 				max-width: 560px;
-				margin: 0 auto 44px;
+				margin-bottom: 44px;
 			}
 
 			.btn-primary {
@@ -304,7 +330,54 @@
 				font-size: 15px;
 				color: var(--ink-sub);
 				line-height: 1.7;
-				margin-bottom: 24px;
+				margin-bottom: 28px;
+			}
+
+			.mockup {
+				position: relative;
+				margin-bottom: 32px;
+				display: flex;
+				gap: 12px;
+				align-items: flex-end;
+			}
+			.mockup-page {
+				width: 140px;
+				background: #fff;
+				border: 1px solid var(--border-strong);
+				border-radius: 3px;
+				padding: 16px 14px;
+				box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+				transform: rotate(-2deg);
+			}
+			.mockup-page:nth-child(2) {
+				transform: rotate(1.5deg);
+				margin-left: -20px;
+			}
+			.mockup-line {
+				height: 3px;
+				background: var(--ink-faint);
+				border-radius: 2px;
+				margin-bottom: 6px;
+				opacity: 0.5;
+			}
+			.mockup-line:nth-child(1) { width: 60%; background: var(--accent); opacity: 0.4; }
+			.mockup-line:nth-child(2) { width: 90%; }
+			.mockup-line:nth-child(3) { width: 75%; }
+			.mockup-line:nth-child(4) { width: 85%; }
+			.mockup-line:nth-child(5) { width: 40%; }
+			.mockup-line:nth-child(6) { width: 0; margin-bottom: 8px; }
+			.mockup-line:nth-child(7) { width: 55%; background: var(--accent); opacity: 0.3; }
+			.mockup-line:nth-child(8) { width: 92%; }
+			.mockup-line:nth-child(9) { width: 68%; }
+			.mockup-badge {
+				display: inline-block;
+				font-size: 7px;
+				font-weight: 700;
+				color: var(--accent);
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				margin-bottom: 10px;
+				opacity: 0.6;
 			}
 
 			.cta-specs {
@@ -403,13 +476,17 @@
 			/* ── RESPONSIVE ── */
 			@media (max-width: 768px) {
 				.nav { padding: 16px 24px; }
-				.hero { padding: 140px 24px 80px; }
+				.hero { padding: 120px 24px 60px; grid-template-columns: 1fr; gap: 32px; }
+				.hero-text { text-align: center; }
+				.hero-sub { margin-left: auto; margin-right: auto; }
+				.hero-image { max-height: 240px; }
 				.hero h1 { font-size: 32px; }
 				.trust { padding: 32px 24px; gap: 20px; flex-direction: column; }
 				.sommaire { padding: 60px 24px; }
 				.chapter { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
 				.cta { padding: 60px 24px; }
 				.cta-layout { grid-template-columns: 1fr; gap: 40px; }
+				.mockup { justify-content: center; }
 				.footer { padding: 24px; }
 			}
 		</style>
@@ -424,10 +501,15 @@
 
 		<!-- HERO -->
 		<section class="hero">
-			<span class="hero-label ha">Livre blanc · Édition 2026</span>
-			<h1 class="ha">Les 5 angles morts qui coûtent des millions à vos <em>événements MICE</em></h1>
-			<p class="hero-sub ha">Une analyse des failles structurelles qui fragmentent la gouvernance M&E. Et les leviers pour y remédier.</p>
-			<a href="#cta-form" class="btn-primary ha">Télécharger le livre blanc <span>&darr;</span></a>
+			<div class="hero-text">
+				<span class="hero-label ha">Livre blanc · Édition 2026</span>
+				<h1 class="ha">Les 5 angles morts qui coûtent des millions à vos <em>événements MICE</em></h1>
+				<p class="hero-sub ha">Une analyse des failles structurelles qui fragmentent la gouvernance M&E. Et les leviers pour y remédier.</p>
+				<a href="#cta-form" class="btn-primary ha">Télécharger le livre blanc <span>&darr;</span></a>
+			</div>
+			<div class="hero-image ha">
+				<img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format" alt="Événement corporate" loading="eager" />
+			</div>
 		</section>
 
 		<!-- DIVIDER -->
@@ -502,6 +584,32 @@
 					<p class="section-label">Livre blanc</p>
 					<h2>Recevez votre exemplaire</h2>
 					<p>30 pages d'analyses, de cas concrets et de recommandations pour structurer votre gouvernance M&E en 2026.</p>
+					<div class="mockup">
+						<div class="mockup-page">
+							<span class="mockup-badge">OneMice</span>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+						</div>
+						<div class="mockup-page">
+							<span class="mockup-badge">Chapitre 01</span>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+							<div class="mockup-line"></div>
+						</div>
+					</div>
 					<div class="cta-specs">
 						<div class="cta-spec">
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
