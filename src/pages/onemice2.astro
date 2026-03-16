@@ -7,10 +7,10 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<title>Les 5 angles morts du MICE en 2026 · OneMice</title>
-		<meta name="description" content="Guide gratuit : les 5 failles structurelles qui coûtent des millions aux organisations. Meetings & events, gouvernance, dépenses." />
-		<meta property="og:title" content="Les 5 angles morts du MICE en 2026" />
-		<meta property="og:description" content="Un guide pour les décideurs qui veulent structurer la gouvernance de leurs meetings & events." />
+		<title>Baromètre MICE 2026 — Gouvernance des Meetings & Événements · OneMice</title>
+		<meta name="description" content="50% des dépenses M&E échappent à tout pilotage. Le Baromètre MICE 2026 analyse les failles structurelles et les leviers de gouvernance." />
+		<meta property="og:title" content="Baromètre MICE 2026 — Gouvernance des Meetings & Événements" />
+		<meta property="og:description" content="50% des dépenses M&E échappent à tout pilotage. Analyse structurelle et leviers de gouvernance." />
 		<meta property="og:type" content="website" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -107,6 +107,24 @@
 			.hero-text {
 				text-align: left;
 			}
+
+			.hero-stat-block {
+				margin-bottom: 24px;
+			}
+			.hero-stat-num {
+				font-family: var(--serif);
+				font-size: clamp(56px, 7vw, 80px);
+				font-weight: 400;
+				color: var(--accent);
+				line-height: 1;
+				letter-spacing: -0.02em;
+			}
+			.hero-stat-label {
+				font-size: 16px;
+				color: var(--ink-sub);
+				margin-top: 4px;
+			}
+
 			.hero-image {
 				position: relative;
 				border-radius: 6px;
@@ -144,10 +162,10 @@
 
 			.hero h1 {
 				font-family: var(--serif);
-				font-size: clamp(38px, 5vw, 58px);
+				font-size: clamp(28px, 3.5vw, 40px);
 				font-weight: 400;
 				color: var(--ink);
-				line-height: 1.15;
+				line-height: 1.2;
 				letter-spacing: -0.02em;
 				margin-bottom: 28px;
 			}
@@ -157,7 +175,7 @@
 			}
 
 			.hero-sub {
-				font-size: 18px;
+				font-size: 16px;
 				color: var(--ink-sub);
 				line-height: 1.7;
 				max-width: 560px;
@@ -199,28 +217,30 @@
 				background: var(--border-strong);
 			}
 
-			/* ── TRUST ── */
+			/* ── STATS ── */
 			.trust {
 				max-width: 860px;
 				margin: 0 auto;
 				padding: 48px 56px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 48px;
-				flex-wrap: wrap;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 32px;
 			}
 			.trust-item {
-				display: flex;
-				align-items: center;
-				gap: 10px;
-				font-size: 13px;
+				text-align: center;
+			}
+			.trust-num {
+				font-family: var(--serif);
+				font-size: 28px;
+				color: var(--accent);
+				line-height: 1;
+				margin-bottom: 6px;
+			}
+			.trust-label {
+				font-size: 12px;
 				color: var(--ink-muted);
 				font-weight: 500;
-			}
-			.trust-icon {
-				color: var(--accent);
-				display: flex;
+				line-height: 1.4;
 			}
 
 			/* ── SECTION: SOMMAIRE ── */
@@ -262,9 +282,9 @@
 
 			.chapter {
 				display: grid;
-				grid-template-columns: 56px 1fr;
+				grid-template-columns: 56px 1fr auto;
 				gap: 28px;
-				align-items: start;
+				align-items: center;
 				padding: 32px 0;
 				border-bottom: 1px solid var(--border);
 				transition: all 0.2s;
@@ -303,6 +323,16 @@
 				max-width: 520px;
 			}
 
+			.chapter-data {
+				font-size: 12px;
+				font-weight: 600;
+				color: var(--gold);
+				background: var(--gold-wash);
+				padding: 5px 12px;
+				border-radius: 100px;
+				white-space: nowrap;
+			}
+
 			/* ── CTA SECTION ── */
 			.cta {
 				padding: 100px 56px;
@@ -331,53 +361,6 @@
 				color: var(--ink-sub);
 				line-height: 1.7;
 				margin-bottom: 28px;
-			}
-
-			.mockup {
-				position: relative;
-				margin-bottom: 32px;
-				display: flex;
-				gap: 12px;
-				align-items: flex-end;
-			}
-			.mockup-page {
-				width: 140px;
-				background: #fff;
-				border: 1px solid var(--border-strong);
-				border-radius: 3px;
-				padding: 16px 14px;
-				box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-				transform: rotate(-2deg);
-			}
-			.mockup-page:nth-child(2) {
-				transform: rotate(1.5deg);
-				margin-left: -20px;
-			}
-			.mockup-line {
-				height: 3px;
-				background: var(--ink-faint);
-				border-radius: 2px;
-				margin-bottom: 6px;
-				opacity: 0.5;
-			}
-			.mockup-line:nth-child(1) { width: 60%; background: var(--accent); opacity: 0.4; }
-			.mockup-line:nth-child(2) { width: 90%; }
-			.mockup-line:nth-child(3) { width: 75%; }
-			.mockup-line:nth-child(4) { width: 85%; }
-			.mockup-line:nth-child(5) { width: 40%; }
-			.mockup-line:nth-child(6) { width: 0; margin-bottom: 8px; }
-			.mockup-line:nth-child(7) { width: 55%; background: var(--accent); opacity: 0.3; }
-			.mockup-line:nth-child(8) { width: 92%; }
-			.mockup-line:nth-child(9) { width: 68%; }
-			.mockup-badge {
-				display: inline-block;
-				font-size: 7px;
-				font-weight: 700;
-				color: var(--accent);
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				margin-bottom: 10px;
-				opacity: 0.6;
 			}
 
 			.cta-specs {
@@ -480,13 +463,13 @@
 				.hero-text { text-align: center; }
 				.hero-sub { margin-left: auto; margin-right: auto; }
 				.hero-image { max-height: 240px; }
-				.hero h1 { font-size: 32px; }
-				.trust { padding: 32px 24px; gap: 20px; flex-direction: column; }
+				.hero h1 { font-size: 28px; }
+				.trust { padding: 32px 24px; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 				.sommaire { padding: 60px 24px; }
 				.chapter { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
+				.chapter-data { display: none; }
 				.cta { padding: 60px 24px; }
 				.cta-layout { grid-template-columns: 1fr; gap: 40px; }
-				.mockup { justify-content: center; }
 				.footer { padding: 24px; }
 			}
 		</style>
@@ -496,16 +479,20 @@
 		<!-- NAV -->
 		<nav class="nav">
 			<span class="nav-logo">OneMice</span>
-			<a href="#cta-form" class="nav-cta">Recevoir le guide <span>&darr;</span></a>
+			<a href="#cta-form" class="nav-cta">Recevoir le baromètre <span>&darr;</span></a>
 		</nav>
 
 		<!-- HERO -->
 		<section class="hero">
 			<div class="hero-text">
-				<span class="hero-label ha">Livre blanc · Édition 2026</span>
-				<h1 class="ha">Les 5 angles morts qui coûtent des millions à vos <em>événements MICE</em></h1>
-				<p class="hero-sub ha">Une analyse des failles structurelles qui fragmentent la gouvernance M&E. Et les leviers pour y remédier.</p>
-				<a href="#cta-form" class="btn-primary ha">Télécharger le livre blanc <span>&darr;</span></a>
+				<span class="hero-label ha">Baromètre MICE · Édition 2026</span>
+				<div class="hero-stat-block ha">
+					<div class="hero-stat-num">50%</div>
+					<div class="hero-stat-label">de vos dépenses M&E échappent à tout pilotage</div>
+				</div>
+				<h1 class="ha">Le coût structurel de l'absence de <em>gouvernance M&E</em></h1>
+				<p class="hero-sub ha">Le Baromètre MICE 2026 analyse les failles de la gouvernance Meetings & Événements et les leviers pour y remédier. 15 pages. Données terrain.</p>
+				<a href="#cta-form" class="btn-primary ha">Recevoir le baromètre <span>&darr;</span></a>
 			</div>
 			<div class="hero-image ha">
 				<img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80&auto=format" alt="Événement corporate" loading="eager" />
@@ -515,19 +502,23 @@
 		<!-- DIVIDER -->
 		<div class="divider"><hr /></div>
 
-		<!-- TRUST -->
+		<!-- STATS -->
 		<section class="trust">
 			<div class="trust-item rv">
-				<span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-				<span>+20 ans d'expertise MICE</span>
+				<div class="trust-num">20-40%</div>
+				<div class="trust-label">de surcoût lié à la fragmentation</div>
 			</div>
 			<div class="trust-item rv">
-				<span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-				<span>Données terrain 2025-2026</span>
+				<div class="trust-num">84%</div>
+				<div class="trust-label">de processus encore manuels</div>
 			</div>
 			<div class="trust-item rv">
-				<span class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
-				<span>Méthodologie validée par des experts</span>
+				<div class="trust-num">10-30%</div>
+				<div class="trust-label">d'économies avec gouvernance structurée</div>
+			</div>
+			<div class="trust-item rv">
+				<div class="trust-num">+20 ans</div>
+				<div class="trust-label">d'expertise MICE terrain</div>
 			</div>
 		</section>
 
@@ -535,43 +526,56 @@
 		<section class="sommaire">
 			<div class="sommaire-inner">
 				<p class="section-label rv">Sommaire</p>
-				<h2 class="rv">Ce que vous trouverez dans ce livre blanc</h2>
+				<h2 class="rv">Ce que vous trouverez dans ce baromètre</h2>
 
 				<div class="chapters">
 					<div class="chapter rv">
 						<span class="chapter-num">01</span>
 						<div class="chapter-content">
-							<h3>Le MICE n'appartient à personne</h3>
-							<p>Travel, achats, finance, com, RH : tout le monde touche au sujet, personne ne le structure.</p>
+							<h3>Un territoire sans propriétaire</h3>
+							<p>Travel, achats, finance, com, RH — tout le monde touche aux M&E, personne ne les structure.</p>
 						</div>
+						<span class="chapter-data">Zone grise</span>
 					</div>
 					<div class="chapter rv">
 						<span class="chapter-num">02</span>
 						<div class="chapter-content">
-							<h3>Structurer sans légitimité est politiquement risqué</h3>
-							<p>Cadrer les meetings, c'est toucher à l'autonomie des équipes et à la culture interne.</p>
+							<h3>Le coût réel de l'absence de gouvernance</h3>
+							<p>50% des dépenses sans pilotage. 20-40% de surcoût lié à la fragmentation. Chaque chiffre est sourcé.</p>
 						</div>
+						<span class="chapter-data">20-40% surcoût</span>
 					</div>
 					<div class="chapter rv">
 						<span class="chapter-num">03</span>
 						<div class="chapter-content">
-							<h3>Vos outils ne communiquent pas entre eux</h3>
-							<p>ERP, T&E, event tech, agences : 4 sphères qui se chevauchent sans converger.</p>
+							<h3>Pourquoi personne ne structure</h3>
+							<p>84% de processus encore manuels. Légitimité politique. Autonomie des équipes. Zone de confort.</p>
 						</div>
+						<span class="chapter-data">84% manuels</span>
 					</div>
 					<div class="chapter rv">
 						<span class="chapter-num">04</span>
 						<div class="chapter-content">
-							<h3>L'IA est partout. La gouvernance nulle part.</h3>
-							<p>Classification auto, RFP, consolidation : l'IA avance, mais sans cadre, elle amplifie le chaos.</p>
+							<h3>Ce que change la gouvernance</h3>
+							<p>10-30% d'économies. Visibilité consolidée. Compliance. Pilotage par la donnée.</p>
 						</div>
+						<span class="chapter-data">10-30% éco.</span>
 					</div>
 					<div class="chapter rv">
 						<span class="chapter-num">05</span>
 						<div class="chapter-content">
-							<h3>Le marché attend un standard. Pas un outil de plus.</h3>
-							<p>La différenciation ne se fait plus par les features mais par la capacité à définir le cadre.</p>
+							<h3>4 sphères concurrentielles, 1 vide</h3>
+							<p>Travel & Expense, SMM, Agences, ERP — et un espace vacant : la gouvernance systémique.</p>
 						</div>
+						<span class="chapter-data">4 sphères</span>
+					</div>
+					<div class="chapter rv">
+						<span class="chapter-num">06</span>
+						<div class="chapter-content">
+							<h3>Auto-diagnostic : où en êtes-vous ?</h3>
+							<p>10 questions pour évaluer votre maturité en gouvernance M&E. Scoring inclus.</p>
+						</div>
+						<span class="chapter-data">10 questions</span>
 					</div>
 				</div>
 			</div>
@@ -581,51 +585,25 @@
 		<section class="cta" id="cta-form">
 			<div class="cta-layout">
 				<div class="cta-left rv">
-					<p class="section-label">Livre blanc</p>
+					<p class="section-label">Baromètre 2026</p>
 					<h2>Recevez votre exemplaire</h2>
-					<p>30 pages d'analyses, de cas concrets et de recommandations pour structurer votre gouvernance M&E en 2026.</p>
-					<div class="mockup">
-						<div class="mockup-page">
-							<span class="mockup-badge">OneMice</span>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-						</div>
-						<div class="mockup-page">
-							<span class="mockup-badge">Chapitre 01</span>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-							<div class="mockup-line"></div>
-						</div>
-					</div>
+					<p>15 pages d'analyse structurelle, données terrain 2025-2026, et un auto-diagnostic pour évaluer votre gouvernance M&E.</p>
 					<div class="cta-specs">
 						<div class="cta-spec">
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>30 pages d'analyse</span>
+							<span>PDF · 15 pages d'analyse</span>
 						</div>
 						<div class="cta-spec">
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>5 failles structurelles documentées</span>
+							<span>6 chapitres structurés</span>
 						</div>
 						<div class="cta-spec">
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>Cadre de gouvernance actionnable</span>
+							<span>Données terrain 2025-2026</span>
 						</div>
 						<div class="cta-spec">
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>Format PDF, lecture 15 min</span>
+							<span>Auto-diagnostic inclus</span>
 						</div>
 					</div>
 				</div>
@@ -639,16 +617,16 @@
 						<input type="email" id="f-email" name="email" placeholder="jean@entreprise.com" required />
 						<label for="f-entreprise">Entreprise <span style="font-weight:400;text-transform:none;letter-spacing:0">(optionnel)</span></label>
 						<input type="text" id="f-entreprise" name="entreprise" placeholder="Nom de votre entreprise" />
-						<button type="submit" class="btn-primary">Recevoir le livre blanc</button>
+						<button type="submit" class="btn-primary">Recevoir le baromètre</button>
 					</form>
-					<div class="form-ok" id="form-ok">Merci ! Vous recevrez le livre blanc dans les prochaines minutes.</div>
+					<div class="form-ok" id="form-ok">Merci ! Vous recevrez le baromètre dans les prochaines minutes.</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- FOOTER -->
 		<footer class="footer">
-			<p>&copy; 2026 OneMice &middot; <a href="#">Politique de confidentialit&eacute;</a></p>
+			<p>&copy; 2026 OneMice &middot; Structure What Matters &middot; <a href="#">Politique de confidentialit&eacute;</a></p>
 		</footer>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -660,7 +638,7 @@
 				gsap.from(el, {
 					scrollTrigger: { trigger:el, start:'top 90%', toggleActions:'play none none none' },
 					opacity:0, y:20, duration:0.6,
-					delay: el.closest('.chapters') ? [...el.parentElement.children].indexOf(el)*0.08 : 0,
+					delay: el.closest('.chapters,.trust') ? [...el.parentElement.children].indexOf(el)*0.08 : 0,
 					ease:'power2.out'
 				});
 			});
