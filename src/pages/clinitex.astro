@@ -1,0 +1,1128 @@
+---
+
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Clinitex x Kokoro — Programme COPIL IA · 25 mars 2026</title>
+		<meta name="description" content="Programme de formation IA pour le COPIL Clinitex — 25 mars 2026" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+		<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+	</head>
+	<body>
+
+		<!-- ==================== SLIDE 0 — COVER ==================== -->
+		<section class="hero" id="hero">
+			<div class="hero-glow"></div>
+			<div class="container">
+				<div class="cover-logos">
+					<span class="cover-logo">Clinitex</span>
+					<span class="cover-x">&times;</span>
+					<span class="cover-logo">Kokoro</span>
+				</div>
+				<p class="hero-eyebrow">Programme COPIL IA</p>
+				<h1>Rendre le monde plus beau &ndash;<br/>L'IA, votre nouveau <span class="gradient-text">super-pouvoir</span> au service de votre mission.</h1>
+				<div class="cover-meta">
+					<span><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> 25 mars 2026</span>
+					<span><i data-lucide="clock" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> 9h &ndash; 17h</span>
+					<span><i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> Villeneuve d'Ascq</span>
+					<span><i data-lucide="users" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> 17 participants</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 1 — AGENDA DU CALL ==================== -->
+		<section class="section" id="agenda">
+			<div class="container">
+				<p class="section-label reveal">Agenda du call</p>
+				<h2 class="reveal">3 points à couvrir ensemble</h2>
+				<div class="cards-grid cards-3 reveal-group">
+					<div class="card reveal">
+						<div class="card-num">01</div>
+						<div class="card-icon"><i data-lucide="plug"></i></div>
+						<h3>Vérifier les connexions</h3>
+						<p>S'assurer que tout est prêt côté admin Claude pour ne perdre aucune minute le 25.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-num">02</div>
+						<div class="card-icon"><i data-lucide="route"></i></div>
+						<h3>Le plan de la journée</h3>
+						<p>Présenter le déroulé, les cas d'usage, la logique. Valider ensemble.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-num">03</div>
+						<div class="card-icon"><i data-lucide="message-circle-question"></i></div>
+						<h3>Questions & feedback</h3>
+						<p>Vos retours, ajustements, éléments manquants, logistique.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 2 — VÉRIFIER LES CONNEXIONS ==================== -->
+		<section class="section" id="connexions">
+			<div class="container">
+				<p class="section-label reveal">Étape 1</p>
+				<h2 class="reveal">Vérifier les connexions</h2>
+				<p class="section-sub reveal">Tout doit être opérationnel avant le 25. Zéro temps perdu en paramétrage le jour J.</p>
+				<div class="check-grid reveal-group">
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="users"></i></div>
+						<div>
+							<h3>Comptes Claude Cowork</h3>
+							<p>Les 17 participants ont tous accès ? Identifiants créés et testés ?</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="mail"></i></div>
+						<div>
+							<h3>Connecteur Microsoft</h3>
+							<p>Outlook + Calendar connectés dans les paramètres admin du workspace.</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="layout-grid"></i></div>
+						<div>
+							<h3>Connecteur Notion</h3>
+							<p>Pour ceux qui utilisent Notion au siège — est-ce activé ?</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="smartphone"></i></div>
+						<div>
+							<h3>App mobile</h3>
+							<p>Les DA peuvent installer l'app sur leur téléphone pro ? Contraintes MDM ?</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="wifi"></i></div>
+						<div>
+							<h3>WiFi</h3>
+							<p>17 personnes connectées simultanément. Réseau dédié ou WiFi bureau ?</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="projector"></i></div>
+						<div>
+							<h3>Salle & équipement</h3>
+							<p>Configuration en U, vidéoprojecteur, adaptateur HDMI/USB-C.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 3 — LE CONCEPT ==================== -->
+		<section class="section" id="concept">
+			<div class="why-claude-bg-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<p class="section-label reveal">Étape 2 — Le plan</p>
+				<h2 class="reveal">Le concept de la journée</h2>
+				<p class="section-sub reveal">On suit une <strong>journée type de directeur d'agence</strong> et on montre comment Claude transforme chaque moment.</p>
+				<div class="cards-grid cards-3 reveal-group">
+					<div class="card card--featured reveal">
+						<div class="card-num">01</div>
+						<div class="card-icon"><i data-lucide="heart-handshake"></i></div>
+						<h3>Belle relation client</h3>
+						<p>Le client est signé. Comment on le garde, on l'enchante, on anticipe ses besoins.</p>
+					</div>
+					<div class="card card--featured reveal">
+						<div class="card-num">02</div>
+						<div class="card-icon"><i data-lucide="target"></i></div>
+						<h3>Belle relation prospect</h3>
+						<p>Le prospect n'a pas signé. Comment on le comprend, on lui parle, on convertit.</p>
+					</div>
+					<div class="card card--featured reveal">
+						<div class="card-num">03</div>
+						<div class="card-icon"><i data-lucide="user-check"></i></div>
+						<h3>Belle relation collaborateur</h3>
+						<p>L'agent est sur le terrain. Comment on l'accompagne, on le valorise.</p>
+					</div>
+				</div>
+				<p class="concept-footer reveal">Les héros, c'est eux. L'IA, c'est leur super-pouvoir.</p>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 4 — TIMELINE ==================== -->
+		<section class="section" id="timeline">
+			<div class="container">
+				<p class="section-label reveal">Déroulé</p>
+				<h2 class="reveal">La journée, heure par heure</h2>
+				<div class="program-timeline">
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">9h00</div>
+							<h3>Ouverture</h3>
+							<p>Tour de table : usages actuels, attentes, peurs. Présentation du fil conducteur.</p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">9h15</div>
+							<h3>Setup & paramétrage</h3>
+							<p>Connexion Claude, app mobile, connecteurs, paramètres généraux. Premier test.</p>
+							<div class="program-badges">
+								<span class="badge">Chat</span>
+								<span class="badge">Mobile</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">9h45</div>
+							<h3>Apprendre à prompter</h3>
+							<p>5 règles d'or. Exercice live : chaque DA formule un vrai problème en prompt.</p>
+							<div class="program-badges">
+								<span class="badge">Chat</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--accent"></div>
+						<div class="program-step-card program-step-card--accent">
+							<div class="program-time">10h25</div>
+							<h3>Acte 1 — Belle relation client</h3>
+							<p>Mails & urgences → Contrôle qualité → Anticipation tendances → Appels proactifs</p>
+							<div class="program-badges">
+								<span class="badge">Chat</span>
+								<span class="badge">Artifacts</span>
+								<span class="badge">Cowork</span>
+								<span class="badge">Mobile</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--muted"></div>
+						<div class="program-step-card">
+							<div class="program-time">12h30</div>
+							<h3>Déjeuner</h3>
+							<p></p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--accent"></div>
+						<div class="program-step-card program-step-card--accent">
+							<div class="program-time">14h00</div>
+							<h3>Acte 2 — Belle relation prospect</h3>
+							<p>Préparation RDV → Offre commerciale → Relances commerciales → Veille territoriale</p>
+							<div class="program-badges">
+								<span class="badge">Chat</span>
+								<span class="badge">Artifacts</span>
+								<span class="badge">Web</span>
+								<span class="badge">Excel</span>
+								<span class="badge">PowerPoint</span>
+								<span class="badge">Skills</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--green"></div>
+						<div class="program-step-card program-step-card--green">
+							<div class="program-time">15h35</div>
+							<h3>Acte 3 — Belle relation collaborateur</h3>
+							<p>Entretien professionnel → Gazette d'agence → Veille territoriale</p>
+							<div class="program-badges">
+								<span class="badge">Chat</span>
+								<span class="badge">Artifacts</span>
+								<span class="badge">Skills</span>
+								<span class="badge badge--green">Schedule</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">16h35</div>
+							<h3>Closing</h3>
+							<p>Exploration libre → Feuille de route perso (3 actions) → Q&A</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 5 — ACTE 1 ==================== -->
+		<section class="section" id="acte1">
+			<div class="container">
+				<p class="section-label reveal">Acte 1</p>
+				<h2 class="reveal">Belle relation <span class="gradient-text">client</span></h2>
+				<p class="section-sub reveal">Le client est signé. Comment on le garde.</p>
+				<div class="acte-list">
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="mail-open"></i></div>
+						<div>
+							<h3>"J'ouvre mes mails lundi matin"</h3>
+							<p>Résumer 10 mails, identifier les urgences, drafter 3 réponses. Chaque DA sur ses vrais mails.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="clipboard-check"></i></div>
+						<div>
+							<h3>"Je fais un contrôle qualité sur site"</h3>
+							<p>Analyser 1 CQ de son agence → note, alertes, plan d'action, mail client. Sur les vrais CQ 2026.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="trending-up"></i></div>
+						<div>
+							<h3>"Je veux anticiper les problèmes"</h3>
+							<p>3 CQ du même site → détecter la tendance, préparer la revue qualité. Dashboard Artifacts.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="phone-call"></i></div>
+						<div>
+							<h3>"Je dois appeler mes clients"</h3>
+							<p>Claude prépare le brief avant chaque appel en mode conversation guidée. Historique + points d'attention.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 6 — ACTE 2 ==================== -->
+		<section class="section" id="acte2">
+			<div class="container">
+				<p class="section-label reveal">Acte 2</p>
+				<h2 class="reveal">Belle relation <span class="gradient-text">prospect</span></h2>
+				<p class="section-sub reveal">Le prospect n'a pas signé. Comment on convertit.</p>
+				<div class="acte-list">
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="search"></i></div>
+						<div>
+							<h3>"Je prépare mon rendez-vous"</h3>
+							<p>Veille sur le prospect : secteur, enjeux, concurrents. Chaque DA sur un vrai prospect de sa zone.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="file-text"></i></div>
+						<div>
+							<h3>"Je fais l'offre commerciale"</h3>
+							<p>Brief → page "Vos besoins" avec les verbatims du prospect → intégration dans le template PPT Clinitex.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="refresh-cw"></i></div>
+						<div>
+							<h3>"Je relance mes anciens prospects"</h3>
+							<p>Ouvrir les relances M7 de sa zone → Claude priorise → script d'appel personnalisé. Excel live.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="globe"></i></div>
+						<div>
+							<h3>"Je surveille mon territoire"</h3>
+							<p>Veille territoriale sur sa zone géo. On crée ensemble un Skill réutilisable.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 7 — ACTE 3 ==================== -->
+		<section class="section" id="acte3">
+			<div class="container">
+				<p class="section-label reveal">Acte 3</p>
+				<h2 class="reveal">Belle relation <span class="gradient-text">collaborateur</span></h2>
+				<p class="section-sub reveal">L'agent est sur le terrain. Comment on le valorise.</p>
+				<div class="acte-list">
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="handshake"></i></div>
+						<div>
+							<h3>"J'ai un entretien pro avec un agent"</h3>
+							<p>Synthèse année, points forts, objectifs, CR structuré. Être dans l'échange, pas dans la prise de notes.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="newspaper"></i></div>
+						<div>
+							<h3>"Je dois faire la gazette de mon agence"</h3>
+							<p>Bullet points → gazette complète au format Clinitex. On crée un Skill + Schedule mensuel.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="radar"></i></div>
+						<div>
+							<h3>"Je veux surveiller mon territoire"</h3>
+							<p>Veille éco territoriale : entreprises en croissance, appels d'offres, actus marché local.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 8 — PROCHAINES ÉTAPES ==================== -->
+		<section class="section" id="next">
+			<div class="why-claude-bg-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<p class="section-label reveal">Étape 3</p>
+				<h2 class="reveal">Prochaines étapes</h2>
+				<div class="next-grid reveal-group">
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="building" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Avant le 25 — Côté Clinitex</h3>
+						<ul>
+							<li>Valider les accès Claude Cowork pour les 17</li>
+							<li>Activer connecteurs Microsoft + Notion (admin)</li>
+							<li>Confirmer politique app mobile</li>
+							<li>Envoyer un verbatim / CR d'appel client (si dispo)</li>
+							<li>Confirmer salle en U + équipement</li>
+						</ul>
+					</div>
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="rocket" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Avant le 25 — Côté Kokoro</h3>
+						<ul>
+							<li>Envoyer la feuille de route aux 17 participants</li>
+							<li>Préparer les prompts prêts à l'emploi par cas d'usage</li>
+							<li>Préparer les démos sur données réelles Clinitex</li>
+							<li>Construire les Skills (Gazette + Veille)</li>
+							<li>Envoyer la facture</li>
+						</ul>
+					</div>
+					<div class="next-card reveal">
+						<h3><i data-lucide="package" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:hsla(0,0%,100%,.4);"></i> Le 25 — Livrables</h3>
+						<ul>
+							<li>Claude configuré + app mobile installée</li>
+							<li>Cheat sheet prompting DA</li>
+							<li>Skill "Gazette" prêt à l'emploi</li>
+							<li>Skill "Veille territoriale"</li>
+							<li>Feuille de route perso (3 actions)</li>
+						</ul>
+					</div>
+					<div class="next-card reveal">
+						<h3><i data-lucide="help-circle" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:hsla(0,0%,100%,.4);"></i> Questions ouvertes</h3>
+						<ul>
+							<li>Les 3 axes couvrent vos priorités ?</li>
+							<li>Un cas d'usage manquant ?</li>
+							<li>Retours, ajustements ?</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SLIDE 9 — CLOSING ==================== -->
+		<section class="section closing" id="closing">
+			<div class="final-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<h2 class="reveal">Rendre le monde plus beau,<br/>ça commence par avoir le <span class="gradient-text">temps</span> de le faire.</h2>
+				<p class="closing-meta reveal">Clinitex &times; Kokoro &middot; 25 mars 2026</p>
+			</div>
+		</section>
+
+		<!-- JS -->
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				if (window.lucide) lucide.createIcons();
+
+				if (window.gsap && window.ScrollTrigger) {
+					gsap.registerPlugin(ScrollTrigger);
+
+					// Reveal elements with stagger per section
+					document.querySelectorAll('section').forEach(section => {
+						const els = section.querySelectorAll('.reveal');
+						if (els.length) {
+							gsap.fromTo(els,
+								{ opacity: 0, y: 30, filter: 'blur(4px)' },
+								{
+									opacity: 1, y: 0, filter: 'blur(0px)',
+									duration: 0.8,
+									stagger: 0.12,
+									ease: 'power3.out',
+									scrollTrigger: { trigger: section, start: 'top 80%', once: true }
+								}
+							);
+						}
+					});
+
+					// Hero entrance
+					gsap.fromTo('.cover-logos',
+						{ opacity: 0, y: 20 },
+						{ opacity: 1, y: 0, duration: 0.7, delay: 0.2, ease: 'power3.out' }
+					);
+					gsap.fromTo('.hero-eyebrow',
+						{ opacity: 0, y: 20 },
+						{ opacity: 1, y: 0, duration: 0.7, delay: 0.35, ease: 'power3.out' }
+					);
+					gsap.fromTo('.hero h1',
+						{ opacity: 0, y: 30 },
+						{ opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: 'power3.out' }
+					);
+					gsap.fromTo('.cover-meta',
+						{ opacity: 0, y: 20 },
+						{ opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: 'power3.out' }
+					);
+
+					// Program timeline dots
+					gsap.fromTo('.program-dot',
+						{ opacity: 0, scale: 0 },
+						{
+							opacity: 1, scale: 1, duration: 0.4, stagger: 0.12, ease: 'back.out(2)',
+							scrollTrigger: { trigger: '.program-timeline', start: 'top 80%', once: true }
+						}
+					);
+
+					// Program timeline cards alternate from left/right
+					document.querySelectorAll('.program-step').forEach((step, i) => {
+						const card = step.querySelector('.program-step-card');
+						const fromX = i % 2 === 0 ? -40 : 40;
+						gsap.fromTo(card,
+							{ opacity: 0, x: fromX },
+							{
+								opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+								scrollTrigger: { trigger: step, start: 'top 85%', once: true }
+							}
+						);
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	/* ===== RESET & BASE ===== */
+	* { margin: 0; padding: 0; box-sizing: border-box; }
+	html { scroll-behavior: smooth; }
+
+	body {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		background: #0A0812;
+		color: hsla(0,0%,100%,.6);
+		line-height: 1.7;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 28px;
+	}
+
+	.reveal { opacity: 0; }
+
+	/* ===== TYPOGRAPHY ===== */
+	h1, h2 {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		font-weight: 800;
+		letter-spacing: -0.04em;
+	}
+
+	h3 {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.gradient-text {
+		background: linear-gradient(135deg, #4D9DE0, #0055A4, #7EC8E3);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.section-label {
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		color: #4D9DE0;
+		font-weight: 600;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.section-sub {
+		font-size: 17px;
+		color: hsla(0,0%,100%,.55);
+		max-width: 650px;
+		margin: -32px auto 64px;
+		text-align: center;
+		line-height: 1.7;
+	}
+
+	.section-sub strong {
+		color: hsla(0,0%,100%,.9);
+	}
+
+	/* ===== SECTIONS ===== */
+	.section {
+		padding: 130px 0;
+		position: relative;
+		overflow: hidden;
+	}
+
+	h2 {
+		font-size: clamp(28px, 5vw, 48px);
+		font-weight: 800;
+		color: #fff;
+		margin-bottom: 64px;
+		text-align: center;
+		line-height: 1.1;
+	}
+
+	/* ===== HERO / COVER ===== */
+	.hero {
+		padding: 200px 0 140px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.hero .container {
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero-glow {
+		position: absolute;
+		top: -200px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 1000px;
+		height: 700px;
+		background: radial-gradient(ellipse, rgba(0, 85, 164, 0.35) 0%, rgba(77, 157, 224, 0.15) 35%, rgba(0, 85, 164, 0.05) 60%, transparent 75%);
+		pointer-events: none;
+		animation: heroPulse 6s ease-in-out infinite;
+	}
+
+	@keyframes heroPulse {
+		0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+		50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+	}
+
+	.cover-logos {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		margin-bottom: 24px;
+		opacity: 0;
+	}
+
+	.cover-logo {
+		font-size: 14px;
+		font-weight: 800;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+		color: hsla(0,0%,100%,.9);
+	}
+
+	.cover-x {
+		font-size: 16px;
+		color: hsla(0,0%,100%,.25);
+		font-weight: 500;
+	}
+
+	.hero-eyebrow {
+		font-size: 13px;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		color: #4D9DE0;
+		font-weight: 700;
+		margin-bottom: 28px;
+		opacity: 0;
+	}
+
+	.hero h1 {
+		font-size: clamp(30px, 4.5vw, 48px);
+		font-weight: 800;
+		line-height: 1.15;
+		color: #fff;
+		margin-bottom: 40px;
+		opacity: 0;
+	}
+
+	.cover-meta {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		flex-wrap: wrap;
+		opacity: 0;
+	}
+
+	.cover-meta span {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.45);
+		font-weight: 500;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	/* ===== CARDS (3-column grid) ===== */
+	.cards-grid {
+		display: grid;
+		gap: 20px;
+	}
+
+	.cards-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.card {
+		background: rgba(255,255,255,0.04);
+		border: 1px dashed rgba(255,255,255,0.1);
+		border-radius: 16px;
+		padding: 36px 28px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+		position: relative;
+	}
+
+	.card:hover {
+		background: rgba(0, 85, 164, 0.05);
+		border-color: rgba(0, 85, 164, 0.2);
+		box-shadow: 0 0 25px rgba(0,85,164,0.08);
+	}
+
+	.card--featured {
+		background: rgba(0, 85, 164, 0.06);
+		border: 1px solid rgba(0, 85, 164, 0.2);
+		border-style: solid;
+	}
+
+	.card--featured::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #0055A4, #4D9DE0, transparent);
+		border-radius: 16px 16px 0 0;
+	}
+
+	.card-num {
+		font-size: 13px;
+		font-weight: 700;
+		color: #4D9DE0;
+		margin-bottom: 16px;
+		letter-spacing: 1px;
+	}
+
+	.card-icon {
+		color: #4D9DE0;
+		margin-bottom: 16px;
+	}
+
+	.card-icon i, .card-icon svg {
+		width: 24px;
+		height: 24px;
+		filter: drop-shadow(0 0 8px rgba(0,85,164,0.4));
+	}
+
+	.card h3 {
+		font-size: 16px;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 10px;
+		line-height: 1.4;
+	}
+
+	.card p {
+		font-size: 14px;
+		line-height: 1.7;
+		color: hsla(0,0%,100%,.6);
+	}
+
+	.concept-footer {
+		text-align: center;
+		margin-top: 48px;
+		font-size: 15px;
+		color: hsla(0,0%,100%,.35);
+		font-style: italic;
+		letter-spacing: 0.3px;
+	}
+
+	/* ===== CHECK GRID ===== */
+	.check-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.check-item {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 16px;
+		padding: 24px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+	}
+
+	.check-item:hover {
+		background: rgba(0, 85, 164, 0.05);
+		border-color: rgba(0, 85, 164, 0.15);
+	}
+
+	.check-icon {
+		width: 40px;
+		height: 40px;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		background: rgba(0,85,164,0.1);
+		color: #4D9DE0;
+	}
+
+	.check-icon i, .check-icon svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.check-item h3 {
+		font-size: 14px;
+		font-weight: 700;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 4px;
+	}
+
+	.check-item p {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.5);
+		line-height: 1.5;
+	}
+
+	/* ===== PROGRAM TIMELINE ===== */
+	.program-timeline {
+		position: relative;
+		padding: 40px 0;
+	}
+
+	.program-timeline::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		transform: translateX(-50%);
+		background: linear-gradient(to bottom, rgba(0,85,164,0.15), rgba(0,85,164,0.5) 20%, rgba(0,85,164,0.5) 80%, rgba(0,85,164,0.15));
+	}
+
+	.program-step {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 32px;
+		width: 100%;
+	}
+
+	.program-step:last-child { margin-bottom: 0; }
+
+	.program-step:nth-child(odd) {
+		justify-content: flex-start;
+		padding-right: calc(50% + 28px);
+	}
+
+	.program-step:nth-child(even) {
+		justify-content: flex-end;
+		padding-left: calc(50% + 28px);
+	}
+
+	.program-dot {
+		position: absolute;
+		left: 50%;
+		top: 20px;
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: #0055A4;
+		transform: translateX(-50%);
+		box-shadow: 0 0 12px rgba(0,85,164,0.5), 0 0 24px rgba(0,85,164,0.2);
+		z-index: 2;
+		opacity: 0;
+	}
+
+	.program-dot--accent {
+		background: #4D9DE0;
+		box-shadow: 0 0 12px rgba(77,157,224,0.6), 0 0 24px rgba(77,157,224,0.3);
+	}
+
+	.program-dot--green {
+		background: #22C55E;
+		box-shadow: 0 0 12px rgba(34,197,94,0.5), 0 0 24px rgba(34,197,94,0.2);
+	}
+
+	.program-dot--muted {
+		background: hsla(0,0%,100%,.25);
+		box-shadow: none;
+	}
+
+	.program-step-card {
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.08);
+		border-radius: 16px;
+		padding: 28px 24px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+		width: 100%;
+		opacity: 0;
+	}
+
+	.program-step-card:hover {
+		background: rgba(0, 85, 164, 0.05);
+		border-color: rgba(0, 85, 164, 0.15);
+		box-shadow: 0 0 20px rgba(0,85,164,0.06);
+	}
+
+	.program-step-card--accent {
+		background: rgba(0, 85, 164, 0.06);
+		border-color: rgba(0, 85, 164, 0.2);
+	}
+
+	.program-step-card--green {
+		background: rgba(34, 197, 94, 0.04);
+		border-color: rgba(34, 197, 94, 0.15);
+	}
+
+	.program-time {
+		font-size: 12px;
+		font-weight: 700;
+		color: #4D9DE0;
+		letter-spacing: 0.5px;
+		margin-bottom: 8px;
+		text-transform: uppercase;
+	}
+
+	.program-step-card h3 {
+		font-size: 15px;
+		color: hsla(0,0%,100%,.85);
+		margin-bottom: 8px;
+		font-weight: 700;
+	}
+
+	.program-step-card p {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.55);
+		line-height: 1.65;
+		margin-bottom: 12px;
+	}
+
+	.program-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	.badge {
+		font-size: 11px;
+		font-weight: 600;
+		color: hsla(0,0%,100%,.55);
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.08);
+		padding: 4px 12px;
+		border-radius: 100px;
+		letter-spacing: 0.3px;
+	}
+
+	.badge--green {
+		color: #22C55E;
+		background: rgba(34,197,94,0.08);
+		border-color: rgba(34,197,94,0.15);
+	}
+
+	/* ===== ACTE LIST ===== */
+	.acte-list {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.acte-item {
+		display: flex;
+		gap: 20px;
+		padding: 28px 0;
+		border-bottom: 1px solid rgba(255,255,255,0.05);
+		align-items: flex-start;
+	}
+
+	.acte-item:last-child { border-bottom: none; }
+
+	.acte-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		background: rgba(0,85,164,0.1);
+		color: #4D9DE0;
+		border: 1px solid rgba(0,85,164,0.15);
+	}
+
+	.acte-icon i, .acte-icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.acte-item h3 {
+		font-size: 16px;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 6px;
+	}
+
+	.acte-item p {
+		font-size: 14px;
+		color: hsla(0,0%,100%,.55);
+		line-height: 1.7;
+	}
+
+	/* ===== NEXT STEPS GRID ===== */
+	.next-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+	}
+
+	.next-card {
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 16px;
+		padding: 32px 28px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+	}
+
+	.next-card:hover {
+		background: rgba(255,255,255,0.06);
+		border-color: rgba(255,255,255,0.1);
+	}
+
+	.next-card--highlight {
+		border-color: rgba(0, 85, 164, 0.3);
+		background: rgba(0, 85, 164, 0.06);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.next-card--highlight::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #0055A4, #4D9DE0, transparent);
+	}
+
+	.next-card h3 {
+		font-size: 15px;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 16px;
+		font-weight: 700;
+	}
+
+	.next-card ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.next-card li {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.55);
+		padding: 7px 0;
+		padding-left: 20px;
+		position: relative;
+		line-height: 1.6;
+	}
+
+	.next-card li::before {
+		content: '\2192';
+		position: absolute;
+		left: 0;
+		color: #4D9DE0;
+		font-weight: 600;
+	}
+
+	/* ===== WHY CLAUDE BG GLOW ===== */
+	.why-claude-bg-glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 900px;
+		height: 600px;
+		background: radial-gradient(ellipse, rgba(0, 85, 164, 0.12) 0%, rgba(77, 157, 224, 0.05) 40%, transparent 70%);
+		pointer-events: none;
+	}
+
+	/* ===== CLOSING ===== */
+	.closing {
+		text-align: center;
+		padding: 160px 0;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.closing h2 {
+		margin-bottom: 28px;
+	}
+
+	.closing-meta {
+		font-size: 15px;
+		color: hsla(0,0%,100%,.3);
+		font-weight: 500;
+		letter-spacing: 1px;
+	}
+
+	.final-glow {
+		position: absolute;
+		bottom: -100px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 800px;
+		height: 500px;
+		background: radial-gradient(ellipse, rgba(0, 85, 164, 0.1) 0%, rgba(77, 157, 224, 0.04) 40%, transparent 70%);
+		pointer-events: none;
+	}
+
+	/* ===== GSAP targets (start hidden) ===== */
+	.program-step-card {
+		opacity: 0;
+	}
+
+	/* ===== RESPONSIVE ===== */
+	@media (max-width: 768px) {
+		.hero { padding: 120px 0 80px; }
+		.section { padding: 80px 0; }
+		.hero h1 { font-size: clamp(24px, 7vw, 36px); }
+		h2 { font-size: clamp(24px, 6vw, 36px); margin-bottom: 40px; }
+
+		.section-sub { margin: -16px auto 40px; font-size: 15px; }
+
+		.cards-3 { grid-template-columns: 1fr; }
+		.check-grid { grid-template-columns: 1fr; }
+		.next-grid { grid-template-columns: 1fr; }
+
+		.cover-meta { flex-direction: column; gap: 8px; }
+
+		.program-timeline::before { left: 16px; }
+		.program-dot { left: 16px; }
+		.program-step:nth-child(odd),
+		.program-step:nth-child(even) {
+			padding-left: 44px;
+			padding-right: 0;
+			justify-content: flex-start;
+		}
+
+		.acte-item { gap: 14px; }
+		.acte-icon { width: 40px; height: 40px; border-radius: 10px; }
+		.acte-icon i, .acte-icon svg { width: 18px; height: 18px; }
+	}
+</style>
