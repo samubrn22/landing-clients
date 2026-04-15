@@ -1,0 +1,925 @@
+---
+
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Vivactis × Kokoro — Industrialiser le BizDev avec l'IA</title>
+		<meta name="description" content="Proposition d'accompagnement — Industrialisation de la performance commerciale par l'IA pour Vivactis. Pilote Suisse, déploiement Europe." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+		<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+	</head>
+	<body>
+
+		<!-- ==================== HERO ==================== -->
+		<section class="hero" id="hero">
+			<div class="hero-glow"></div>
+			<div class="container">
+				<div class="cover-logos">
+					<span class="cover-logo">Vivactis</span>
+					<span class="cover-x">&times;</span>
+					<span class="cover-logo">Kokoro</span>
+				</div>
+				<p class="hero-eyebrow">Industrialisation du Business Development</p>
+				<h1>Transformer votre expertise scientifique<br/>en <span class="gradient-text">croissance prévisible</span>.</h1>
+				<p class="hero-sub">Un dispositif d'acquisition augmenté par l'IA, conçu pour une agence de communication scientifique médicale. Pilote Suisse. Déploiement Europe.</p>
+				<div class="cover-meta">
+					<span><i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> Lausanne — Biopôle</span>
+					<span><i data-lucide="users" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> Pilote : équipe Suisse (5 pers.)</span>
+					<span><i data-lucide="globe" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> Scale-up : Vivactis Europe</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== CONTEXTE ==================== -->
+		<section class="section" id="contexte">
+			<div class="container">
+				<p class="section-label reveal">Le contexte</p>
+				<h2 class="reveal">Une agence européenne solide,<br/>un moteur commercial qui plafonne</h2>
+				<p class="section-sub reveal">Vivactis est reconnue pour son expertise scientifique et sa capacité à porter des produits pharma, medtech et biotech sur le marché européen. Le <strong>Business Development</strong> reste pourtant le maillon le moins outillé.</p>
+				<div class="cards-grid cards-3 reveal-group">
+					<div class="card reveal">
+						<div class="card-num">01</div>
+						<div class="card-icon"><i data-lucide="flask-conical"></i></div>
+						<h3>Une expertise scientifique rare</h3>
+						<p>Market access, formation médicale, études cliniques, communication patients. Cinq domaines, ~160 collaborateurs, une couverture européenne.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-num">02</div>
+						<div class="card-icon"><i data-lucide="sparkles"></i></div>
+						<h3>Une culture produit déjà IA-native</h3>
+						<p>Coaching de sales reps, digestes d'études scientifiques, chatbot patients. L'IA est intégrée à l'offre — pas encore au moteur commercial.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-num">03</div>
+						<div class="card-icon"><i data-lucide="compass"></i></div>
+						<h3>Une filiale suisse pilote</h3>
+						<p>La Suisse joue un rôle d'incubateur d'innovation pour le groupe. Ce qui est validé ici a vocation à être déployé en France et sur l'ensemble des filiales Vivactis.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== PROBLÈME ==================== -->
+		<section class="section" id="probleme">
+			<div class="container">
+				<p class="section-label reveal">Le constat</p>
+				<h2 class="reveal">Quatre contraintes<br/>qui limitent votre croissance</h2>
+				<p class="section-sub reveal">Elles ne relèvent pas d'un défaut d'ambition ni de savoir-faire. Elles relèvent d'un <strong>manque d'industrialisation</strong> du dispositif commercial.</p>
+				<div class="check-grid reveal-group">
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="hourglass"></i></div>
+						<div>
+							<h3>Un BizDev sous-alloué</h3>
+							<p>La direction porte 90 % du développement commercial, alors que le temps disponible est inférieur à 10 %. La croissance est mécaniquement plafonnée par une ressource humaine unique.</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="users-round"></i></div>
+						<div>
+							<h3>Une équipe scientifique, non commerciale</h3>
+							<p>Les médecins et scientifiques de l'équipe maîtrisent la matière. La vente n'est ni leur métier, ni leur appétence. Les former à la vente classique n'a pas produit de résultats en 15 ans.</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="database"></i></div>
+						<div>
+							<h3>Un CRM Odoo peuplé mais passif</h3>
+							<p>La base existe, elle est propre. Elle n'est pas encore activée : pas de séquences, pas d'orchestration, pas de priorisation. Odoo est un référentiel, pas un moteur.</p>
+						</div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="alert-triangle"></i></div>
+						<div>
+							<h3>Des premiers essais sans traction</h3>
+							<p>Un pilote Waalaxy sur un produit unique n'a pas donné les résultats attendus. La cause n'est pas l'outil : c'est l'absence de stratégie de signaux et de ressources en amont.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== NOTRE LECTURE ==================== -->
+		<section class="section" id="lecture">
+			<div class="why-claude-bg-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<p class="section-label reveal">Notre lecture</p>
+				<h2 class="reveal">Le levier n'est pas le copywriting.<br/>C'est la <span class="gradient-text">fréquence d'A/B test</span>.</h2>
+				<p class="section-sub reveal">Les séquences automatisées ne performent plus par la qualité d'un message unique. Elles performent par la capacité à <strong>croiser un signal d'achat pertinent avec une ressource de valeur</strong>, et à tester ce couple à haute fréquence. C'est précisément ce que l'IA permet aujourd'hui.</p>
+			</div>
+		</section>
+
+		<!-- ==================== SOLUTION ==================== -->
+		<section class="section" id="solution">
+			<div class="container">
+				<p class="section-label reveal">Notre proposition</p>
+				<h2 class="reveal">Quatre leviers,<br/>un dispositif intégré</h2>
+				<p class="section-sub reveal">Nous concevons, déployons et opérons avec vos équipes un moteur d'acquisition orchestré, branché sur Odoo, augmenté par l'IA, mesurable sur chaque séquence.</p>
+				<div class="acte-list">
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="target"></i></div>
+						<div>
+							<h3>01 — Stratégie d'acquisition</h3>
+							<p>Cadrage ICP et personas, consolidation du TAM sur votre territoire européen, segmentation fine par verticale (pharma, medtech, biotech). Votre base Odoo existante sert de socle.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="radar"></i></div>
+						<div>
+							<h3>02 — Détection de signaux d'achat</h3>
+							<p>Identification et captation systématique des signaux pertinents : changements de poste, levées de fonds, annonces réglementaires, publications scientifiques, mouvements dans vos comptes cibles.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="file-text"></i></div>
+						<div>
+							<h3>03 — Production de ressources à haute valeur</h3>
+							<p>Landing pages, livres blancs, études sectorielles, synthèses scientifiques. Production accélérée par l'IA : de 5 jours ouvrés par ressource à 2 heures. A/B test à grande échelle.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="workflow"></i></div>
+						<div>
+							<h3>04 — Orchestration & monitoring</h3>
+							<p>Mise en place des séquences dans l'outil d'automatisation (lemlist ou équivalent), articulation avec Odoo, reporting hebdomadaire, pilotage : arrêt de ce qui ne convertit pas, renforcement de ce qui performe.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== MÉTHODE ==================== -->
+		<section class="section" id="methode">
+			<div class="container">
+				<p class="section-label reveal">La méthode</p>
+				<h2 class="reveal">Un pilote structuré en trois phases</h2>
+				<div class="program-timeline">
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">Phase 1 · Semaines 1–3</div>
+							<h3>Cadrage stratégique</h3>
+							<p>Ateliers ICP / TAM / signaux. Audit de la base Odoo. Sélection des comptes prioritaires. Choix de 2 à 3 offres à activer en priorité.</p>
+							<div class="program-badges">
+								<span class="badge">ICP</span>
+								<span class="badge">TAM</span>
+								<span class="badge">Audit CRM</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--accent"></div>
+						<div class="program-step-card program-step-card--accent">
+							<div class="program-time">Phase 2 · Semaines 4–8</div>
+							<h3>Design & build</h3>
+							<p>Production des ressources. Construction des séquences par signal. Mise en place de l'orchestration et du reporting. Intégration Odoo. Formation du vendeur junior pressenti à l'usage de la stack.</p>
+							<div class="program-badges">
+								<span class="badge">Ressources IA</span>
+								<span class="badge">Séquences</span>
+								<span class="badge">Intégration</span>
+							</div>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--green"></div>
+						<div class="program-step-card program-step-card--green">
+							<div class="program-time">Phase 3 · Semaines 9+</div>
+							<h3>Opération & itération</h3>
+							<p>Pilotage hebdomadaire des séquences. Arbitrages data-driven. Itération sur les ressources et les signaux. Reporting mensuel à la direction. Préparation du passage à l'échelle Europe.</p>
+							<div class="program-badges">
+								<span class="badge">Monitoring</span>
+								<span class="badge">A/B test</span>
+								<span class="badge badge--green">Scale Europe</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== ORG ==================== -->
+		<section class="section" id="org">
+			<div class="container">
+				<p class="section-label reveal">L'organisation</p>
+				<h2 class="reveal">Une cellule mixte,<br/>Vivactis × Kokoro</h2>
+				<p class="section-sub reveal">Nous ne remplaçons pas votre équipe. Nous l'augmentons. Le dispositif est conçu pour rester opérable en interne à l'issue du pilote.</p>
+				<div class="next-grid reveal-group">
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="building" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#2563eb;"></i> Côté Vivactis</h3>
+						<ul>
+							<li>Sponsorship direction : arbitrages stratégiques</li>
+							<li>Référent commercial (vendeur junior identifié)</li>
+							<li>Experts scientifiques mobilisés ponctuellement pour la validation des ressources</li>
+							<li>Accès Odoo et aux données commerciales</li>
+						</ul>
+					</div>
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="cpu" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#2563eb;"></i> Côté Kokoro</h3>
+						<ul>
+							<li>Lead stratégique sur l'acquisition</li>
+							<li>Production des ressources et des séquences</li>
+							<li>Intégration technique et orchestration</li>
+							<li>Reporting et pilotage de la performance</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== SCALE ==================== -->
+		<section class="section" id="scale">
+			<div class="why-claude-bg-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<p class="section-label reveal">La trajectoire</p>
+				<h2 class="reveal">Valider en Suisse.<br/>Dupliquer en Europe.</h2>
+				<p class="section-sub reveal">Le pilote suisse produit deux livrables stratégiques : une <strong>traction commerciale mesurable</strong> sur votre marché local, et un <strong>playbook documenté</strong> directement transposable aux filiales France, Italie, Espagne et au reste du groupe.</p>
+				<div class="cards-grid cards-3 reveal-group">
+					<div class="card card--featured reveal">
+						<div class="card-num">01</div>
+						<div class="card-icon"><i data-lucide="check-circle-2"></i></div>
+						<h3>Preuve de valeur</h3>
+						<p>Un dispositif opérationnel, des séquences qui convertissent, un reporting clair. Fondations tangibles pour décider du scale.</p>
+					</div>
+					<div class="card card--featured reveal">
+						<div class="card-num">02</div>
+						<div class="card-icon"><i data-lucide="book-open"></i></div>
+						<h3>Playbook transférable</h3>
+						<p>Méthode, stack, ressources, séquences. Formalisé pour être réplicable par les autres filiales avec un accompagnement réduit.</p>
+					</div>
+					<div class="card card--featured reveal">
+						<div class="card-num">03</div>
+						<div class="card-icon"><i data-lucide="trending-up"></i></div>
+						<h3>Effet de levier Europe</h3>
+						<p>La filiale France, premier relais naturel. Puis déploiement progressif sur les sept pays, sur une logique de pays-par-pays.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== NEXT STEPS ==================== -->
+		<section class="section" id="next">
+			<div class="container">
+				<p class="section-label reveal">Prochaines étapes</p>
+				<h2 class="reveal">Ce qui peut démarrer<br/>dans les deux prochaines semaines</h2>
+				<div class="next-grid reveal-group">
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="calendar" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#2563eb;"></i> Session de cadrage</h3>
+						<ul>
+							<li>Atelier de 90 minutes avec la direction</li>
+							<li>Revue des offres prioritaires à activer</li>
+							<li>Validation du périmètre du pilote</li>
+							<li>Alignement sur les indicateurs de succès</li>
+						</ul>
+					</div>
+					<div class="next-card next-card--highlight reveal">
+						<h3><i data-lucide="file-signature" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#2563eb;"></i> Proposition formalisée</h3>
+						<ul>
+							<li>Périmètre détaillé du pilote</li>
+							<li>Planning et jalons</li>
+							<li>Équipe mobilisée et gouvernance</li>
+							<li>Conditions commerciales</li>
+						</ul>
+					</div>
+					<div class="next-card reveal">
+						<h3><i data-lucide="presentation" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:hsla(0,0%,100%,.4);"></i> Option — Webinaire Biopôle</h3>
+						<ul>
+							<li>Intervention conjointe Vivactis × Kokoro</li>
+							<li>Audience : dirigeants du Biopôle de Lausanne</li>
+							<li>Format anglophone</li>
+							<li>Positionnement de Vivactis en amont du déploiement</li>
+						</ul>
+					</div>
+					<div class="next-card reveal">
+						<h3><i data-lucide="help-circle" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:hsla(0,0%,100%,.4);"></i> Points à valider ensemble</h3>
+						<ul>
+							<li>Offres à prioriser sur le pilote</li>
+							<li>Gouvernance côté Vivactis Europe</li>
+							<li>Calendrier de démarrage</li>
+							<li>Niveau d'implication du vendeur junior</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================== CLOSING ==================== -->
+		<section class="section closing" id="closing">
+			<div class="final-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<h2 class="reveal">Un moteur commercial <span class="gradient-text">à la hauteur</span><br/>de votre expertise scientifique.</h2>
+				<p class="closing-meta reveal">Vivactis × Kokoro &middot; Proposition d'accompagnement</p>
+			</div>
+		</section>
+
+		<!-- JS -->
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				if (window.lucide) lucide.createIcons();
+
+				if (window.gsap && window.ScrollTrigger) {
+					gsap.registerPlugin(ScrollTrigger);
+
+					document.querySelectorAll('section').forEach(section => {
+						const els = section.querySelectorAll('.reveal');
+						if (els.length) {
+							gsap.fromTo(els,
+								{ opacity: 0, y: 30, filter: 'blur(4px)' },
+								{
+									opacity: 1, y: 0, filter: 'blur(0px)',
+									duration: 0.8,
+									stagger: 0.12,
+									ease: 'power3.out',
+									scrollTrigger: { trigger: section, start: 'top 80%', once: true }
+								}
+							);
+						}
+					});
+
+					gsap.fromTo('.cover-logos', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, ease: 'power3.out' });
+					gsap.fromTo('.hero-eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.35, ease: 'power3.out' });
+					gsap.fromTo('.hero h1', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: 'power3.out' });
+					gsap.fromTo('.hero-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.65, ease: 'power3.out' });
+					gsap.fromTo('.cover-meta', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.8, ease: 'power3.out' });
+
+					gsap.fromTo('.program-dot', { opacity: 0, scale: 0 }, {
+						opacity: 1, scale: 1, duration: 0.4, stagger: 0.12, ease: 'back.out(2)',
+						scrollTrigger: { trigger: '.program-timeline', start: 'top 80%', once: true }
+					});
+
+					document.querySelectorAll('.program-step').forEach((step, i) => {
+						const card = step.querySelector('.program-step-card');
+						const fromX = i % 2 === 0 ? -40 : 40;
+						gsap.fromTo(card, { opacity: 0, x: fromX }, {
+							opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+							scrollTrigger: { trigger: step, start: 'top 85%', once: true }
+						});
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	/* ===== RESET & BASE ===== */
+	* { margin: 0; padding: 0; box-sizing: border-box; }
+	html { scroll-behavior: smooth; }
+
+	body {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		background: #0A0812;
+		color: hsla(0,0%,100%,.6);
+		line-height: 1.7;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 28px;
+	}
+
+	.reveal { opacity: 0; }
+
+	/* ===== TYPOGRAPHY ===== */
+	h1, h2 {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		font-weight: 800;
+		letter-spacing: -0.04em;
+	}
+
+	h3 {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.gradient-text {
+		background: linear-gradient(135deg, #60a5fa, #2563eb, #0f172a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.section-label {
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		color: #2563eb;
+		font-weight: 600;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.section-sub {
+		font-size: 17px;
+		color: hsla(0,0%,100%,.55);
+		max-width: 720px;
+		margin: -32px auto 64px;
+		text-align: center;
+		line-height: 1.7;
+	}
+
+	.section-sub strong {
+		color: hsla(0,0%,100%,.9);
+		font-weight: 600;
+	}
+
+	/* ===== SECTIONS ===== */
+	.section {
+		padding: 130px 0;
+		position: relative;
+		overflow: hidden;
+	}
+
+	h2 {
+		font-size: clamp(28px, 5vw, 48px);
+		font-weight: 800;
+		color: #fff;
+		margin-bottom: 64px;
+		text-align: center;
+		line-height: 1.15;
+	}
+
+	/* ===== HERO ===== */
+	.hero {
+		padding: 200px 0 140px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.hero .container { position: relative; z-index: 1; }
+
+	.hero-glow {
+		position: absolute;
+		top: -200px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 1000px;
+		height: 700px;
+		background: radial-gradient(ellipse, rgba(37, 99, 235, 0.32) 0%, rgba(37, 99, 235, 0.12) 35%, rgba(15, 23, 42, 0.04) 60%, transparent 75%);
+		pointer-events: none;
+		animation: heroPulse 6s ease-in-out infinite;
+	}
+
+	@keyframes heroPulse {
+		0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+		50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+	}
+
+	.cover-logos {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		margin-bottom: 24px;
+		opacity: 0;
+	}
+
+	.cover-logo {
+		font-size: 14px;
+		font-weight: 800;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+		color: hsla(0,0%,100%,.9);
+	}
+
+	.cover-x {
+		font-size: 16px;
+		color: hsla(0,0%,100%,.25);
+		font-weight: 500;
+	}
+
+	.hero-eyebrow {
+		font-size: 13px;
+		text-transform: uppercase;
+		letter-spacing: 5px;
+		color: #2563eb;
+		font-weight: 700;
+		margin-bottom: 28px;
+		opacity: 0;
+	}
+
+	.hero h1 {
+		font-size: clamp(30px, 4.5vw, 52px);
+		font-weight: 800;
+		line-height: 1.15;
+		color: #fff;
+		margin-bottom: 32px;
+		opacity: 0;
+	}
+
+	.hero-sub {
+		font-size: 17px;
+		color: hsla(0,0%,100%,.6);
+		max-width: 680px;
+		margin: 0 auto 40px;
+		line-height: 1.7;
+		opacity: 0;
+	}
+
+	.cover-meta {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		flex-wrap: wrap;
+		opacity: 0;
+	}
+
+	.cover-meta span {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.45);
+		font-weight: 500;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	/* ===== CARDS ===== */
+	.cards-grid { display: grid; gap: 20px; }
+	.cards-3 { grid-template-columns: repeat(3, 1fr); }
+
+	.card {
+		background: rgba(255,255,255,0.04);
+		border: 1px dashed rgba(255,255,255,0.1);
+		border-radius: 16px;
+		padding: 36px 28px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+		position: relative;
+	}
+
+	.card:hover {
+		background: rgba(37, 99, 235, 0.05);
+		border-color: rgba(37, 99, 235, 0.25);
+		box-shadow: 0 0 25px rgba(37,99,235,0.1);
+	}
+
+	.card--featured {
+		background: rgba(37, 99, 235, 0.06);
+		border: 1px solid rgba(37, 99, 235, 0.22);
+		border-style: solid;
+	}
+
+	.card--featured::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #0f172a, #2563eb, transparent);
+		border-radius: 16px 16px 0 0;
+	}
+
+	.card-num {
+		font-size: 13px;
+		font-weight: 700;
+		color: #2563eb;
+		margin-bottom: 16px;
+		letter-spacing: 1px;
+	}
+
+	.card-icon { color: #2563eb; margin-bottom: 16px; }
+
+	.card-icon i, .card-icon svg {
+		width: 24px;
+		height: 24px;
+		filter: drop-shadow(0 0 8px rgba(37,99,235,0.4));
+	}
+
+	.card h3 {
+		font-size: 16px;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 10px;
+		line-height: 1.4;
+	}
+
+	.card p {
+		font-size: 14px;
+		line-height: 1.7;
+		color: hsla(0,0%,100%,.6);
+	}
+
+	/* ===== CHECK GRID ===== */
+	.check-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.check-item {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 16px;
+		padding: 24px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+	}
+
+	.check-item:hover {
+		background: rgba(37, 99, 235, 0.05);
+		border-color: rgba(37, 99, 235, 0.18);
+	}
+
+	.check-icon {
+		width: 40px;
+		height: 40px;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		background: rgba(37,99,235,0.12);
+		color: #2563eb;
+	}
+
+	.check-icon i, .check-icon svg { width: 20px; height: 20px; }
+
+	.check-item h3 {
+		font-size: 15px;
+		font-weight: 700;
+		color: hsla(0,0%,100%,.9);
+		margin-bottom: 6px;
+	}
+
+	.check-item p {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.55);
+		line-height: 1.6;
+	}
+
+	/* ===== ACTE LIST ===== */
+	.acte-list {
+		display: grid;
+		gap: 16px;
+		max-width: 880px;
+		margin: 0 auto;
+	}
+
+	.acte-item {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 16px;
+		padding: 28px 32px;
+		transition: all .4s cubic-bezier(.22,1,.36,1);
+	}
+
+	.acte-item:hover {
+		background: rgba(37, 99, 235, 0.04);
+		border-color: rgba(37, 99, 235, 0.18);
+	}
+
+	.acte-icon {
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		background: rgba(37,99,235,0.12);
+		color: #2563eb;
+	}
+
+	.acte-icon i, .acte-icon svg { width: 22px; height: 22px; }
+
+	.acte-item h3 {
+		font-size: 16px;
+		font-weight: 700;
+		color: hsla(0,0%,100%,.92);
+		margin-bottom: 8px;
+	}
+
+	.acte-item p {
+		font-size: 14px;
+		color: hsla(0,0%,100%,.6);
+		line-height: 1.7;
+	}
+
+	/* ===== TIMELINE ===== */
+	.program-timeline {
+		position: relative;
+		padding: 40px 0;
+	}
+
+	.program-timeline::before {
+		content: '';
+		position: absolute;
+		left: 20px;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: linear-gradient(to bottom, transparent, rgba(37,99,235,0.3), transparent);
+	}
+
+	.program-step {
+		display: flex;
+		gap: 24px;
+		margin-bottom: 20px;
+		align-items: flex-start;
+	}
+
+	.program-dot {
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		background: #0A0812;
+		border: 2px solid rgba(37,99,235,0.3);
+		flex-shrink: 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.program-dot--accent {
+		border-color: #2563eb;
+		box-shadow: 0 0 16px rgba(37,99,235,0.5);
+	}
+
+	.program-dot--green {
+		border-color: #10b981;
+		box-shadow: 0 0 16px rgba(16,185,129,0.4);
+	}
+
+	.program-dot--muted { opacity: .4; }
+
+	.program-step-card {
+		flex: 1;
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 14px;
+		padding: 22px 26px;
+	}
+
+	.program-step-card--accent {
+		background: rgba(37, 99, 235, 0.06);
+		border-color: rgba(37, 99, 235, 0.22);
+	}
+
+	.program-step-card--green {
+		background: rgba(16, 185, 129, 0.05);
+		border-color: rgba(16, 185, 129, 0.2);
+	}
+
+	.program-time {
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: #2563eb;
+		font-weight: 700;
+		margin-bottom: 8px;
+	}
+
+	.program-step-card--green .program-time { color: #10b981; }
+
+	.program-step-card h3 {
+		font-size: 17px;
+		font-weight: 700;
+		color: hsla(0,0%,100%,.95);
+		margin-bottom: 6px;
+	}
+
+	.program-step-card p {
+		font-size: 14px;
+		color: hsla(0,0%,100%,.6);
+		line-height: 1.7;
+	}
+
+	.program-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-top: 12px;
+	}
+
+	.badge {
+		font-size: 10px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		padding: 4px 10px;
+		border-radius: 6px;
+		background: rgba(37,99,235,0.12);
+		color: #60a5fa;
+		border: 1px solid rgba(37,99,235,0.2);
+	}
+
+	.badge--green {
+		background: rgba(16,185,129,0.12);
+		color: #34d399;
+		border-color: rgba(16,185,129,0.25);
+	}
+
+	/* ===== NEXT GRID ===== */
+	.next-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.next-card {
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.06);
+		border-radius: 16px;
+		padding: 28px 30px;
+	}
+
+	.next-card--highlight {
+		background: rgba(37, 99, 235, 0.05);
+		border-color: rgba(37, 99, 235, 0.22);
+	}
+
+	.next-card h3 {
+		font-size: 15px;
+		font-weight: 700;
+		color: hsla(0,0%,100%,.95);
+		margin-bottom: 16px;
+	}
+
+	.next-card ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.next-card li {
+		font-size: 13.5px;
+		color: hsla(0,0%,100%,.6);
+		line-height: 1.6;
+		padding: 6px 0 6px 18px;
+		position: relative;
+	}
+
+	.next-card li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 14px;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #2563eb;
+	}
+
+	/* ===== BG GLOW ===== */
+	.why-claude-bg-glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 900px;
+		height: 600px;
+		background: radial-gradient(ellipse, rgba(37, 99, 235, 0.1) 0%, transparent 65%);
+		pointer-events: none;
+	}
+
+	/* ===== CLOSING ===== */
+	.closing { text-align: center; padding: 180px 0; }
+
+	.final-glow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1000px;
+		height: 600px;
+		background: radial-gradient(ellipse, rgba(37, 99, 235, 0.18) 0%, transparent 65%);
+		pointer-events: none;
+	}
+
+	.closing h2 { margin-bottom: 24px; }
+
+	.closing-meta {
+		font-size: 13px;
+		color: hsla(0,0%,100%,.4);
+		letter-spacing: 1px;
+	}
+
+	/* ===== RESPONSIVE ===== */
+	@media (max-width: 820px) {
+		.cards-3 { grid-template-columns: 1fr; }
+		.check-grid { grid-template-columns: 1fr; }
+		.next-grid { grid-template-columns: 1fr; }
+		.section { padding: 90px 0; }
+		.hero { padding: 140px 0 100px; }
+		.program-step { gap: 16px; }
+		.program-step-card { padding: 18px 20px; }
+		.acte-item { padding: 22px 20px; gap: 14px; }
+	}
+</style>
+</html>
