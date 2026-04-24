@@ -1,0 +1,242 @@
+---
+
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Clinitex — Journée Comptabilité (2 juin)</title>
+		<meta name="description" content="Service Comptabilité — préparation de la journée du 2 juin 2026." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="wrap">
+
+			<header class="head">
+				<div class="tag">Clinitex × Kokoro</div>
+				<h1>Journée Comptabilité</h1>
+				<div class="meta">
+					<span><strong>2 juin 2026</strong></span>
+					<span>9h – 17h</span>
+					<span>Villeneuve d'Ascq</span>
+					<span>9 personnes (7 rentabilité + 2 recouvrement)</span>
+				</div>
+				<div class="legend">
+					<span class="badge ok">✓ Faisable en formation Claude Pro</span>
+					<span class="badge part">◐ Partiel (génération oui, automatisation non)</span>
+					<span class="badge no">✗ Hors scope Claude Pro</span>
+				</div>
+			</header>
+
+			<section>
+				<h2>Ce qui a été remonté par l'équipe</h2>
+				<p class="note warn"><strong>⚠ Aucune réponse formulaire à date côté Compta.</strong> Contenu basé sur le call du 9 avril avec Anne-Sophie. Formulaire à relancer auprès de l'équipe avant la journée.</p>
+				<h3>Ce qu'on sait du contexte</h3>
+				<ul>
+					<li>9 personnes dans l'équipe</li>
+					<li>Tous sur les mêmes sujets : <strong>rentabilité</strong></li>
+					<li>2 personnes dédiées au <strong>recouvrement</strong></li>
+					<li>Niveau de connaissance IA <strong>bas</strong></li>
+					<li>Frustration forte autour de Metabase : 6 mois d'attente pour des chiffres de rentabilité fiables, les directeurs d'agence pilotent à vue</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Cas d'usage proposés pour la journée</h2>
+				<p class="note">À confirmer ou compléter après retour du formulaire équipe Compta.</p>
+				<table>
+					<thead>
+						<tr><th>Cas d'usage</th><th>Statut</th><th>Comment on le fait en formation</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Analyse de factures fournisseurs</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Upload d'une facture PDF, extraction des données clés, détection d'anomalies. Batch possible via Skills.</td>
+						</tr>
+						<tr>
+							<td><strong>Rapprochement bancaire (ponctuel)</strong></td>
+							<td><span class="badge part">◐</span></td>
+							<td>Contrôle de cohérence sur un export bancaire. Automatisation récurrente = hors scope (passer par Pennylane / Cegid).</td>
+						</tr>
+						<tr>
+							<td><strong>Suivi impayés + priorisation relances</strong></td>
+							<td><span class="badge part">◐</span></td>
+							<td>Upload de la balance clients → Claude priorise les relances et génère des scripts d'appel + courriers personnalisés. Envoi = manuel.</td>
+						</tr>
+						<tr>
+							<td><strong>Analyse rentabilité par agence</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Upload d'un export comptable, analyse écart théorique / réel, synthèse par agence avec plan d'action.</td>
+						</tr>
+						<tr>
+							<td><strong>Tableau de bord rentabilité (dashboard)</strong></td>
+							<td><span class="badge part">◐</span></td>
+							<td>Artifacts peut générer un dashboard HTML one-shot à partir d'un export. Dashboard dynamique connecté = hors scope.</td>
+						</tr>
+						<tr>
+							<td><strong>Synthèse de documents comptables longs</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Liasses, bilans, rapports fournisseurs. Upload + synthèse structurée.</td>
+						</tr>
+						<tr>
+							<td><strong>Contrôles de cohérence avant clôture</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Claude liste les incohérences entre deux exports (ex : balance vs grand livre).</td>
+						</tr>
+						<tr>
+							<td><strong>Préparation dossier de révision</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Checklist générée, docs préparatoires, notes pour le CAC.</td>
+						</tr>
+						<tr>
+							<td><strong>Génération relances clients</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Courriers de relance personnalisés par niveau de retard, avec ton adapté.</td>
+						</tr>
+						<tr>
+							<td><strong>Analyse d'échéanciers</strong></td>
+							<td><span class="badge ok">✓</span></td>
+							<td>Projection cashflow depuis un échéancier Excel.</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note"><strong>Note Agent IA</strong> — En formation Claude Pro, on ne construit pas d'agents autonomes. On montre comment créer un <strong>Project Claude</strong> "Compta Clinitex" avec les procédures internes en knowledge, pour poser toutes les questions récurrentes au quotidien.</p>
+			</section>
+
+			<section>
+				<h2>Plan de la journée</h2>
+				<div class="slot">
+					<div class="time">9h00 – 9h30</div>
+					<div>
+						<h3>Ouverture</h3>
+						<p>Tour de table, usages actuels (ChatGPT / Gemini gratuit ?), attentes, frustrations (Metabase).</p>
+					</div>
+				</div>
+				<div class="slot">
+					<div class="time">9h30 – 10h45</div>
+					<div>
+						<h3>Socle commun</h3>
+						<p>Écosystème IA, choix de Claude, rédaction de prompts, confidentialité des données comptables (bonnes pratiques).</p>
+					</div>
+				</div>
+				<div class="slot">
+					<div class="time">11h00 – 12h30</div>
+					<div>
+						<h3>Bloc Rentabilité</h3>
+						<p>Analyse d'un vrai export comptable anonymisé, synthèse par agence, génération d'un dashboard Artifacts one-shot.</p>
+					</div>
+				</div>
+				<div class="slot muted">
+					<div class="time">12h30 – 14h00</div>
+					<div>
+						<h3>Déjeuner</h3>
+					</div>
+				</div>
+				<div class="slot">
+					<div class="time">14h00 – 15h30</div>
+					<div>
+						<h3>Sous-groupes</h3>
+						<p><strong>Groupe 1 (7 personnes rentabilité)</strong> : analyse factures fournisseurs, contrôles de cohérence, préparation clôture.<br/><strong>Groupe 2 (2 personnes recouvrement)</strong> : priorisation de la balance clients, génération de relances personnalisées, scripts d'appel.</p>
+					</div>
+				</div>
+				<div class="slot">
+					<div class="time">15h45 – 16h45</div>
+					<div>
+						<h3>Project Claude "Compta Clinitex"</h3>
+						<p>On construit ensemble un Project avec les procédures internes en knowledge pour en faire l'assistant compta quotidien de l'équipe.</p>
+					</div>
+				</div>
+				<div class="slot">
+					<div class="time">16h45 – 17h00</div>
+					<div>
+						<h3>Clôture</h3>
+						<p>Feuille de route perso (3 actions), Q&A.</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Documents à envoyer en amont (J-14)</h2>
+				<ul class="todo">
+					<li>1 export comptable anonymisé (balance, grand livre ou FEC)</li>
+					<li>3-5 factures fournisseurs types (PDF anonymisés)</li>
+					<li>Procédure de relance impayés actuelle</li>
+					<li>1 balance clients anonymisée avec échéances</li>
+					<li>Exemple de tableau de bord rentabilité souhaité (celui qu'ils attendent de Metabase)</li>
+					<li>Liste des outils utilisés (Pennylane, Cegid, Sage, autre ?)</li>
+					<li>Procédures internes compta (clôture, révision, contrôles)</li>
+					<li>Retours du formulaire — à relancer auprès de l'équipe</li>
+				</ul>
+			</section>
+
+		</div>
+	</body>
+</html>
+
+<style>
+	* { margin: 0; padding: 0; box-sizing: border-box; }
+	body {
+		font-family: 'Inter', -apple-system, system-ui, sans-serif;
+		background: #0A0812;
+		color: hsla(0,0%,100%,.75);
+		line-height: 1.65;
+		-webkit-font-smoothing: antialiased;
+		font-size: 15px;
+	}
+	.wrap { max-width: 860px; margin: 0 auto; padding: 60px 32px 120px; }
+	.head { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 32px; margin-bottom: 48px; }
+	.tag { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #4D9DE0; font-weight: 700; margin-bottom: 16px; }
+	h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: #fff; margin-bottom: 16px; }
+	.meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: hsla(0,0%,100%,.55); margin-bottom: 24px; }
+	.meta strong { color: hsla(0,0%,100%,.9); font-weight: 600; }
+	.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+	section { margin-bottom: 56px; }
+	h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 20px; letter-spacing: -0.01em; }
+	h3 { font-size: 15px; font-weight: 700; color: hsla(0,0%,100%,.9); margin: 20px 0 10px; }
+	h3:first-child { margin-top: 0; }
+	p { margin-bottom: 12px; }
+	p:last-child { margin-bottom: 0; }
+	.note { font-size: 13px; color: hsla(0,0%,100%,.5); font-style: italic; margin-bottom: 16px; }
+	.note strong { color: hsla(0,0%,100%,.75); font-style: normal; }
+	.note.warn { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; padding: 12px 16px; font-style: normal; color: hsla(0,0%,100%,.75); border-radius: 0 6px 6px 0; }
+	.note.warn strong { color: #fbbf24; }
+	ul, ol { padding-left: 20px; margin-bottom: 12px; }
+	li { margin-bottom: 6px; font-size: 14px; color: hsla(0,0%,100%,.7); }
+	li strong { color: hsla(0,0%,100%,.95); font-weight: 600; }
+
+	table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 16px; }
+	thead th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: hsla(0,0%,100%,.45); font-weight: 700; padding: 12px 12px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+	tbody td { padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: hsla(0,0%,100%,.7); vertical-align: top; }
+	tbody td:first-child { color: hsla(0,0%,100%,.9); font-weight: 500; width: 30%; }
+	tbody td:nth-child(2) { width: 60px; text-align: center; }
+
+	.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.2px; }
+	.badge.ok { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+	.badge.part { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+	.badge.no { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+
+	.slot { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); }
+	.slot:last-child { border-bottom: none; }
+	.slot .time { font-size: 12px; font-weight: 700; color: #4D9DE0; text-transform: uppercase; letter-spacing: 1px; padding-top: 2px; }
+	.slot.muted .time { color: hsla(0,0%,100%,.3); }
+	.slot h3 { margin: 0 0 6px; font-size: 14px; }
+	.slot p { font-size: 13.5px; color: hsla(0,0%,100%,.6); margin: 0; }
+
+	ul.todo { list-style: none; padding-left: 0; }
+	ul.todo li { padding: 10px 0 10px 26px; position: relative; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 14px; }
+	ul.todo li:last-child { border-bottom: none; }
+	ul.todo li::before { content: ''; position: absolute; left: 0; top: 14px; width: 14px; height: 14px; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 3px; }
+
+	@media (max-width: 640px) {
+		.wrap { padding: 40px 20px 80px; }
+		h1 { font-size: 30px; }
+		.slot { grid-template-columns: 1fr; gap: 6px; }
+		table { font-size: 12px; }
+		tbody td { padding: 10px 6px; }
+	}
+</style>
+</html>
