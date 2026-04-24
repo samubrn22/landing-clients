@@ -5,371 +5,308 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Clinitex — Journée Impact (29 avril)</title>
-		<meta name="description" content="Service Impact (Com, RSE, Expérience Client) — préparation de la journée du 29 avril 2026." />
+		<title>Clinitex × Kokoro — Journée Impact (29 avril)</title>
+		<meta name="description" content="Service Impact (Com, RSE, Expérience Client) — 29 avril 2026." />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+		<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 	</head>
 	<body>
-		<div class="wrap">
 
-			<header class="head">
-				<div class="tag">Clinitex × Kokoro</div>
-				<h1>Journée Impact</h1>
-				<div class="meta">
-					<span><strong>29 avril 2026</strong></span>
-					<span>9h – 17h</span>
-					<span>Villeneuve d'Ascq</span>
-					<span>Com / RSE / Expérience Client</span>
+		<section class="hero" id="hero">
+			<div class="hero-glow"></div>
+			<div class="container">
+				<div class="cover-logos">
+					<span class="cover-logo">Clinitex</span>
+					<span class="cover-x">&times;</span>
+					<span class="cover-logo">Kokoro</span>
 				</div>
-				<div class="legend">
-					<span class="badge ok">✓ Faisable en formation Claude Pro</span>
-					<span class="badge part">◐ Partiel (génération oui, automatisation non)</span>
-					<span class="badge no">✗ Hors scope Claude Pro</span>
+				<p class="hero-eyebrow">Journée Impact</p>
+				<h1>Com, RSE, Expérience Client.<br/>Une journée, <span class="gradient-text">trois métiers</span>.</h1>
+				<div class="cover-meta">
+					<span><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> 29 avril 2026</span>
+					<span><i data-lucide="clock" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> 9h &ndash; 17h</span>
+					<span><i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:-2px;margin-right:4px;"></i> Villeneuve d'Ascq</span>
 				</div>
-			</header>
+			</div>
+		</section>
 
-			<section>
-				<h2>Ce qui a été remonté par l'équipe</h2>
-				<p class="note">Répondante formulaire : <strong>Emmanuelle Tesse</strong></p>
-				<h3>Ce qui fait perdre du temps</h3>
-				<ul>
-					<li>Collecte, consolidation et analyse d'indicateurs</li>
-					<li>Rédaction de mails</li>
-					<li>Réponse aux appels d'offres et évaluations RSE</li>
-					<li>Personnalisation des supports et messages pour chaque agence</li>
-					<li>Rédaction de contenu</li>
-					<li>Refonte / mise en page de documents</li>
-					<li>Consolidation de gros datasets Excel via scripts Python</li>
-				</ul>
-				<h3>Ce sur quoi l'IA pourrait aider (verbatim)</h3>
-				<ul>
-					<li><strong>Com</strong> — Mise en page chartée, création de supports graphiques, templates modifiables par les collaborateurs</li>
-					<li><strong>Com</strong> — SEO / GEO / e-réputation en autonomie</li>
-					<li><strong>Com</strong> — Création podcast interne et externe</li>
-					<li><strong>Com</strong> — Vidéos motion design + montage</li>
-					<li><strong>Com</strong> — Automatisation des envois emails / SMS personnalisés par agence</li>
-					<li><strong>RSE</strong> — Création de contenu (rapport RSE)</li>
-					<li><strong>RSE</strong> — Veille réglementaire</li>
-					<li><strong>RSE</strong> — Benchmark sectoriel</li>
-					<li><strong>RSE</strong> — Supports de formation / sensibilisation</li>
-					<li><strong>Exp Client</strong> — Audit des données Pégase (détection manquements, plans d'action)</li>
-					<li><strong>Exp Client</strong> — Détection proactive des risques de résiliation</li>
-					<li><strong>Exp Client</strong> — Analyse des enquêtes RC et Satisfaction</li>
-				</ul>
-			</section>
+		<section class="section" id="remontee">
+			<div class="container">
+				<p class="section-label reveal">Ce qui remonte</p>
+				<h2 class="reveal">Les douleurs du service</h2>
+				<p class="section-sub reveal">Formulaire rempli par <strong>Emmanuelle Tesse</strong>. Ce qui fait perdre le plus de temps aujourd'hui.</p>
+				<div class="cards-grid cards-3 reveal-group">
+					<div class="card reveal">
+						<div class="card-icon"><i data-lucide="megaphone"></i></div>
+						<h3>Communication</h3>
+						<p>Personnalisation des supports par agence, refonte de documents, rédaction de contenus.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-icon"><i data-lucide="leaf"></i></div>
+						<h3>RSE</h3>
+						<p>Collecte et consolidation d'indicateurs, réponses AO et évaluations RSE, rapports.</p>
+					</div>
+					<div class="card reveal">
+						<div class="card-icon"><i data-lucide="users"></i></div>
+						<h3>Expérience Client</h3>
+						<p>Audit Pégase, détection churn, analyse des enquêtes RC et Satisfaction.</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-			<section>
-				<h2>Cas d'usage proposés pour la journée</h2>
-				<table>
-					<thead>
-						<tr><th>Cas d'usage</th><th>Statut</th><th>Comment on le fait en formation</th></tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>Mise en page chartée Clinitex</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Artifacts HTML/CSS + Skill PPTX. Template PowerPoint chartée générable.</td>
-						</tr>
-						<tr>
-							<td><strong>Templates modifiables collaborateurs</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Claude Project avec charte en knowledge + Skill docx/pptx.</td>
-						</tr>
-						<tr>
-							<td><strong>Personnalisation emails par agence</strong></td>
-							<td><span class="badge part">◐</span></td>
-							<td>Génération en masse depuis un fichier Excel (1 email par ligne). Envoi automatique = hors scope (nécessite n8n / Zapier).</td>
-						</tr>
-						<tr>
-							<td><strong>SEO / GEO / e-réputation</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Analyse de positionnement, recos, plan d'action, rédaction optimisée. Recherche web Claude.</td>
-						</tr>
-						<tr>
-							<td><strong>Podcast interne / externe</strong></td>
-							<td><span class="badge part">◐</span></td>
-							<td>Scripts, angles, plans éditoriaux oui. Génération audio / montage = hors scope.</td>
-						</tr>
-						<tr>
-							<td><strong>Vidéo motion design + montage</strong></td>
-							<td><span class="badge no">✗</span></td>
-							<td>Claude ne génère pas de vidéo. On peut rédiger scripts et storyboards uniquement.</td>
-						</tr>
-						<tr>
-							<td><strong>Rapport RSE</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Upload des indicateurs, Claude rédige le rapport dans un docx chartée.</td>
-						</tr>
-						<tr>
-							<td><strong>Veille réglementaire RSE</strong></td>
-							<td><span class="badge part">◐</span></td>
-							<td>Recherches one-shot avec web search. Monitoring continu = hors scope (besoin de workflow).</td>
-						</tr>
-						<tr>
-							<td><strong>Benchmark sectoriel RSE</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Analyse comparative avec recherche web.</td>
-						</tr>
-						<tr>
-							<td><strong>Réponse AO / EcoVadis</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Project Claude avec trames Clinitex + grilles d'évaluation. Remplissage assisté.</td>
-						</tr>
-						<tr>
-							<td><strong>Supports de sensibilisation RSE</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Artifacts, docx, pptx — création complète.</td>
-						</tr>
-						<tr>
-							<td><strong>Audit données Pégase</strong></td>
-							<td><span class="badge part">◐</span></td>
-							<td>Analyse one-shot d'un export CSV/Excel, détection des manquements, génération du plan d'action. Automatisation continue = hors scope.</td>
-						</tr>
-						<tr>
-							<td><strong>Détection churn / risques résiliation</strong></td>
-							<td><span class="badge part">◐</span></td>
-							<td>Analyse ponctuelle d'un export client. Monitoring auto = hors scope.</td>
-						</tr>
-						<tr>
-							<td><strong>Analyse enquêtes RC / Satisfaction</strong></td>
-							<td><span class="badge ok">✓</span></td>
-							<td>Upload des réponses, Claude détecte les signaux faibles et les patterns récurrents.</td>
-						</tr>
-					</tbody>
-				</table>
-				<p class="note"><strong>Note Agent IA</strong> — En formation Claude Pro, on ne construit pas d'agents autonomes. On montre comment créer des <strong>Projects Claude</strong> (knowledge + prompt système) qui jouent le même rôle pour les usages quotidiens. Pour de la vraie automatisation (envoi emails, monitoring continu), ça relève d'un second projet (dev externe).</p>
-			</section>
+		<section class="section" id="cas-usage">
+			<div class="container">
+				<p class="section-label reveal">Cas d'usage</p>
+				<h2 class="reveal">Ce qu'on travaille le jour J</h2>
+				<p class="section-sub reveal">Sur leurs vraies données. <strong>Pas de démo fictive</strong>.</p>
+				<div class="acte-list">
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="palette"></i></div>
+						<div>
+							<h3>Templates chartés Clinitex</h3>
+							<p>Artifacts + Skill PPTX pour générer des supports aux couleurs Clinitex, réutilisables par les collaborateurs.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="file-edit"></i></div>
+						<div>
+							<h3>Personnalisation par agence</h3>
+							<p>Génération en masse d'emails / supports depuis un fichier Excel. Envoi automatique = projet à part.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="file-text"></i></div>
+						<div>
+							<h3>Rapport RSE &amp; réponses AO</h3>
+							<p>Project Claude avec trames + grilles EcoVadis. Rédaction assistée sur indicateurs réels.</p>
+						</div>
+					</div>
+					<div class="acte-item reveal">
+						<div class="acte-icon"><i data-lucide="database"></i></div>
+						<div>
+							<h3>Audit Pégase + enquêtes clients</h3>
+							<p>Analyse one-shot d'un export, détection des manquements, signaux faibles sur la satisfaction.</p>
+						</div>
+					</div>
+				</div>
+				<p class="note-inline reveal">Vidéo et podcast (montage, voix) = hors scope Claude Pro. On rédige scripts et plans uniquement.</p>
+			</div>
+		</section>
 
-			<section>
-				<h2>Plan de la journée</h2>
-				<div class="slot">
-					<div class="time">9h00 – 9h30</div>
-					<div>
-						<h3>Ouverture</h3>
-						<p>Tour de table, usages actuels, retours formulaire, fil rouge de la journée.</p>
+		<section class="section" id="timeline">
+			<div class="container">
+				<p class="section-label reveal">Déroulé</p>
+				<h2 class="reveal">La journée</h2>
+				<div class="program-timeline">
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">9h00</div>
+							<h3>Ouverture &amp; socle commun</h3>
+							<p>Tour de table, prompting, choix de Claude. Premier test sur un contenu Clinitex.</p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--accent"></div>
+						<div class="program-step-card program-step-card--accent">
+							<div class="program-time">10h45</div>
+							<h3>Bloc Communication</h3>
+							<p>Templates chartés, personnalisation par agence, SEO / e-réputation.</p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--muted"></div>
+						<div class="program-step-card">
+							<div class="program-time">12h30</div>
+							<h3>Déjeuner</h3>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--accent"></div>
+						<div class="program-step-card program-step-card--accent">
+							<div class="program-time">14h00</div>
+							<h3>Bloc RSE</h3>
+							<p>Rapport RSE sur données réelles, veille réglementaire, réponse AO avec grille EcoVadis.</p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot program-dot--green"></div>
+						<div class="program-step-card program-step-card--green">
+							<div class="program-time">15h45</div>
+							<h3>Bloc Expérience Client</h3>
+							<p>Analyse d'un export Pégase, enquêtes RC / Satisfaction, détection churn.</p>
+						</div>
+					</div>
+					<div class="program-step">
+						<div class="program-dot"></div>
+						<div class="program-step-card">
+							<div class="program-time">16h45</div>
+							<h3>Clôture</h3>
+							<p>Feuille de route perso, 3 actions à activer la semaine suivante.</p>
+						</div>
 					</div>
 				</div>
-				<div class="slot">
-					<div class="time">9h30 – 10h30</div>
-					<div>
-						<h3>Socle commun</h3>
-						<p>Écosystème IA, choix de Claude pour Clinitex, rédaction de prompts. Premier test sur un vrai contenu de com.</p>
-					</div>
-				</div>
-				<div class="slot">
-					<div class="time">10h45 – 12h30</div>
-					<div>
-						<h3>Bloc Communication</h3>
-						<p>Templates chartés Clinitex, personnalisation par agence, SEO / e-réputation. Exercice : chaque participant génère un vrai livrable de sa zone.</p>
-					</div>
-				</div>
-				<div class="slot muted">
-					<div class="time">12h30 – 14h00</div>
-					<div>
-						<h3>Déjeuner</h3>
-					</div>
-				</div>
-				<div class="slot">
-					<div class="time">14h00 – 15h30</div>
-					<div>
-						<h3>Bloc RSE</h3>
-						<p>Rapport RSE sur indicateurs réels, veille réglementaire, réponse à un AO avec volet RSE (grille EcoVadis).</p>
-					</div>
-				</div>
-				<div class="slot">
-					<div class="time">15h45 – 16h45</div>
-					<div>
-						<h3>Bloc Expérience Client</h3>
-						<p>Audit d'un export Pégase réel, analyse d'enquêtes RC / Satisfaction, détection de signaux faibles sur clients à risque.</p>
-					</div>
-				</div>
-				<div class="slot">
-					<div class="time">16h45 – 17h00</div>
-					<div>
-						<h3>Clôture</h3>
-						<p>Feuille de route perso (3 actions à activer dès la semaine suivante), Q&A.</p>
-					</div>
-				</div>
-			</section>
+			</div>
+		</section>
 
-			<section>
-				<h2>Documents à envoyer en amont (J-14)</h2>
-				<ul class="todo">
-					<li>Charte graphique Clinitex (logo, couleurs, polices, guide d'utilisation)</li>
-					<li>3 exemples de supports de com récents par agence (PDF ou PPT)</li>
-					<li>Dernier rapport RSE publié</li>
-					<li>2-3 réponses à appels d'offres récentes avec volet RSE</li>
-					<li>Grille d'évaluation RSE type (EcoVadis ou équivalent)</li>
-					<li>1 export Pégase anonymisé (CSV ou Excel)</li>
-					<li>1 enquête RC et 1 enquête Satisfaction types (anonymisées)</li>
-					<li>Captures d'écran Metabase des tableaux de bord exp client actuels</li>
-					<li>Brief podcast / vidéo en cours ou envisagé (si pertinent)</li>
-				</ul>
-			</section>
+		<section class="section" id="docs">
+			<div class="why-claude-bg-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<p class="section-label reveal">Préparation</p>
+				<h2 class="reveal">Docs à envoyer en amont</h2>
+				<p class="section-sub reveal">À transmettre <strong>2 semaines avant</strong>. Sans ces éléments, on travaille sur du fictif.</p>
+				<div class="check-grid reveal-group">
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="palette"></i></div>
+						<div><h3>Charte graphique</h3><p>Logo, couleurs, polices, guide.</p></div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="file"></i></div>
+						<div><h3>Rapport RSE + 2-3 AO récents</h3><p>Avec grille EcoVadis ou équivalent.</p></div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="database"></i></div>
+						<div><h3>Export Pégase anonymisé</h3><p>Et captures Metabase des dashboards exp client.</p></div>
+					</div>
+					<div class="check-item reveal">
+						<div class="check-icon"><i data-lucide="message-square"></i></div>
+						<div><h3>Enquêtes RC + Satisfaction</h3><p>Anonymisées, types récents.</p></div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-		</div>
+		<section class="section closing" id="closing">
+			<div class="final-glow"></div>
+			<div class="container" style="position:relative;z-index:1;">
+				<h2 class="reveal">Rendez-vous le <span class="gradient-text">29 avril</span>.</h2>
+				<p class="closing-meta reveal">Clinitex &times; Kokoro &middot; Journée Impact</p>
+			</div>
+		</section>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				if (window.lucide) lucide.createIcons();
+				if (window.gsap && window.ScrollTrigger) {
+					gsap.registerPlugin(ScrollTrigger);
+					document.querySelectorAll('section').forEach(section => {
+						const els = section.querySelectorAll('.reveal');
+						if (els.length) {
+							gsap.fromTo(els, { opacity: 0, y: 30, filter: 'blur(4px)' },
+								{ opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, stagger: 0.12, ease: 'power3.out',
+								  scrollTrigger: { trigger: section, start: 'top 80%', once: true } });
+						}
+					});
+					gsap.fromTo('.cover-logos', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, ease: 'power3.out' });
+					gsap.fromTo('.hero-eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.35, ease: 'power3.out' });
+					gsap.fromTo('.hero h1', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: 'power3.out' });
+					gsap.fromTo('.cover-meta', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: 'power3.out' });
+					gsap.fromTo('.program-dot', { opacity: 0, scale: 0 },
+						{ opacity: 1, scale: 1, duration: 0.4, stagger: 0.12, ease: 'back.out(2)',
+						  scrollTrigger: { trigger: '.program-timeline', start: 'top 80%', once: true } });
+					document.querySelectorAll('.program-step').forEach((step, i) => {
+						const card = step.querySelector('.program-step-card');
+						const fromX = i % 2 === 0 ? -40 : 40;
+						gsap.fromTo(card, { opacity: 0, x: fromX },
+							{ opacity: 1, x: 0, duration: 0.6, ease: 'power3.out',
+							  scrollTrigger: { trigger: step, start: 'top 85%', once: true } });
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
 
 <style>
 	* { margin: 0; padding: 0; box-sizing: border-box; }
-	body {
-		font-family: 'Inter', -apple-system, system-ui, sans-serif;
-		background: #0A0812;
-		color: hsla(0,0%,100%,.75);
-		line-height: 1.65;
-		-webkit-font-smoothing: antialiased;
-		font-size: 15px;
-	}
-	.wrap {
-		max-width: 860px;
-		margin: 0 auto;
-		padding: 60px 32px 120px;
-	}
-	.head { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 32px; margin-bottom: 48px; }
-	.tag {
-		font-size: 11px;
-		text-transform: uppercase;
-		letter-spacing: 3px;
-		color: #4D9DE0;
-		font-weight: 700;
-		margin-bottom: 16px;
-	}
-	h1 {
-		font-size: 40px;
-		font-weight: 800;
-		letter-spacing: -0.03em;
-		color: #fff;
-		margin-bottom: 16px;
-	}
-	.meta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
-		font-size: 14px;
-		color: hsla(0,0%,100%,.55);
-		margin-bottom: 24px;
-	}
-	.meta strong { color: hsla(0,0%,100%,.9); font-weight: 600; }
-	.legend {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-		margin-top: 20px;
-	}
-	section { margin-bottom: 56px; }
-	h2 {
-		font-size: 22px;
-		font-weight: 700;
-		color: #fff;
-		margin-bottom: 20px;
-		letter-spacing: -0.01em;
-	}
-	h3 {
-		font-size: 15px;
-		font-weight: 700;
-		color: hsla(0,0%,100%,.9);
-		margin: 20px 0 10px;
-	}
-	h3:first-child { margin-top: 0; }
-	p { margin-bottom: 12px; }
-	p:last-child { margin-bottom: 0; }
-	.note {
-		font-size: 13px;
-		color: hsla(0,0%,100%,.5);
-		font-style: italic;
-		margin-bottom: 16px;
-	}
-	.note strong { color: hsla(0,0%,100%,.75); font-style: normal; }
-	ul, ol { padding-left: 20px; margin-bottom: 12px; }
-	li { margin-bottom: 6px; font-size: 14px; color: hsla(0,0%,100%,.7); }
-	li strong { color: hsla(0,0%,100%,.95); font-weight: 600; }
-
-	table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 13.5px;
-		margin-bottom: 16px;
-	}
-	thead th {
-		text-align: left;
-		font-size: 11px;
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		color: hsla(0,0%,100%,.45);
-		font-weight: 700;
-		padding: 12px 12px;
-		border-bottom: 1px solid rgba(255,255,255,0.12);
-	}
-	tbody td {
-		padding: 14px 12px;
-		border-bottom: 1px solid rgba(255,255,255,0.05);
-		color: hsla(0,0%,100%,.7);
-		vertical-align: top;
-	}
-	tbody td:first-child { color: hsla(0,0%,100%,.9); font-weight: 500; width: 30%; }
-	tbody td:nth-child(2) { width: 60px; text-align: center; }
-
-	.badge {
-		display: inline-block;
-		font-size: 11px;
-		font-weight: 700;
-		padding: 3px 8px;
-		border-radius: 4px;
-		letter-spacing: 0.2px;
-	}
-	.badge.ok { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
-	.badge.part { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
-	.badge.no { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
-
-	.slot {
-		display: grid;
-		grid-template-columns: 140px 1fr;
-		gap: 20px;
-		padding: 18px 0;
-		border-bottom: 1px dashed rgba(255,255,255,0.06);
-	}
-	.slot:last-child { border-bottom: none; }
-	.slot .time {
-		font-size: 12px;
-		font-weight: 700;
-		color: #4D9DE0;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		padding-top: 2px;
-	}
-	.slot.muted .time { color: hsla(0,0%,100%,.3); }
-	.slot h3 { margin: 0 0 6px; font-size: 14px; }
-	.slot p { font-size: 13.5px; color: hsla(0,0%,100%,.6); margin: 0; }
-
-	ul.todo { list-style: none; padding-left: 0; }
-	ul.todo li {
-		padding: 10px 0 10px 26px;
-		position: relative;
-		border-bottom: 1px dashed rgba(255,255,255,0.05);
-		font-size: 14px;
-	}
-	ul.todo li:last-child { border-bottom: none; }
-	ul.todo li::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 14px;
-		width: 14px;
-		height: 14px;
-		border: 1.5px solid rgba(255,255,255,0.2);
-		border-radius: 3px;
-	}
-
-	@media (max-width: 640px) {
-		.wrap { padding: 40px 20px 80px; }
-		h1 { font-size: 30px; }
-		.slot { grid-template-columns: 1fr; gap: 6px; }
-		table { font-size: 12px; }
-		tbody td { padding: 10px 6px; }
+	html { scroll-behavior: smooth; }
+	body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: #0A0812; color: hsla(0,0%,100%,.6); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+	.container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+	.reveal { opacity: 0; }
+	h1, h2 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.04em; }
+	h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
+	.gradient-text { background: linear-gradient(135deg, #4D9DE0, #0055A4, #7EC8E3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+	.section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 5px; color: #4D9DE0; font-weight: 600; text-align: center; margin-bottom: 20px; }
+	.section-sub { font-size: 17px; color: hsla(0,0%,100%,.55); max-width: 650px; margin: -32px auto 64px; text-align: center; line-height: 1.7; }
+	.section-sub strong { color: hsla(0,0%,100%,.9); }
+	.section { padding: 120px 0; position: relative; overflow: hidden; }
+	h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; color: #fff; margin-bottom: 64px; text-align: center; line-height: 1.1; }
+	.hero { padding: 180px 0 120px; text-align: center; position: relative; overflow: hidden; min-height: 90vh; display: flex; align-items: center; justify-content: center; }
+	.hero .container { position: relative; z-index: 1; }
+	.hero-glow { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 1000px; height: 700px; background: radial-gradient(ellipse, rgba(0,85,164,0.35) 0%, rgba(77,157,224,0.15) 35%, rgba(0,85,164,0.05) 60%, transparent 75%); pointer-events: none; animation: heroPulse 6s ease-in-out infinite; }
+	@keyframes heroPulse { 0%,100% { opacity: 0.7; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.08); } }
+	.cover-logos { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 24px; opacity: 0; }
+	.cover-logo { font-size: 14px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: hsla(0,0%,100%,.9); }
+	.cover-x { font-size: 16px; color: hsla(0,0%,100%,.25); font-weight: 500; }
+	.hero-eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: 5px; color: #4D9DE0; font-weight: 700; margin-bottom: 28px; opacity: 0; }
+	.hero h1 { font-size: clamp(30px, 4.5vw, 48px); font-weight: 800; line-height: 1.15; color: #fff; margin-bottom: 40px; opacity: 0; }
+	.cover-meta { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; opacity: 0; }
+	.cover-meta span { font-size: 13px; color: hsla(0,0%,100%,.45); font-weight: 500; display: inline-flex; align-items: center; }
+	.cards-grid { display: grid; gap: 20px; }
+	.cards-3 { grid-template-columns: repeat(3, 1fr); }
+	.card { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.1); border-radius: 16px; padding: 36px 28px; transition: all .4s cubic-bezier(.22,1,.36,1); position: relative; }
+	.card:hover { background: rgba(0,85,164,0.05); border-color: rgba(0,85,164,0.2); box-shadow: 0 0 25px rgba(0,85,164,0.08); }
+	.card-icon { color: #4D9DE0; margin-bottom: 16px; }
+	.card-icon i, .card-icon svg { width: 24px; height: 24px; filter: drop-shadow(0 0 8px rgba(0,85,164,0.4)); }
+	.card h3 { font-size: 16px; color: hsla(0,0%,100%,.9); margin-bottom: 10px; line-height: 1.4; }
+	.card p { font-size: 14px; line-height: 1.7; color: hsla(0,0%,100%,.6); }
+	.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+	.check-item { display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; transition: all .4s cubic-bezier(.22,1,.36,1); }
+	.check-item:hover { background: rgba(0,85,164,0.05); border-color: rgba(0,85,164,0.15); }
+	.check-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(0,85,164,0.1); color: #4D9DE0; }
+	.check-icon i, .check-icon svg { width: 20px; height: 20px; }
+	.check-item h3 { font-size: 14px; font-weight: 700; color: hsla(0,0%,100%,.9); margin-bottom: 4px; }
+	.check-item p { font-size: 13px; color: hsla(0,0%,100%,.5); line-height: 1.5; }
+	.program-timeline { position: relative; padding: 40px 0; }
+	.program-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); background: linear-gradient(to bottom, rgba(0,85,164,0.15), rgba(0,85,164,0.5) 20%, rgba(0,85,164,0.5) 80%, rgba(0,85,164,0.15)); }
+	.program-step { position: relative; display: flex; align-items: flex-start; margin-bottom: 32px; width: 100%; }
+	.program-step:last-child { margin-bottom: 0; }
+	.program-step:nth-child(odd) { justify-content: flex-start; padding-right: calc(50% + 28px); }
+	.program-step:nth-child(even) { justify-content: flex-end; padding-left: calc(50% + 28px); }
+	.program-dot { position: absolute; left: 50%; top: 20px; width: 14px; height: 14px; border-radius: 50%; background: #0055A4; transform: translateX(-50%); box-shadow: 0 0 12px rgba(0,85,164,0.5), 0 0 24px rgba(0,85,164,0.2); z-index: 2; opacity: 0; }
+	.program-dot--accent { background: #4D9DE0; box-shadow: 0 0 12px rgba(77,157,224,0.6), 0 0 24px rgba(77,157,224,0.3); }
+	.program-dot--green { background: #22C55E; box-shadow: 0 0 12px rgba(34,197,94,0.5), 0 0 24px rgba(34,197,94,0.2); }
+	.program-dot--muted { background: hsla(0,0%,100%,.25); box-shadow: none; }
+	.program-step-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px 22px; transition: all .4s cubic-bezier(.22,1,.36,1); width: 100%; opacity: 0; }
+	.program-step-card:hover { background: rgba(0,85,164,0.05); border-color: rgba(0,85,164,0.15); }
+	.program-step-card--accent { background: rgba(0,85,164,0.06); border-color: rgba(0,85,164,0.2); }
+	.program-step-card--green { background: rgba(34,197,94,0.04); border-color: rgba(34,197,94,0.15); }
+	.program-time { font-size: 12px; font-weight: 700; color: #4D9DE0; letter-spacing: 0.5px; margin-bottom: 8px; text-transform: uppercase; }
+	.program-step-card h3 { font-size: 15px; color: hsla(0,0%,100%,.85); margin-bottom: 8px; font-weight: 700; }
+	.program-step-card p { font-size: 13px; color: hsla(0,0%,100%,.55); line-height: 1.65; margin: 0; }
+	.acte-list { max-width: 700px; margin: 0 auto; }
+	.acte-item { display: flex; gap: 20px; padding: 26px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: flex-start; }
+	.acte-item:last-child { border-bottom: none; }
+	.acte-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(0,85,164,0.1); color: #4D9DE0; border: 1px solid rgba(0,85,164,0.15); }
+	.acte-icon i, .acte-icon svg { width: 22px; height: 22px; }
+	.acte-item h3 { font-size: 16px; color: hsla(0,0%,100%,.9); margin-bottom: 6px; }
+	.acte-item p { font-size: 14px; color: hsla(0,0%,100%,.55); line-height: 1.7; margin: 0; }
+	.note-inline { text-align: center; max-width: 650px; margin: 40px auto 0; font-size: 13px; color: hsla(0,0%,100%,.4); font-style: italic; }
+	.why-claude-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 600px; background: radial-gradient(ellipse, rgba(0,85,164,0.12) 0%, rgba(77,157,224,0.05) 40%, transparent 70%); pointer-events: none; }
+	.closing { text-align: center; padding: 140px 0; min-height: 80vh; display: flex; align-items: center; justify-content: center; }
+	.closing h2 { margin-bottom: 28px; }
+	.closing-meta { font-size: 15px; color: hsla(0,0%,100%,.3); font-weight: 500; letter-spacing: 1px; }
+	.final-glow { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(0,85,164,0.1) 0%, rgba(77,157,224,0.04) 40%, transparent 70%); pointer-events: none; }
+	.program-step-card { opacity: 0; }
+	@media (max-width: 768px) {
+		.hero { padding: 100px 0 60px; } .section { padding: 70px 0; }
+		.hero h1 { font-size: clamp(24px, 7vw, 36px); }
+		h2 { font-size: clamp(24px, 6vw, 36px); margin-bottom: 40px; }
+		.section-sub { margin: -16px auto 40px; font-size: 15px; }
+		.cards-3 { grid-template-columns: 1fr; }
+		.check-grid { grid-template-columns: 1fr; }
+		.cover-meta { flex-direction: column; gap: 8px; }
+		.program-timeline::before { left: 16px; }
+		.program-dot { left: 16px; }
+		.program-step:nth-child(odd), .program-step:nth-child(even) { padding-left: 44px; padding-right: 0; justify-content: flex-start; }
+		.acte-item { gap: 14px; }
 	}
 </style>
 </html>
