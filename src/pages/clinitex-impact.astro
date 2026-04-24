@@ -220,14 +220,14 @@
 						<div class="acte-icon"><i data-lucide="leaf"></i></div>
 						<div>
 							<h3>"Je veille sur les normes RSE"</h3>
-							<p>Skill qui surveille les évolutions ECOVADIS et les réglementations RSE clés. Laurie choisit ses sujets.</p>
+							<p>Skill qui surveille les évolutions ECOVADIS et les réglementations RSE clés. Vous choisissez les sujets à tracker.</p>
 						</div>
 					</div>
 					<div class="acte-item reveal">
 						<div class="acte-icon"><i data-lucide="eye"></i></div>
 						<div>
 							<h3>"Je surveille les concurrents"</h3>
-							<p>Veille sur les communications des concurrents : LinkedIn, site web, presse. Manu choisit qui on watche.</p>
+							<p>Veille sur les communications des concurrents : LinkedIn, site web, presse. Vous choisissez qui est suivi.</p>
 						</div>
 					</div>
 					<div class="acte-item reveal">
@@ -291,21 +291,21 @@
 						<div class="acte-icon"><i data-lucide="link"></i></div>
 						<div>
 							<h3>Connecter PrimoTexto à Claude</h3>
-							<p>Via l'API Positive Group. On regarde ce qu'elle permet, on la branche.</p>
+							<p>Authentification par clé API (header <code>X-Primotexto-ApiKey</code>). Endpoint <code>POST /v2/marketing/campaigns</code> pour créer des campagnes SMS directement depuis Claude.</p>
 						</div>
 					</div>
 					<div class="acte-item reveal">
 						<div class="acte-icon"><i data-lucide="message-square-text"></i></div>
 						<div>
-							<h3>"Je rédige une séquence email / SMS"</h3>
-							<p>Briefing Claude, production des messages, personnalisation par segment, envoi piloté depuis PrimoTexto.</p>
+							<h3>"Je rédige une campagne SMS"</h3>
+							<p>Claude rédige le message avec variables de personnalisation (<code>${"${prenom}"}</code>, <code>${"${agence}"}</code>), gère les 150 caractères SMS, et crée la campagne sur une liste de contacts PrimoTexto existante.</p>
 						</div>
 					</div>
 					<div class="acte-item reveal">
-						<div class="acte-icon"><i data-lucide="layers"></i></div>
+						<div class="acte-icon"><i data-lucide="calendar-clock"></i></div>
 						<div>
-							<h3>"Je configure mes séquences"</h3>
-							<p>Claude en supervision de l'idéation et de la production. PrimoTexto pour l'envoi et le suivi.</p>
+							<h3>"Je programme l'envoi"</h3>
+							<p>Campagne créée avec date d'envoi (timestamp), sourceAddress personnalisé. Modération PrimoTexto avant délivrance. Claude supervise l'idéation et la production, PrimoTexto exécute.</p>
 						</div>
 					</div>
 				</div>
@@ -352,7 +352,7 @@
 				<h2 class="reveal">Ce qu'il me faut en amont</h2>
 				<div class="next-grid reveal-group">
 					<div class="next-card next-card--highlight reveal">
-						<h3><i data-lucide="database" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Data (via Anne-Sophie + Data Analyst)</h3>
+						<h3><i data-lucide="database" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Data</h3>
 						<ul>
 							<li>Export Metabase — tables de faits + dimensions utilisées côté marketing / exp client</li>
 							<li>Échantillon Pegas anonymisé par agence (via Metabase)</li>
@@ -360,17 +360,17 @@
 						</ul>
 					</div>
 					<div class="next-card next-card--highlight reveal">
-						<h3><i data-lucide="megaphone" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Contenu &amp; com (via Manu)</h3>
+						<h3><i data-lucide="megaphone" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> Contenu &amp; com</h3>
 						<ul>
 							<li>Charte graphique Clinitex (logo, couleurs, polices) pour Claude Design</li>
 							<li>2-3 contenus SEO / GEO récents + brief éditorial si dispo</li>
 							<li>Exemples de campagnes PrimoTexto déjà envoyées</li>
-							<li>Doc API PrimoTexto (ou contact Positive Group)</li>
+							<li>Clé API PrimoTexto + ID d'une liste de contacts test</li>
 							<li>Sujets envisagés pour la radio Clinitex</li>
 						</ul>
 					</div>
 					<div class="next-card next-card--highlight reveal">
-						<h3><i data-lucide="leaf" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> RSE (via Laurie)</h3>
+						<h3><i data-lucide="leaf" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px;color:#4D9DE0;"></i> RSE</h3>
 						<ul>
 							<li>Liste des normes suivies (ECOVADIS + autres)</li>
 							<li>Liste des concurrents à surveiller</li>
