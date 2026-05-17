@@ -1,0 +1,628 @@
+/* ================================================================
+   OneMICE — Brand Design System
+   Version 1.0 — Avril 2026
+
+   Design system complet : tokens + composants de base.
+   A importer dans tout livrable HTML OneMICE.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Font (DM Sans via Google Fonts)
+   ---------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap');
+
+/* ----------------------------------------------------------------
+   2. Design tokens
+   ---------------------------------------------------------------- */
+:root {
+  /* Palette — principale */
+  --om-vapor-mist: #DFE5ED;
+  --om-steel-haze: #9DACC3;
+  --om-graphite-flow: #515F78;
+  --om-midnight-ink: #262B38;
+  --om-neutral-grey: #DCDCDC;
+  --om-orange-tangerine: #F74F23;
+
+  /* Palette — alias semantiques */
+  --om-bg-light: var(--om-vapor-mist);
+  --om-bg-dark: var(--om-midnight-ink);
+  --om-bg-neutral: var(--om-neutral-grey);
+  --om-text-primary: var(--om-midnight-ink);
+  --om-text-secondary: var(--om-graphite-flow);
+  --om-text-muted: var(--om-steel-haze);
+  --om-text-on-dark: var(--om-vapor-mist);
+  --om-accent: var(--om-orange-tangerine);
+  --om-border: rgba(38, 43, 56, 0.08);
+  --om-border-strong: rgba(38, 43, 56, 0.16);
+
+  /* Gradients */
+  --om-gradient-calm: linear-gradient(180deg, #DFE5ED 0%, #9DACC3 100%);
+  --om-gradient-strong: linear-gradient(180deg, #262B38 0%, #515F78 100%);
+  --om-gradient-inspiring: linear-gradient(180deg, #DFE5ED 0%, #F74F23 100%);
+  --om-gradient-hero: radial-gradient(ellipse at 50% 0%, #DFE5ED 0%, #9DACC3 60%, #515F78 100%);
+
+  /* Typography */
+  --om-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --om-size-display: clamp(3.5rem, 7vw, 7.5rem);
+  --om-size-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --om-size-h2: clamp(2rem, 3.5vw, 3rem);
+  --om-size-h3: clamp(1.5rem, 2.5vw, 2rem);
+  --om-size-h4: clamp(1.125rem, 1.5vw, 1.5rem);
+  --om-size-body-l: 1.125rem;
+  --om-size-body: 1rem;
+  --om-size-caption: 0.875rem;
+  --om-size-overline: 0.75rem;
+
+  /* Espacements (base 8) */
+  --om-space-1: 0.5rem;   /* 8  */
+  --om-space-2: 1rem;     /* 16 */
+  --om-space-3: 1.5rem;   /* 24 */
+  --om-space-4: 2rem;     /* 32 */
+  --om-space-5: 3rem;     /* 48 */
+  --om-space-6: 4rem;     /* 64 */
+  --om-space-7: 6rem;     /* 96 */
+  --om-space-8: 8rem;     /* 128 */
+
+  /* Rayons */
+  --om-radius-sm: 8px;
+  --om-radius: 16px;
+  --om-radius-lg: 24px;
+  --om-radius-xl: 40px;
+  --om-radius-pill: 999px;
+
+  /* Ombres et effets */
+  --om-shadow-soft: 0 8px 32px rgba(38, 43, 56, 0.08);
+  --om-shadow-medium: 0 16px 48px rgba(38, 43, 56, 0.12);
+  --om-shadow-glow-orange: 0 0 40px rgba(247, 79, 35, 0.35);
+  --om-shadow-glow-steel: 0 0 40px rgba(157, 172, 195, 0.4);
+
+  /* Grille */
+  --om-container: 1280px;
+  --om-container-narrow: 880px;
+  --om-container-wide: 1440px;
+
+  /* Transitions */
+  --om-transition: 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ----------------------------------------------------------------
+   3. Reset de base
+   ---------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--om-font);
+  font-size: var(--om-size-body);
+  line-height: 1.6;
+  color: var(--om-text-primary);
+  background: var(--om-bg-light);
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--om-transition);
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------------
+   4. Typographie
+   ---------------------------------------------------------------- */
+.om-display {
+  font-size: var(--om-size-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.om-h1 {
+  font-size: var(--om-size-h1);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.om-h2 {
+  font-size: var(--om-size-h2);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.om-h3 {
+  font-size: var(--om-size-h3);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+.om-h4 {
+  font-size: var(--om-size-h4);
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.om-body-l {
+  font-size: var(--om-size-body-l);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.om-body {
+  font-size: var(--om-size-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.om-caption {
+  font-size: var(--om-size-caption);
+  line-height: 1.5;
+  color: var(--om-text-secondary);
+  margin: 0;
+}
+
+.om-overline {
+  font-size: var(--om-size-overline);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--om-text-secondary);
+  margin: 0;
+}
+
+/* Accents typo */
+.om-text-accent { color: var(--om-accent); }
+.om-text-muted  { color: var(--om-text-muted); }
+.om-text-secondary { color: var(--om-text-secondary); }
+.om-text-on-dark { color: var(--om-text-on-dark); }
+
+/* ----------------------------------------------------------------
+   5. Layout
+   ---------------------------------------------------------------- */
+.om-container {
+  width: 100%;
+  max-width: var(--om-container);
+  margin: 0 auto;
+  padding: 0 var(--om-space-3);
+}
+
+.om-container-narrow {
+  max-width: var(--om-container-narrow);
+  margin: 0 auto;
+  padding: 0 var(--om-space-3);
+}
+
+.om-container-wide {
+  max-width: var(--om-container-wide);
+  margin: 0 auto;
+  padding: 0 var(--om-space-3);
+}
+
+.om-section {
+  padding: var(--om-space-7) 0;
+}
+
+.om-section-lg {
+  padding: var(--om-space-8) 0;
+}
+
+.om-section-sm {
+  padding: var(--om-space-5) 0;
+}
+
+/* Stack (vertical spacing helper) */
+.om-stack-1 > * + * { margin-top: var(--om-space-1); }
+.om-stack-2 > * + * { margin-top: var(--om-space-2); }
+.om-stack-3 > * + * { margin-top: var(--om-space-3); }
+.om-stack-4 > * + * { margin-top: var(--om-space-4); }
+.om-stack-5 > * + * { margin-top: var(--om-space-5); }
+
+/* Grille */
+.om-grid {
+  display: grid;
+  gap: var(--om-space-3);
+}
+
+.om-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.om-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.om-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 900px) {
+  .om-grid-2, .om-grid-3, .om-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Flex helpers */
+.om-flex { display: flex; }
+.om-flex-center { display: flex; align-items: center; justify-content: center; }
+.om-flex-between { display: flex; align-items: center; justify-content: space-between; }
+.om-flex-col { display: flex; flex-direction: column; }
+.om-gap-1 { gap: var(--om-space-1); }
+.om-gap-2 { gap: var(--om-space-2); }
+.om-gap-3 { gap: var(--om-space-3); }
+.om-gap-4 { gap: var(--om-space-4); }
+
+/* ----------------------------------------------------------------
+   6. Backgrounds
+   ---------------------------------------------------------------- */
+.om-bg-light    { background: var(--om-bg-light); color: var(--om-text-primary); }
+.om-bg-dark     { background: var(--om-bg-dark); color: var(--om-text-on-dark); }
+.om-bg-neutral  { background: var(--om-bg-neutral); color: var(--om-text-primary); }
+.om-bg-steel    { background: var(--om-steel-haze); color: var(--om-text-primary); }
+
+.om-bg-gradient-calm      { background: var(--om-gradient-calm); color: var(--om-text-primary); }
+.om-bg-gradient-strong    { background: var(--om-gradient-strong); color: var(--om-text-on-dark); }
+.om-bg-gradient-inspiring { background: var(--om-gradient-inspiring); color: var(--om-text-primary); }
+.om-bg-gradient-hero      { background: var(--om-gradient-hero); color: var(--om-text-primary); }
+
+/* Texture : halo orange subtil (a combiner avec un bg) */
+.om-accent-glow {
+  position: relative;
+  isolation: isolate;
+}
+.om-accent-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(247, 79, 35, 0.25) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ----------------------------------------------------------------
+   7. Composants
+   ---------------------------------------------------------------- */
+
+/* --- Card (surface standard) --- */
+.om-card {
+  background: #fff;
+  border: 1px solid var(--om-border);
+  border-radius: var(--om-radius-lg);
+  padding: var(--om-space-4);
+  box-shadow: var(--om-shadow-soft);
+  transition: transform var(--om-transition), box-shadow var(--om-transition);
+}
+
+.om-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--om-shadow-medium);
+}
+
+/* --- Glass card (frost glass) --- */
+.om-card-glass {
+  background: rgba(223, 229, 237, 0.6);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--om-radius-lg);
+  padding: var(--om-space-4);
+}
+
+.om-card-glass-dark {
+  background: rgba(38, 43, 56, 0.6);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(157, 172, 195, 0.2);
+  border-radius: var(--om-radius-lg);
+  padding: var(--om-space-4);
+  color: var(--om-text-on-dark);
+}
+
+/* --- Pilier (card avec num et titre) --- */
+.om-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--om-space-2);
+  padding: var(--om-space-4);
+  border-radius: var(--om-radius-lg);
+  border: 1px solid var(--om-border);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+.om-pillar-number {
+  font-size: var(--om-size-overline);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--om-text-secondary);
+}
+
+/* --- Buttons --- */
+.om-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--om-space-1);
+  padding: 0.875rem 1.75rem;
+  font-family: var(--om-font);
+  font-size: var(--om-size-body);
+  font-weight: 500;
+  line-height: 1;
+  border-radius: var(--om-radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--om-transition);
+  text-decoration: none;
+}
+
+.om-btn-primary {
+  background: var(--om-midnight-ink);
+  color: var(--om-vapor-mist);
+}
+
+.om-btn-primary:hover {
+  background: var(--om-graphite-flow);
+  opacity: 1;
+}
+
+.om-btn-secondary {
+  background: transparent;
+  color: var(--om-midnight-ink);
+  border-color: var(--om-border-strong);
+}
+
+.om-btn-secondary:hover {
+  background: rgba(38, 43, 56, 0.04);
+  opacity: 1;
+}
+
+.om-btn-accent {
+  background: var(--om-accent);
+  color: #fff;
+  box-shadow: var(--om-shadow-glow-orange);
+}
+
+.om-btn-accent:hover {
+  opacity: 0.92;
+}
+
+.om-btn-ghost {
+  background: transparent;
+  color: var(--om-text-primary);
+}
+
+.om-btn-ghost:hover {
+  background: rgba(38, 43, 56, 0.04);
+  opacity: 1;
+}
+
+/* --- Tag / badge --- */
+.om-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--om-space-1);
+  padding: 0.375rem 0.875rem;
+  font-size: var(--om-size-caption);
+  font-weight: 500;
+  border-radius: var(--om-radius-pill);
+  background: rgba(38, 43, 56, 0.06);
+  color: var(--om-text-primary);
+  border: 1px solid var(--om-border);
+}
+
+.om-tag-accent {
+  background: rgba(247, 79, 35, 0.1);
+  color: var(--om-accent);
+  border-color: rgba(247, 79, 35, 0.2);
+}
+
+/* --- Divider --- */
+.om-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--om-border);
+  border: none;
+  margin: var(--om-space-4) 0;
+}
+
+.om-divider-accent {
+  height: 2px;
+  width: 40px;
+  background: var(--om-accent);
+  border: none;
+  margin: var(--om-space-3) 0;
+}
+
+/* --- Logo wrapper --- */
+.om-logo {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+}
+
+.om-logo img {
+  height: 100%;
+  width: auto;
+}
+
+.om-logo-lg img { height: 64px; }
+.om-logo-sm img { height: 32px; }
+
+/* --- Hero block --- */
+.om-hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--om-space-7) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.om-hero-baseline {
+  font-size: var(--om-size-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--om-space-3) 0;
+}
+
+.om-hero-subtitle {
+  font-size: var(--om-size-body-l);
+  line-height: 1.6;
+  color: var(--om-text-secondary);
+  max-width: 640px;
+  margin: 0 0 var(--om-space-4) 0;
+}
+
+/* --- Triptyque (3 mots cles type "One Solution | Every Stakeholder | Full Control") --- */
+.om-triptyque {
+  display: flex;
+  gap: var(--om-space-4);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: var(--om-space-3) 0;
+}
+
+.om-triptyque-item {
+  font-size: var(--om-size-overline);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--om-text-secondary);
+}
+
+.om-triptyque-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--om-accent);
+}
+
+/* --- Highlight line (bordure lumineuse orange signature) --- */
+.om-highlight-line {
+  position: relative;
+}
+
+.om-highlight-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--om-accent);
+  box-shadow: var(--om-shadow-glow-orange);
+}
+
+.om-highlight-line {
+  padding-left: var(--om-space-3);
+}
+
+/* --- Navigation --- */
+.om-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--om-space-2) 0;
+}
+
+.om-nav-links {
+  display: flex;
+  gap: var(--om-space-4);
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.om-nav-links a {
+  font-size: var(--om-size-body);
+  color: var(--om-text-primary);
+}
+
+/* --- Footer --- */
+.om-footer {
+  padding: var(--om-space-6) 0 var(--om-space-4);
+  border-top: 1px solid var(--om-border);
+  color: var(--om-text-secondary);
+}
+
+/* --- Quote / manifeste --- */
+.om-manifesto {
+  font-size: var(--om-size-h3);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--om-text-primary);
+  max-width: 720px;
+}
+
+.om-manifesto p {
+  margin: 0 0 var(--om-space-2) 0;
+}
+
+/* --- Stats / KPI --- */
+.om-stat-value {
+  font-size: var(--om-size-h1);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--om-text-primary);
+}
+
+.om-stat-label {
+  font-size: var(--om-size-caption);
+  color: var(--om-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: var(--om-space-1);
+}
+
+/* ----------------------------------------------------------------
+   8. Utilities
+   ---------------------------------------------------------------- */
+.om-text-center { text-align: center; }
+.om-text-right { text-align: right; }
+.om-mt-0 { margin-top: 0 !important; }
+.om-mb-0 { margin-bottom: 0 !important; }
+.om-w-full { width: 100%; }
+
+/* Sizing utilities pour le texte */
+.om-narrow { max-width: 640px; }
+.om-narrow-sm { max-width: 480px; }
+
+/* Animation d'apparition discrete */
+@keyframes om-fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.om-fade-in {
+  animation: om-fade-in-up 600ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* ----------------------------------------------------------------
+   9. Print (pour docs exportes en PDF)
+   ---------------------------------------------------------------- */
+@media print {
+  body { background: white; }
+  .om-section, .om-section-lg { page-break-inside: avoid; }
+  .om-card, .om-card-glass { box-shadow: none; border: 1px solid var(--om-border); }
+}
