@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masterclass · Adopter l'IA générative chez Autosur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;--soft:#FAFAFA;--soft2:#F4F4F5;--ink:#0A0A0A;--ink2:#404040;
+    --muted:#737373;--muted2:#A3A3A3;--line:#E5E5E5;--line2:#D4D4D8;
+    --accent:#5B5BF7;--g1:#6366F1;--g2:#8B5CF6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:#0A0A0B;font-family:'Inter',system-ui,sans-serif;color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;font-feature-settings:'cv11','ss01'}
+  .deck{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+  .slide{position:absolute;width:min(100vw,177.78vh);aspect-ratio:16/9;background:var(--bg);overflow:hidden;padding:5% 6.2% 6%;display:none;flex-direction:column}
+  .slide.active{display:flex}
+
+  .kicker{font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:.82vw;color:var(--accent);margin-bottom:1.3vw}
+  .kicker.muted{color:var(--muted)}
+  h1{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.035em;color:var(--ink);line-height:1.02}
+  h2{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.025em;color:var(--ink);line-height:1.07;font-size:2.7vw}
+  .sub{font-size:1.3vw;line-height:1.5;color:var(--ink2);font-weight:400}
+  p.body{font-size:1.24vw;line-height:1.55;color:var(--ink2);font-weight:400;max-width:90%}
+  .rule{width:3.4vw;height:.26vw;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:2px;margin:1.4vw 0}
+  .center{justify-content:center}
+  .em,.grad{background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .head{margin-bottom:1.4vw}
+  .head .sub{margin-top:.8vw;max-width:90%}
+
+  ul.points{list-style:none;margin-top:.4vw}
+  ul.points li{position:relative;padding-left:1.8vw;font-size:1.2vw;line-height:1.5;color:var(--ink2);margin-bottom:1.05vw;font-weight:400;max-width:92%}
+  ul.points li::before{content:"→";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  ul.points li b{font-weight:600;color:var(--ink)}
+
+  .cols{display:grid;gap:1.2vw;margin-top:auto;margin-bottom:auto}
+  .cols.three{grid-template-columns:repeat(3,1fr)}
+  .cols.two{grid-template-columns:repeat(2,1fr)}
+  .cols.four{grid-template-columns:repeat(4,1fr)}
+  .cols.five{grid-template-columns:repeat(5,1fr)}
+  .card .bignum{font-family:'Inter',sans-serif;font-weight:800;font-size:2.2vw;line-height:1;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5vw;letter-spacing:-.03em}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.5vw}
+  .card .num{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.78vw;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:.8vw}
+  .card h3{font-family:'Inter',sans-serif;font-weight:600;font-size:1.3vw;color:var(--ink);margin-bottom:.6vw;letter-spacing:-.015em;line-height:1.15}
+  .card p{font-size:.95vw;line-height:1.5;color:var(--muted);font-weight:400}
+  .card ul{list-style:none;margin-top:.3vw}
+  .card ul li{font-size:.92vw;line-height:1.4;color:var(--ink2);font-weight:400;margin-bottom:.4vw;padding-left:1vw;position:relative}
+  .card ul li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700;font-size:.85vw}
+  .card ul li b{color:var(--ink);font-weight:600}
+  .card.hero{border:1.5px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--g1),var(--g2)) border-box}
+  .card p.tools{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.92vw;color:var(--ink);margin:.5vw 0 .8vw;padding-bottom:.7vw;border-bottom:1px solid var(--line)}
+  .usage{display:inline-block;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.72vw;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);background:#fff;border:1px solid var(--line);border-radius:6px;padding:.18vw .6vw;margin-top:.7vw}
+
+  .avatar{width:4.4vw;height:4.4vw;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:600;color:#fff;font-size:1.5vw;letter-spacing:-.02em;margin-bottom:.9vw}
+
+  .demo{display:grid;grid-template-columns:1fr 1.1fr;gap:2.4vw;align-items:center;margin-top:auto;margin-bottom:auto}
+  .demo .see{font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.05em;font-size:.76vw;color:var(--muted);margin-bottom:1vw}
+  .demo ul{list-style:none}
+  .demo ul li{position:relative;padding-left:1.7vw;font-size:1.18vw;line-height:1.45;color:var(--ink2);margin-bottom:.9vw;font-weight:400}
+  .demo ul li::before{content:"→";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+  .window{aspect-ratio:16/10;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1.2vw 3vw rgba(10,10,30,.07)}
+  .window .bar{height:2.2vw;background:var(--soft2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.5vw;padding:0 1vw}
+  .window .bar i{width:.66vw;height:.66vw;border-radius:50%;background:var(--line2);display:block}
+  .window .scene{height:calc(100% - 2.2vw);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1vw}
+  .playbtn{width:4.6vw;height:4.6vw;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;box-shadow:0 .6vw 1.6vw rgba(99,102,241,.32)}
+  .playbtn::after{content:"";border-style:solid;border-width:.95vw 0 .95vw 1.6vw;border-color:transparent transparent transparent #fff;margin-left:.4vw}
+  .window .scene .live{font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:.8vw;color:var(--muted)}
+  .demo .cap{margin-top:1vw;font-size:.8vw;color:var(--muted);font-weight:500;text-align:center;grid-column:2}
+
+  .ph{flex:1;border:1.5px dashed var(--line2);border-radius:14px;background:var(--soft);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:1vw;text-align:center}
+  .ph .pl{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--muted);font-size:1.1vw;text-transform:uppercase;letter-spacing:.06em}
+  .ph .pd{font-size:1vw;color:var(--muted);margin-top:.7vw;max-width:62%}
+
+  .section{justify-content:center}
+  .section .pnum{font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:.95vw;color:var(--accent);margin-bottom:1.2vw}
+  .section .ptitle{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.035em;color:var(--ink);line-height:1.04;font-size:4vw;max-width:84%}
+  .section .pdesc{font-size:1.4vw;line-height:1.45;color:var(--ink2);font-weight:400;max-width:66%;margin-top:1.5vw}
+
+  .cover h1{font-size:5.2vw;max-width:92%}
+  .cover .sub{max-width:62%;color:var(--ink2)}
+  .cover .speaker{margin-top:2vw;font-family:'JetBrains Mono',monospace;font-size:1vw;font-weight:500;color:var(--muted)}
+
+  .plan{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4vw;margin-top:auto;margin-bottom:auto}
+  .plan.flow{grid-template-columns:repeat(3,1fr)}
+  .plan .item{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.8vw 1.6vw}
+  .plan .item .pn{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.82vw;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:.9vw}
+  .plan .item h3{font-family:'Inter',sans-serif;font-weight:600;font-size:1.5vw;color:var(--ink);margin-bottom:.7vw;letter-spacing:-.02em;line-height:1.1}
+  .plan .item p{font-size:1.05vw;line-height:1.5;color:var(--muted);font-weight:400}
+  .plan.flow .item{padding:1.3vw 1.2vw}
+  .plan.flow .item h3{font-size:1.2vw}
+  .plan.flow .item p{font-size:.92vw}
+
+  .encart{margin-top:1.2vw;background:linear-gradient(135deg,rgba(99,102,241,.06),rgba(139,92,246,.04));border:1px solid rgba(99,102,241,.18);border-radius:12px;padding:1vw 1.4vw;display:flex;align-items:center;gap:1vw}
+  .encart .tag{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.82vw;color:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.05em}
+  .encart p{font-size:1vw;color:var(--ink2);font-weight:400}
+  .encart p b{color:var(--ink);font-weight:600}
+  .encart.big{margin-top:1.4vw;padding:1.5vw 2vw;align-items:flex-start;gap:1.4vw}
+  .encart.big .tag{font-size:.95vw;padding-top:.15vw}
+  .encart.big p{font-size:1.28vw;line-height:1.5}
+
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;margin-top:1.2vw}
+  .kpis .kpi{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:1vw 1.2vw}
+  .kpis .kpi .lbl{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.74vw;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:.45vw}
+  .kpis .kpi .val{font-size:1vw;line-height:1.4;color:var(--ink);font-weight:500}
+
+  .poll{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2vw;margin-top:auto;margin-bottom:auto}
+  .poll .opt{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:1.4vw 1.6vw;display:flex;align-items:center;gap:1.2vw}
+  .poll .opt .n{font-family:'Inter',sans-serif;font-weight:700;font-size:1.8vw;line-height:1;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .poll .opt .t{font-size:1.12vw;font-weight:500;color:var(--ink)}
+
+  table.ptable{width:100%;border-collapse:collapse;margin-top:auto;margin-bottom:auto}
+  table.ptable th,table.ptable td{text-align:left;padding:1.05vw 1.3vw;border-bottom:1px solid var(--line);vertical-align:top}
+  table.ptable thead th{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8vw;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);border-bottom:1.5px solid var(--line2)}
+  table.ptable tbody td{font-size:1.12vw;line-height:1.4;color:var(--ink2)}
+  table.ptable tbody td.ing{font-weight:600;color:var(--ink);width:15%;white-space:nowrap}
+  table.ptable tbody td.give{width:33%;color:var(--ink2)}
+  table.ptable .ex{font-family:'JetBrains Mono',monospace;font-size:.95vw;color:var(--muted)}
+  table.ptable tbody tr:last-child td{border-bottom:none}
+
+  .brandbar{position:fixed;bottom:2.2vh;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(10,10,15,.34);z-index:50;white-space:nowrap}
+  .counter{position:fixed;top:2.2vh;right:2.4vw;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;color:rgba(10,10,15,.42);z-index:50}
+  .nav-hint{position:fixed;bottom:2vh;right:2.4vw;font-family:'JetBrains Mono',monospace;color:rgba(10,10,15,.3);font-size:10px;z-index:50}
+
+  .notes{display:none}
+  body.notes-on .slide.active .notes{display:block;position:fixed;left:0;right:0;bottom:0;max-height:40vh;overflow:auto;background:rgba(10,10,15,.97);color:#e8e8ea;font-family:'Inter',sans-serif;font-size:14px;line-height:1.55;padding:14px 26px 18px;z-index:200;border-top:2px solid var(--accent)}
+  body.notes-on .slide.active .notes b{color:#fff}
+  .notes .nlabel{display:block;font-family:'JetBrains Mono',monospace;font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:11px;color:var(--accent);margin-bottom:7px}
+
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    body{background:#fff;overflow:visible}
+    .deck{display:block;width:auto;height:auto}
+    .slide{position:relative;display:flex !important;width:1280px;height:720px;aspect-ratio:auto;padding:54px 84px 60px;break-after:page;page-break-after:always}
+    .slide:last-child{break-after:auto;page-break-after:auto}
+    .counter,.nav-hint,.brandbar,.notes{display:none !important}
+    .kicker{font-size:11px;margin-bottom:18px}
+    h1{font-size:0}.cover h1{font-size:68px}
+    h2{font-size:36px}.sub{font-size:18px}.cover .sub{font-size:20px}
+    p.body{font-size:17px}
+    .rule{width:46px;height:4px;margin:18px 0}
+    ul.points li{font-size:16px;padding-left:24px;margin-bottom:13px}
+    .cols{gap:16px}.card{padding:20px;border-radius:14px}
+    .card .num{font-size:11px}.card h3{font-size:18px}.card p{font-size:13px}
+    .card ul li{font-size:12px;padding-left:14px}
+    .usage{font-size:10px;padding:2px 8px}
+    .avatar{width:58px;height:58px;font-size:20px;margin-bottom:10px}
+    .demo{gap:32px}.demo .see{font-size:10px}.demo ul li{font-size:16px;padding-left:22px}
+    .window{border-radius:14px}.window .bar{height:30px;padding:0 14px}.window .bar i{width:9px;height:9px}
+    .playbtn{width:60px;height:60px}.playbtn::after{border-width:12px 0 12px 20px;margin-left:5px}
+    .ph{border-radius:14px}.ph .pl{font-size:16px}.ph .pd{font-size:13px}
+    .encart{padding:14px 20px;border-radius:12px}.encart .tag{font-size:11px}.encart p{font-size:14px}
+    .encart.big{padding:18px 24px}.encart.big .tag{font-size:12px}.encart.big p{font-size:17px}
+    .card .bignum{font-size:30px;margin-bottom:6px}
+    .cols.five .card h3{font-size:15px}.cols.five .card p{font-size:12px}
+    .section .pnum{font-size:13px}.section .ptitle{font-size:54px}.section .pdesc{font-size:19px;margin-top:20px}
+    .plan{gap:20px}.plan .item{padding:26px 22px}.plan .item .pn{font-size:11px}.plan .item h3{font-size:22px}.plan .item p{font-size:14px}
+    .poll{gap:16px}.poll .opt{padding:20px 24px}.poll .opt .n{font-size:26px}.poll .opt .t{font-size:16px}
+    table.ptable th,table.ptable td{padding:13px 16px}table.ptable thead th{font-size:11px}table.ptable tbody td{font-size:16px}table.ptable .ex{font-size:13px}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+<!-- Slide 1 -->
+<section class="slide active cover center">
+  <div class="kicker">Masterclass de lancement · Lundi 22 juin, 10h-12h</div>
+  <h1>Adopter l'IA générative<br>chez Autosur</h1>
+  <div class="rule"></div>
+  <p class="sub">Comprendre, protéger, outiller : 2h pour apprivoiser l'IA et vous donner envie de l'utiliser dès aujourd'hui.</p>
+  <p class="speaker">Session enregistrée · replay disponible</p>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Démarrer 1-2 min avant l'heure, micro ouvert, accueillir nominativement. À 10h : « Bienvenue à tous, merci d'être là. Ce matin on lance ensemble un truc chouette : apprivoiser l'IA générative et vous donner envie de l'utiliser dès cet après-midi. » Cadre en 3 phrases : 2h, distanciel, session enregistrée pour les absents et futurs arrivants. Rassurer sur le niveau : « quel que soit votre point de départ, vous êtes au bon endroit. » Inviter à garder le chat ouvert pour les questions au fil de l'eau.</aside>
+</section>
+
+<!-- Slide 2 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Accueil</div>
+    <h2>Qui vous accompagne</h2>
+    <p class="sub">Notre métier : vous faire monter en compétence sur Gemini et Google Workspace, et vous y faire prendre plaisir.</p>
+  </div>
+  <div class="cols two">
+    <div class="card">
+      <div class="avatar">SB</div>
+      <div class="num">VOTRE FORMATEUR</div>
+      <h3>Samuel Braniste</h3>
+      <p>Fil rouge de la masterclass ce matin.</p>
+    </div>
+    <div class="card">
+      <div class="avatar">CG</div>
+      <div class="num">VOTRE FORMATEUR</div>
+      <h3>César Guyader</h3>
+      <p>Lead de vos ateliers métier.</p>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Samuel se présente chaleureusement : « Deux mots sur qui vous accompagne. Moi c'est Samuel, votre fil rouge ce matin. À mes côtés, César Guyader, qui animera vos ateliers métier. » Légitimité avec naturel : « À nous deux, on a accompagné une cinquantaine de sociétés, surtout PME et ETI, sur leurs projets d'adoption de l'IA, et l'écosystème Google Workspace en particulier. » Intention, ton complice : « Notre objectif tient en trois mots : monter en compétence, apprendre à s'en servir au mieux, et y prendre du plaisir. » Enchaîner vers le plan.</aside>
+</section>
+
+<!-- Slide 3 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Accueil</div>
+    <h2>Le plan de la matinée</h2>
+    <p class="sub">Vos questions : on y répond ensemble à la fin.</p>
+  </div>
+  <div class="plan flow">
+    <div class="item"><div class="pn">ÉTAPE 1</div><h3>Vos ateliers métier</h3><p>Ce qui vous attend, par groupe.</p></div>
+    <div class="item"><div class="pn">ÉTAPE 2</div><h3>Comprendre l'IA</h3><p>Ce que c'est, simplement.</p></div>
+    <div class="item"><div class="pn">ÉTAPE 3</div><h3>Le bon réflexe données</h3><p>Garder le précieux à la maison.</p></div>
+    <div class="item"><div class="pn">ÉTAPE 4</div><h3>Votre écosystème d'outils</h3><p>Votre boîte à outils premium.</p></div>
+    <div class="item"><div class="pn">ÉTAPE 5</div><h3>Bien lui parler</h3><p>L'anatomie d'un bon prompt.</p></div>
+    <div class="item"><div class="pn">ÉTAPE 6</div><h3>En pratique</h3><p>Des démos en direct.</p></div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Dérouler la frise comme un itinéraire : « Voilà notre route de ce matin. » Fil rouge en une phrase : « On commence par ce qui vous attend, vos ateliers métier, pour que chacun voie déjà ce qu'il va pouvoir faire ; puis on comprend l'outil, on adopte le bon réflexe avec vos données, on fait le tour de votre écosystème, on apprend à bien lui parler, et on finit par la pratique avec des démos. » Cadre temps : « 2h, on tient le rythme, et deux invités de marque prennent la parole très vite. » Annoncer le sondage : « avant tout ça, j'aimerais savoir d'où vous partez, une petite question simple. »</aside>
+</section>
+
+<!-- Slide 4 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Accueil</div>
+    <h2>Vous en êtes où avec l'IA ?</h2>
+    <p class="sub">Toutes les réponses se valent : c'est juste pour ajuster le rythme.</p>
+  </div>
+  <div class="poll">
+    <div class="opt"><span class="n">1</span><span class="t">Je découvre, c'est tout nouveau pour moi</span></div>
+    <div class="opt"><span class="n">2</span><span class="t">J'ai testé une ou deux fois, par curiosité</span></div>
+    <div class="opt"><span class="n">3</span><span class="t">Je l'utilise de temps en temps</span></div>
+    <div class="opt"><span class="n">4</span><span class="t">Je m'en sers presque tous les jours</span></div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Lancer le sondage : « Répondez en un clic, c'est anonyme et toutes les réponses se valent. » Laisser 30-40 sec, commenter avec bienveillance selon le mix : beaucoup de débutants : « parfait, on part ensemble de zéro » ; profils avancés : « super, vous irez plus loin en atelier et pourrez nous montrer des choses. » Message-clé : « on est un groupe varié, et c'est une force : ce matin on met tout le monde au même point de départ. » Transition : « Maintenant que je sais d'où on part, voici ce que je vous promets pour ces 2h. »</aside>
+</section>
+
+<!-- Slide 5 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Accueil</div>
+    <h2>Ce qu'on vise ensemble ce matin</h2>
+    <p class="sub">Cinq caps pour ces 2h — et une promesse simple.</p>
+  </div>
+  <div class="cols five">
+    <div class="card"><div class="bignum">01</div><h3>Un socle commun</h3><p>Tous au même point de départ.</p></div>
+    <div class="card"><div class="bignum">02</div><h3>Des réflexes simples</h3><p>Rester serein avec vos données.</p></div>
+    <div class="card"><div class="bignum">03</div><h3>Vos cas métier</h3><p>Repérés et construits en atelier.</p></div>
+    <div class="card"><div class="bignum">04</div><h3>Gagner du temps</h3><p>En restant le pilote.</p></div>
+    <div class="card"><div class="bignum">05</div><h3>Compétence d'avenir</h3><p>Monter en aisance, durablement.</p></div>
+  </div>
+  <div class="encart big">
+    <div class="tag">Notre promesse</div>
+    <p>En 2h, repartir avec <b>l'envie et les bases</b> pour confier vos premières tâches à l'IA.</p>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Poser la promesse d'abord, lentement : « Mon engagement pour ces 2h : que vous repartiez avec l'envie et assez de bases pour confier votre première tâche à l'IA dès aujourd'hui. » Dérouler les 5 caps en les incarnant : (1) un socle commun, qu'on parle tous le même langage ; (2) des réflexes simples pour rester serein avec vos données ; (3) repérer VOS cas d'usage métier, le cœur des ateliers ; (4) gagner du temps sur le répétitif tout en gardant la main, vous restez le pilote ; (5) monter en aisance, c'est une vraie compétence. Transition vers les sponsors : « Pour vous dire pourquoi Autosur investit là-dedans, je laisse la parole à deux personnes bien mieux placées que moi. »</aside>
+</section>
+
+<!-- Slide 6 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Le mot de la direction</div>
+    <h2>Le mot de la direction</h2>
+  </div>
+  <div class="cols two">
+    <div class="card">
+      <div class="avatar">AH</div>
+      <div class="num">DIRECTION GÉNÉRALE</div>
+      <h3>Alexandra Herbel</h3>
+      <p>Pourquoi nous investissons dans l'IA, ensemble.</p>
+    </div>
+    <div class="card">
+      <div class="avatar">GF</div>
+      <div class="num">SYSTÈMES D'INFORMATION</div>
+      <h3>Guillaume Feltri</h3>
+      <p>Un outil premium choisi pour vous, et un accompagnement.</p>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Passation chaleureuse vers la DG : « Pour ouvrir, le plaisir de laisser la parole à Alexandra Herbel, qui porte ce projet au plus haut. Alexandra, c'est à vous. » Pendant son intervention (~4 min : l'envie, le sens, pourquoi la direction investit, apport aux équipes et aux clients) : couper son micro, épingler sa caméra, surveiller le chat. Reprise : « Merci Alexandra, c'est exactement l'état d'esprit, l'IA au service de notre métier et de nos clients. » Vers la DSI : « Pour poser le cap concret, la parole à Guillaume Feltri, notre DSI. » Pendant l'intervention de Guillaume (~4 min : pourquoi Gemini Pro, un des meilleurs modèles, sécurisé, déjà disponible, un guichet pour les besoins spécifiques) : micro coupé, caméra épinglée. Reprise : « Merci Guillaume. Le décor est planté : un outil premium et un accompagnement. Voyons ce qui vous attend. »</aside>
+</section>
+
+<!-- Slide 7 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Votre parcours</div>
+    <h2>1 lancement + 6 ateliers</h2>
+    <p class="sub">Ce matin on découvre. En atelier, on construit vos usages.</p>
+  </div>
+  <div class="plan two">
+    <div class="item"><div class="pn">1 · CE MATIN</div><h3>La masterclass de lancement</h3><p>La vitrine : on regarde ensemble ce que l'outil sait faire.</p></div>
+    <div class="item"><div class="pn">6 · ENSUITE</div><h3>Vos ateliers métier</h3><p>Une demi-journée, en petit groupe, où on pratique vos cas. Au moins 50 % de pratique.</p></div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Situer le moment : « Ce matin, c'est le coup d'envoi. La vitrine : on regarde ce que l'outil sait faire, ensemble. » Puis le cœur : « Le vrai travail se passe en atelier : 6 sessions en petit groupe, une demi-journée chacune, où on retrousse les manches sur VOS cas concrets, votre métier, vos documents. » Pratique : « au moins la moitié du temps, les mains dans le cambouis. » Rester générique sur le calendrier : « vos dates exactes vous seront confirmées par la coordination côté Unow. » Transition : « Et concrètement, pour VOTRE métier, voilà ce qu'on y construira ensemble. »</aside>
+</section>
+
+<!-- Slide 8 -->
+<section class="slide">
+  <div class="head"><div class="kicker">Vos ateliers · 1/2</div><h2>Ce qu'on construira, par métier</h2></div>
+  <div class="cols three">
+    <div class="card">
+      <div class="num">RÉDACTION &amp; SUIVI</div>
+      <h3>Assistantes &amp; Agrément</h3>
+      <ul>
+        <li>Mails administratifs récurrents</li>
+        <li>Synthèse d'échanges et documents longs</li>
+        <li>Gestion des réclamations clients</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">COMMUNICATION</div>
+      <h3>Marketing, Comm' &amp; Support</h3>
+      <ul>
+        <li>Rédactionnel : réseaux, supports, SEO</li>
+        <li>Traitement image &amp; vidéo</li>
+        <li>Veille avec Deep Research</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">AUDIT</div>
+      <h3>Auditeurs</h3>
+      <ul>
+        <li>Planification des tournées d'audit</li>
+        <li>Analyse des rapports DREAL (NotebookLM)</li>
+        <li>Aide au diagnostic technique</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> On donne du concret par métier, sans annoncer les dates ni le numéro de groupe : le mapping groupe → métier → créneau est encore en calage avec la coordination Unow. Dérouler les trois premiers ateliers : « voilà le genre de cas qu'on construira ensemble, à partir de VOS vraies situations. » Si on demande « c'est quel groupe / quelle date pour moi ? » : renvoyer à la convocation et à la coordination. Suite sur la slide suivante.</aside>
+</section>
+
+<!-- Slide 9 -->
+<section class="slide">
+  <div class="head"><div class="kicker">Vos ateliers · 2/2</div><h2>Ce qu'on construira, par métier</h2></div>
+  <div class="cols three">
+    <div class="card">
+      <div class="num">RELATION CLIENT</div>
+      <h3>Hotline &amp; SAV</h3>
+      <ul>
+        <li>Qualification des tickets</li>
+        <li>Recherche assistée dans la doc</li>
+        <li>Réponses clients sourcées</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">PÉDAGOGIE</div>
+      <h3>Formateurs</h3>
+      <ul>
+        <li>Préparation de supports pédagogiques</li>
+        <li>Création de quiz &amp; évaluations (NotebookLM)</li>
+        <li>Adapter la forme, pas le fond réglementaire</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">SYSTÈMES</div>
+      <h3>DSI</h3>
+      <ul>
+        <li>Logigrammes depuis vos procédures</li>
+        <li>Analyse de doc interne (NotebookLM)</li>
+        <li>Analyse qualité des communications</li>
+      </ul>
+    </div>
+  </div>
+  <div class="encart"><div class="tag">À retenir</div><p>Chaque groupe : une <b>demi-journée dédiée</b>, au moins <b>la moitié en pratique</b>, à partir de vos situations réelles. On construit les prompts <b>ensemble</b>.</p></div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Dérouler les trois derniers ateliers, même esprit : du concret par métier, sans dates ni numéros de groupe (mapping à confirmer Unow). Conclure sur l'encart, la promesse forte : demi-journée dédiée, au moins la moitié en pratique, prompts construits ensemble à partir de vos situations réelles. Transition : « Voilà ce qui vous attend. Pour bien préparer tout ça, ouvrons d'abord le capot : c'est quoi, au juste, cette IA ? »</aside>
+</section>
+
+<!-- Slide 10 -->
+<section class="slide section center">
+  <div class="pnum">TRANSITION</div>
+  <h1 class="ptitle">Ouvrons le capot</h1>
+  <div class="rule"></div>
+  <p class="pdesc">C'est quoi, au juste, cette IA ?</p>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Marquer le changement de rythme, ton complice et joueur, voix qui ralentit : « On est dans un réseau de contrôle technique, vous savez mieux que personne qu'avant de faire confiance à une mécanique, on aime regarder ce qu'il y a dessous. » Pause. « Faisons pareil avec l'IA : ouvrons le capot, et vous allez voir, c'est beaucoup plus simple qu'on ne le croit. Pas de jargon, pas de maths, juste de quoi être à l'aise. » Enchaîner sur « Comprendre l'IA ».</aside>
+</section>
+
+<!-- Slide 11 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Comprendre</div>
+    <h2>Comment fonctionne une IA générative</h2>
+    <p class="sub">Elle génère du texte en prédisant, mot après mot, la suite la plus probable — à partir d'une immense quantité d'écrits.</p>
+  </div>
+  <div class="cols two">
+    <div class="card hero">
+      <div class="num">SON TERRAIN DE JEU</div>
+      <h3>Tout ce qui touche au langage</h3>
+      <ul>
+        <li>Reformuler, résumer, rédiger</li>
+        <li>Expliquer, traduire, structurer</li>
+        <li>Très à l'aise, et très rapide</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">SA LIMITE</div>
+      <h3>Les faits restent à vérifier</h3>
+      <ul>
+        <li>Elle vise le <b>plausible</b>, pas le vérifié</li>
+        <li>Un chiffre, une date, un texte de loi : à contrôler</li>
+        <li>Votre <b>expertise métier</b> fait la différence</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Une seule idée à retenir : une IA générative comme Gemini génère le langage en prédisant le mot suivant le plus probable, à partir d'une quantité gigantesque de textes qu'elle a analysés. C'est ce qui la rend excellente sur tout ce qui touche au langage : reformuler, résumer, rédiger, expliquer. Le revers, et il est important : elle vise ce qui est plausible, pas ce qui est vérifié. Sur un chiffre, une date, un texte réglementaire, elle peut se tromper avec aplomb. Ce n'est pas un défaut à corriger, c'est sa nature, et c'est précisément là que votre expertise métier compte : vous gardez le réflexe de vérifier les faits. ~2 min.</aside>
+</section>
+
+<!-- Slide 12 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Vos usages</div>
+    <h2>Ce qu'elle vous apporte</h2>
+    <p class="sub">Sa force, c'est le langage. Cinq usages qui vous font gagner du temps dès aujourd'hui.</p>
+  </div>
+  <div class="cols five">
+    <div class="card"><div class="bignum">01</div><h3>Reformuler</h3><p>Un texte brut, clair et pro.</p></div>
+    <div class="card"><div class="bignum">02</div><h3>Synthétiser</h3><p>10 pages en 5 points.</p></div>
+    <div class="card"><div class="bignum">03</div><h3>Premier jet</h3><p>Fini la page blanche.</p></div>
+    <div class="card"><div class="bignum">04</div><h3>Analyser</h3><p>Repérer, comparer, extraire.</p></div>
+    <div class="card"><div class="bignum">05</div><h3>Structurer</h3><p>Du vrac à un tableau.</p></div>
+  </div>
+  <div class="encart big">
+    <div class="tag">Le principe</div>
+    <p>Elle produit la <b>première version</b>, vous gardez la <b>décision</b>. La vraie compétence : <b>savoir bien lui confier le travail</b> — c'est tout l'objet des ateliers.</p>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Concrètement, sa force, c'est le langage : transformer un format en un autre (des notes en vrac deviennent un compte-rendu propre), synthétiser de gros volumes, vous faire démarrer sur un premier jet, relire et élever la qualité. Le principe à retenir : elle produit la première version, très vite ; vous gardez la décision, le jugement, la validation finale. Et la compétence qu'on va construire ensemble dans les ateliers, ce n'est pas « savoir parler à une IA », c'est savoir lui confier un travail avec le bon contexte et les bonnes consignes. C'est ça qui fait toute la différence entre un résultat générique et un résultat utilisable. ~2 min.</aside>
+</section>
+
+<!-- Slide 13 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Vos données</div>
+    <h2>La vraie question : où vont vos données</h2>
+    <p class="sub">La bonne question n'est pas « IA ou pas IA », mais : dans quel espace je travaille.</p>
+  </div>
+  <div class="cols two">
+    <div class="card">
+      <div class="num" style="color:var(--muted2)">Grand public gratuit</div>
+      <h3>Vos informations peuvent circuler</h3>
+      <ul>
+        <li>Ce que vous tapez peut être <b>conservé</b>.</li>
+        <li>Et <b>réutilisé</b> pour entraîner le modèle.</li>
+        <li>Aucune garantie de confidentialité.</li>
+        <li>À proscrire pour tout document interne.</li>
+      </ul>
+    </div>
+    <div class="card hero">
+      <div class="num">Votre espace pro</div>
+      <h3>Google Workspace + Gemini Pro</h3>
+      <ul>
+        <li>Vos données restent dans le <b>périmètre Autosur</b>.</li>
+        <li><b>Jamais</b> utilisées pour entraîner le modèle.</li>
+        <li>Accès et règles gérés par votre <b>DSI</b>.</li>
+        <li>Pensé pour le travail <b>confidentiel</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="encart">
+    <div class="tag">Rappel</div>
+    <p>Votre <b>charte informatique Autosur</b> s'applique aussi à ces outils — l'IA y est intégrée. En cas de doute, c'est votre référence.</p>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Parlons de vos données, c'est sans doute votre principale question. Beaucoup d'entre vous ont déjà testé l'IA, souvent avec un compte personnel gratuit, par curiosité : très bien, c'est comme ça qu'on apprend. Le point à comprendre : sur ces outils grand public gratuits, ce que vous tapez peut être conservé et servir à améliorer le modèle. Donc un courrier client, un extrait de rapport, n'ont rien à y faire. La vraie question n'est donc pas « IA ou pas IA », c'est : dans quel espace je travaille. Et c'est exactement le choix qu'a fait Autosur pour vous : Google Workspace avec Gemini Pro, sur vos comptes professionnels. Rappeler en douceur : « tout ça, c'est déjà dans votre charte informatique, qui couvre aussi l'IA — en cas de doute, c'est la référence. » ~2 min.</aside>
+</section>
+
+<!-- Slide 14 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">En confiance</div>
+    <h2>Le meilleur choix : sûr et performant</h2>
+    <p class="sub">Deux raisons d'y aller sereinement, qui vont dans le même sens.</p>
+  </div>
+  <div class="cols two">
+    <div class="card">
+      <div class="num">Sécurité</div>
+      <h3>Un cadre vérifié</h3>
+      <ul>
+        <li>Conforme <b>RGPD</b>, hébergement Europe possible.</li>
+        <li>Données <b>non utilisées</b> pour l'entraînement.</li>
+        <li>Audits par des tiers indépendants.</li>
+        <li>Accès gouvernés par votre <b>DSI</b>.</li>
+      </ul>
+    </div>
+    <div class="card hero">
+      <div class="num">Performance</div>
+      <h3>Un des tout meilleurs modèles</h3>
+      <ul>
+        <li>Gemini Pro, dans le <b>haut du marché</b>.</li>
+        <li>Intégré à <b>Gmail, Docs, Drive</b>.</li>
+        <li>Multimodal : texte, image, voix.</li>
+        <li>Mis à jour en continu.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="encart"><div class="tag">En confiance</div><p>Résultat : vous pouvez l'utiliser sur votre <b>vrai travail</b>, en toute sérénité.</p></div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Pourquoi c'est le bon choix, sur deux plans à la fois. La sécurité d'abord : dans Workspace, vos données ne servent pas à entraîner les modèles, elles restent dans le périmètre de l'entreprise ; le cadre est conforme RGPD, on peut héberger en Europe, c'est vérifié par des auditeurs indépendants, et votre DSI garde la main sur les accès. La performance ensuite : Gemini Pro fait partie des tout meilleurs modèles du marché, et il est intégré là où vous travaillez déjà. Sécurité et performance vont dans le même sens. Conclusion, le message à retenir : vous pouvez l'utiliser en confiance, sur du vrai travail interne. (À confirmer avec la DSI / Feltri avant de citer des sigles précis : l'édition Workspace souscrite et la liste exacte des certifications.) ~2 min.</aside>
+</section>
+
+<!-- Slide 15 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">VOTRE ÉCOSYSTÈME</div>
+    <h2>Votre boîte à outils</h2>
+    <p class="sub">Un écosystème complet, et il est déjà à vous.</p>
+  </div>
+  <div class="cols three">
+    <div class="card">
+      <div class="num">LE CŒUR</div>
+      <h3>Gemini Pro</h3>
+      <p>Il écrit, résume, structure. <span class="usage">votre stagiaire principal</span></p>
+    </div>
+    <div class="card">
+      <div class="num">VOS DOCUMENTS</div>
+      <h3>NotebookLM</h3>
+      <p>Posez-lui vos PDF, il répond et fait des synthèses. <span class="usage">synthèses sourcées</span></p>
+    </div>
+    <div class="card">
+      <div class="num">SUR-MESURE</div>
+      <h3>Les Gems</h3>
+      <p>Vos assistants prêts à l'emploi, préparés une fois, réutilisés à volonté. <span class="usage">assistants persos</span></p>
+    </div>
+    <div class="card">
+      <div class="num">VOS RÉUNIONS</div>
+      <h3>Transcriptions Google Meet</h3>
+      <p>Vos réunions résumées toutes seules, sans lever le petit doigt. <span class="usage">comptes-rendus auto</span></p>
+    </div>
+    <div class="card">
+      <div class="num">TOUT BRANCHÉ</div>
+      <h3>Google Workspace</h3>
+      <p>Gmail, Docs, Drive : là où vous travaillez déjà. <span class="usage">rien à installer</span></p>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Donner envie, rester concret, un cas par outil. Gemini Pro, le cœur : écrit, reformule, résume, structure. NotebookLM : déposez vos PDF et rapports, posez des questions, synthèses sourcées, idéal pour une grosse doc. Les Gems : assistants préparés une fois et réutilisés (ex. toujours le bon ton). Transcriptions Meet : réunions résumées et notées automatiquement. Workspace : Gmail, Docs, Drive, rien à installer. Clore avec fierté : écosystème complet, premium, déjà à vous ; on l'explore outil par outil dans les six ateliers. Transition : tout commence par savoir lui parler.</aside>
+</section>
+
+
+<!-- Slide 16 -->
+<section class="slide section center">
+  <div class="pnum">PROMPTER</div>
+  <h1 class="ptitle">Bien le briefer, ça s'apprend</h1>
+  <div class="rule"></div>
+  <p class="pdesc">Un stagiaire brillant, un brief clair : un travail qui vous ressemble. Apprenons à bien lui parler.</p>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Transition courte vers le prompt. La question la plus utile de la matinée : comment je le briefe pour qu'il sorte quelque chose d'utile dès le premier coup ? Ça s'apprend, ça tient en quatre ingrédients. Enchaîner sans pause.</aside>
+</section>
+
+<!-- Slide 17 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">L'anatomie d'un bon prompt</div>
+    <h2>Un bon prompt = un bon brief</h2>
+    <p class="sub">Quatre ingrédients à donner à votre stagiaire, dans l'ordre.</p>
+  </div>
+  <table class="ptable">
+    <thead>
+      <tr><th>Ingrédient</th><th>Ce que vous donnez</th><th>Exemple concret</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="ing">Rôle</td><td class="give">La casquette qu'il endosse</td><td class="ex">« Tu es un assistant qualité. »</td></tr>
+      <tr><td class="ing">Contexte</td><td class="give">Ce qu'il doit savoir</td><td class="ex">« Le ton est formel, voici notre process. »</td></tr>
+      <tr><td class="ing">Tâche</td><td class="give">Ce que vous lui demandez</td><td class="ex">« Résume ce document en 5 points. »</td></tr>
+      <tr><td class="ing">Format</td><td class="give">La forme attendue</td><td class="ex">« Sous forme de tableau. »</td></tr>
+    </tbody>
+  </table>
+  <div class="encart">
+    <div class="tag">Astuce</div>
+    <p>Et si vous lui montrez un <b>exemple</b> de ce que vous attendez : c'est le bonus qui fait toute la différence.</p>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> SLIDE STRUCTURANTE, c'est LA méthode. Annoncer qu'elle revient à chaque atelier, c'est l'aide-mémoire. Dérouler les 4 ingrédients avec l'image du stagiaire. L'exemple, c'est comme montrer un modèle à son stagiaire. Rester concret.</aside>
+</section>
+
+<!-- Slide 18 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">L'anatomie d'un bon prompt</div>
+    <h2>Le même brief, en mieux</h2>
+    <p class="sub">Même outil, même demande : tout se joue dans la consigne.</p>
+  </div>
+  <div class="cols two">
+    <div class="card">
+      <div class="num" style="color:var(--muted2)">✕ BRIEF EXPRESS</div>
+      <p class="tools">« Écris un e-mail de relance. »</p>
+      <p>Résultat passe-partout, à reprendre de A à Z. Rien de réutilisable.</p>
+    </div>
+    <div class="card hero">
+      <div class="num">✓ BRIEF COMPLET · R-C-T-F</div>
+      <p class="tools">« Tu es responsable achats (rôle). Notre prestataire n'a pas envoyé le devis promis pour vendredi, et il nous le faut pour boucler le budget (contexte). Relance-le, fermement mais poliment, et propose une date limite (tâche). E-mail court, cordial, 4 lignes (format). »</p>
+      <p>Résultat utilisable quasi tel quel, dans votre ton.</p>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> LA slide qui fait comprendre l'enjeu du prompt, sans démo live. Lire le brief express à gauche : « voilà ce que beaucoup tapent, et le résultat est tiède. » Puis le brief complet à droite, en pointant les 4 ingrédients : rôle, contexte, tâche, format. « Même outil, même demande : tout l'écart se joue ici. » Si le temps le permet, taper les deux en direct dans Gemini pour le montrer. Exemple volontairement neutre, aucune donnée réelle.</aside>
+</section>
+
+<!-- Slide 19 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">L'anatomie d'un bon prompt</div>
+    <h2>Itérer : la méthode en 3 temps</h2>
+    <p class="sub">Le premier jet n'est qu'un début. On l'affine, comme avec un collègue.</p>
+  </div>
+  <div class="plan flow">
+    <div class="item">
+      <div class="pn">TEMPS 1 · JE DEMANDE</div>
+      <h3>Je confie la tâche</h3>
+      <p>Avec mes 4 ingrédients : rôle, contexte, tâche, format.</p>
+    </div>
+    <div class="item">
+      <div class="pn">TEMPS 2 · JE LIS</div>
+      <h3>Je relis d'un œil d'expert</h3>
+      <p>Ce qui va, ce qui manque, ce qui sonne faux.</p>
+    </div>
+    <div class="item">
+      <div class="pn">TEMPS 3 · J'AJUSTE</div>
+      <h3>Je corrige et je relance</h3>
+      <p>« Plus court », « ton plus chaleureux », « reprends le 2e point ».</p>
+    </div>
+  </div>
+  <div class="encart">
+    <div class="tag">À retenir</div>
+    <p>Le prompt parfait du premier coup, personne ne l'a. <b>Itérer, c'est ça la méthode</b> — et ça devient vite naturel.</p>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Message déculpabilisant, clé pour les débutants. Dérouler les 3 temps comme une boucle qu'on répète : je demande, je lis, j'ajuste, et on recommence. Métaphore stagiaire : exactement comme avec un collègue junior, vous relisez, vous dites ce qui va et ce qui peut être mieux, au 3e échange c'est nickel. C'est tout l'entraînement des six ateliers. Transition vers les démos.</aside>
+</section>
+
+<!-- Slide 20 -->
+<section class="slide section center">
+  <div class="pnum">EN PRATIQUE</div>
+  <h1 class="ptitle">Ce que vous allez pouvoir faire</h1>
+  <div class="rule"></div>
+  <p class="pdesc">Quelques démos en direct : d'abord l'utile au quotidien, puis ce qui surprend.</p>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Ton posé puis montée d'énergie. « On a compris l'outil, on sait le briefer : voyons ce que ça donne concrètement. » Annoncer l'ordre : d'abord deux usages utiles au quotidien (synthétiser, structurer), puis on ouvre sur ce qui impressionne (image, conversation, NotebookLM). Cadre : démos neutres, les vrais cas métier se construisent en atelier. ~3 min par démo. Glisser au chat : « lâchez vos réactions, je lis tout. »</aside>
+</section>
+
+<!-- Slide 21 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Démo · en pratique</div>
+    <h2>Synthétiser : l'essentiel en un coup d'œil</h2>
+  </div>
+  <div class="demo">
+    <div class="ctx">
+      <div class="see">Ce que vous allez voir</div>
+      <ul>
+        <li>Un document long, collé en entier.</li>
+        <li>Les points clés et les décisions, en quelques lignes.</li>
+        <li>Le temps de lecture divisé par dix.</li>
+      </ul>
+      <span class="usage">exemple neutre, en direct</span>
+    </div>
+    <div>
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scene">
+          <div class="playbtn"></div>
+          <div class="live">Écran Gemini · en direct</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Première démo, volontairement utile et rassurante. Coller un document long et neutre (un compte-rendu, un article), demander « résume-moi l'essentiel en 5 points + les décisions à prendre ». « Ce qui vous prenait dix minutes de lecture, vous l'avez en dix secondes. » Insister : on garde l'œil d'expert pour valider. BACKUP : capture prête si Gemini rame.</aside>
+</section>
+
+<!-- Slide 22 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Démo · en pratique</div>
+    <h2>Structurer : du vrac à un tableau clair</h2>
+  </div>
+  <div class="demo">
+    <div class="ctx">
+      <div class="see">Ce que vous allez voir</div>
+      <ul>
+        <li>Des infos en vrac : notes, liste, copier-coller.</li>
+        <li>Un tableau propre, trié, prêt à réutiliser.</li>
+        <li>Les colonnes que vous demandez, dans l'ordre voulu.</li>
+      </ul>
+      <span class="usage">exemple neutre, en direct</span>
+    </div>
+    <div>
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scene">
+          <div class="playbtn"></div>
+          <div class="live">Écran Gemini · en direct</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Démo robuste, 100 % texte. Coller des informations en vrac (une liste pêle-mêle, des notes) et demander « mets-moi ça dans un tableau avec ces colonnes… ». « En un instant, c'est trié, propre, réutilisable. » Montrer qu'on peut ajuster les colonnes à la volée — lien avec la slide d'itération. BACKUP : capture prête.</aside>
+</section>
+
+<!-- Slide 23 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Démo · pour aller plus loin</div>
+    <h2>Il crée l'image que vous décrivez</h2>
+  </div>
+  <div class="demo">
+    <div class="ctx">
+      <div class="see">Ce que vous allez voir</div>
+      <ul>
+        <li>Vous décrivez une scène, il génère le visuel.</li>
+        <li>Une image qui apparaît en quelques secondes.</li>
+        <li>Un détail à changer ? Une variante, tout de suite.</li>
+      </ul>
+      <span class="usage">au chat : un animal, un métier, un lieu</span>
+    </div>
+    <div>
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scene">
+          <div class="playbtn"></div>
+          <div class="live">Écran Gemini · en direct</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> On ouvre sur le « waouh ». Interaction chat pendant le setup : un animal, un métier, un lieu, lire 2-3 réponses, choisir la plus sympa. Prompt fictif et neutre, type « capybara mécanicien dans un garage rétro, affiche vintage ». À l'image : « Et voilà, en 15 secondes. » Relancer une variante. Point pédago : « ce qui compte, c'est la qualité de votre description, comme un brief. » BACKUP : capture prête si la génération est lente.</aside>
+</section>
+
+<!-- Slide 24 -->
+<section class="slide">
+  <div class="head"><div class="kicker">Démo · pour aller plus loin</div><h2>Lui parler en direct : voix et caméra</h2></div>
+  <div class="demo">
+    <div class="ctx">
+      <div class="see">Ce que vous allez voir</div>
+      <ul>
+        <li>Une vraie conversation, à voix haute, sans clavier.</li>
+        <li>Vous lui montrez quelque chose à la caméra : il le voit.</li>
+        <li>Une réponse orale, naturelle et fluide.</li>
+      </ul>
+      <span class="usage">en direct</span>
+    </div>
+    <div>
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scene"><div class="playbtn"></div><div class="live">Écran Gemini · voix + vidéo en direct</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Démo la plus fragile en visio (audio + caméra) : tester le routage avant la session, BACKUP obligatoire à portée de clic. Chat pour occuper le setup : « une question simple et amusante à lui poser de vive voix ? » Ouvrir le mode vocal, parler naturellement, puis montrer un objet à la caméra : « il voit, il commente. » Dire : « sans clavier, je lui parle comme à un collègue, pratique quand on a les mains prises. » Si l'audio se croise ou coupe, basculer aussitôt sur la capture sous-titrée, rester serein.</aside>
+</section>
+
+<!-- Slide 25 -->
+<section class="slide">
+  <div class="head"><div class="kicker">Démo · pour aller plus loin</div><h2>NotebookLM : vos documents répondent</h2></div>
+  <div class="demo">
+    <div class="ctx">
+      <div class="see">Ce que vous allez voir</div>
+      <ul>
+        <li>Vous déposez vos PDF, rapports, notes.</li>
+        <li>Vous posez vos questions, il répond avec les sources.</li>
+        <li>Idéal pour une grosse documentation à fouiller.</li>
+      </ul>
+      <span class="usage">synthèses sourcées, en direct</span>
+    </div>
+    <div>
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scene"><div class="playbtn"></div><div class="live">Écran NotebookLM · en direct</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> La démo qui marque côté « sérieux ». Déposer 2-3 documents neutres dans un notebook préparé, poser une question précise : « il répond, et surtout il cite la source, le passage exact. » Insister sur la confiance : « ici, pas d'invention, il s'appuie sur VOS documents. » Faire le lien avec les ateliers : « imaginez ça sur votre documentation interne. » BACKUP : notebook déjà chargé en secours si l'import traîne.</aside>
+</section>
+
+<!-- Slide 26 -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">Récap</div>
+    <h2>Gemini, en trois questions</h2>
+  </div>
+  <div class="cols three">
+    <div class="card">
+      <div class="num">CE QU'IL FAIT</div>
+      <h3>Rédiger, synthétiser, structurer, créer</h3>
+      <p>Du texte, des tableaux, des visuels — en quelques secondes, sur un simple brief.</p>
+    </div>
+    <div class="card">
+      <div class="num">CE QU'ON A VU</div>
+      <h3>La vitrine, en direct</h3>
+      <p>Quelques démos pour vous donner envie : l'utile du quotidien, puis ce qui surprend.</p>
+    </div>
+    <div class="card hero">
+      <div class="num">CE QU'ON APPROFONDIT</div>
+      <h3>VOS cas, en atelier</h3>
+      <p>Vos vraies tâches, vos documents, mains sur le clavier. C'est là que ça devient le vôtre.</p>
+    </div>
+  </div>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Slide de synthèse, en question / réponse, simple. Dérouler les trois : ce qu'il fait (les capacités vues ce matin), ce qu'on a vu (la vitrine, des démos), ce qu'on approfondit (VOS cas, en atelier). Insister sur la dernière carte, rappel des ateliers vus en début de matinée : « le plus intéressant, ce qu'il peut faire pour VOTRE métier, on le construira ensemble en atelier, mains sur le clavier. » Transition vers le Q/R : « Avant de se quitter, place à vos questions, vous en avez posé pas mal dans le chat. »</aside>
+</section>
+
+<!-- Slide 27 -->
+<section class="slide cover center">
+  <div class="kicker">Q/R + Clôture</div>
+  <h1>Vos questions</h1>
+  <div class="rule"></div>
+  <p class="sub">Posez dans le chat : je prends tout.</p>
+  <aside class="notes"><span class="nlabel">Notes animateur</span> Cœur du Q/R ET clôture (dernière slide, pas d'écran de fin). Ouvrir le chat en partage d'écran. « Pendant toute la matinée, vous avez alimenté le chat, merci. On vide la file ensemble. » Lire les questions à voix haute (utile pour le replay), regrouper les proches, répondre du plus fréquent au plus pointu. Garder 8 à 10 min. Donnée sensible : rappeler en douceur le réflexe « espace Gemini Pro pour ce qui compte ». Question hors cadre : « excellente question pour la DSI, c'est le guichet prévu pour ça. » <b>Clôture à l'oral, sur cette slide</b> : (1) remercier chaleureusement les participants, la direction et la DSI ; (2) rappeler que le replay sera partagé ; (3) annoncer les ateliers (date dans l'invitation) ; (4) petit défi : « cet après-midi, confiez UNE tâche régulière à votre nouveau coéquipier. » Finir sur une note haute et positive.</aside>
+</section>
+
+</div>
+
+<div class="counter"></div>
+<div class="brandbar">Adopter l'IA générative chez Autosur</div>
+<div class="nav-hint">Flèches ou clic · N notes · F plein écran</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const counter=document.querySelector('.counter');
+  function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));counter.textContent=(i+1)+' / '+slides.length;}
+  function next(){show(i+1)} function prev(){show(i-1)}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){next();e.preventDefault();}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){prev();e.preventDefault();}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key.toLowerCase()==='n'){document.body.classList.toggle('notes-on');}
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement){document.documentElement.requestFullscreen();}else{document.exitFullscreen();}}
+  });
+  document.addEventListener('click',e=>{ if(e.target.closest('.notes'))return; if(e.clientX < window.innerWidth*0.25){prev();}else{next();} });
+  show(0);
+</script>
+</body>
+</html>
