@@ -121,11 +121,25 @@ ul.dots li::before{ content:""; position:absolute; left:0; top:7px; width:7px; h
   border:1px solid var(--line); border-radius:999px; padding:8px 15px; box-shadow:var(--shadow); }
 
 /* ---------- Stepper (ordre d'alignement) ---------- */
-.stepper{ display:flex; align-items:center; gap:12px; margin:13pt 0 4pt; background:var(--card);
-  border:1px solid var(--line); border-radius:16px; padding:16pt 18pt; box-shadow:var(--shadow); }
-.stepper .node{ font-weight:700; font-size:10pt; color:var(--ink); }
-.stepper .node .s{ display:block; font-size:8pt; font-weight:600; color:var(--soft); margin-top:2px; text-transform:none; letter-spacing:0; }
-.stepper .arr{ color:var(--blue); font-weight:800; font-size:13pt; }
+.stepper{ display:flex; align-items:flex-start; justify-content:space-between; gap:6px; margin:16pt 0 6pt;
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22pt 22pt; box-shadow:var(--shadow); }
+.stepper .node{ flex:1; text-align:center; display:flex; flex-direction:column; align-items:center; }
+.stepper .node .sph{ width:38px; height:38px; border-radius:50%; background:var(--sph-bg); box-shadow:var(--sph-sh);
+  color:#fff; font-weight:800; font-size:12pt; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
+.stepper .node .t{ font-weight:700; font-size:10.5pt; color:var(--ink); line-height:1.25; }
+.stepper .node .s{ font-size:8.5pt; font-weight:500; color:var(--soft); margin-top:4px; line-height:1.3; }
+.stepper .arr{ color:var(--blue); font-weight:800; font-size:17pt; flex:none; align-self:flex-start; margin-top:18px; padding:0 2px; }
+
+/* binôme builder + champion (relation, pas 3 catégories) */
+.binome{ display:flex; align-items:stretch; gap:0; margin:14pt 0 9pt; }
+.binome .pcard{ flex:1; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16pt 18pt; box-shadow:var(--shadow); }
+.binome .pcard .ic{ width:32px; height:32px; border-radius:50%; background:var(--sph-bg); box-shadow:var(--sph-sh); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:10.5pt; margin-bottom:10pt; }
+.binome .pcard .h{ font-weight:700; font-size:11.5pt; color:var(--ink); }
+.binome .pcard .p{ font-size:9.5pt; line-height:1.5; color:var(--text); margin-top:6px; }
+.binome .link{ flex:none; width:64px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.binome .link .lc{ width:42px; height:42px; border-radius:50%; background:var(--sph-bg); box-shadow:var(--sph-sh); color:#fff; font-weight:800; font-size:16pt; display:flex; align-items:center; justify-content:center; }
+.binome .link .ll{ font-size:7pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin-top:7px; }
+.binome-note{ font-size:10pt; line-height:1.55; color:var(--text); margin:0; }
 
 /* ---------- Carte / citation / stats / checklist / table ---------- */
 .card{ position:relative; z-index:1; background:var(--card); border:1px solid var(--line); border-radius:18px;
@@ -255,8 +269,9 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
 .grid4 .c .h{ font-weight:700; font-size:11.5pt; color:var(--ink); }
 .grid4 .c .p{ font-size:9.5pt; line-height:1.5; color:var(--text); margin-top:5px; }
 .cta .actions{ display:flex; align-items:center; gap:18px; }
-.cta .btn{ background:var(--blue); color:#fff; font-weight:700; font-size:10.5pt; padding:13px 26px; border-radius:999px; box-shadow:0 10px 22px rgba(58,134,255,.30); }
-.cta .mail{ font-weight:600; font-size:10.5pt; color:var(--ink); }
+.cta .btn{ display:inline-flex; align-items:center; gap:10px; background:var(--blue); color:#fff; font-weight:700; font-size:11pt; padding:15px 28px; border-radius:14px; box-shadow:0 12px 26px rgba(58,134,255,.32); }
+.cta .btn .ar{ font-size:13pt; line-height:1; }
+.cta .contact{ margin-top:15px; font-size:10pt; font-weight:600; color:var(--soft); letter-spacing:.01em; }
 .cta .foot{ margin-top:26px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:14pt; }
 .cta .foot img{ height:18px; }
 .cta .foot .u{ font-size:8pt; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); }
@@ -499,9 +514,9 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
     <p>On aligne d’abord la direction, ensuite le leadership IA, et seulement après on élargit.
       Sauter une marche, c’est ouvrir le débat avant d’avoir un cap, et le débat sans cap ne se referme jamais.</p>
     <div class="stepper">
-      <div class="node">Direction<span class="s">le cap</span></div><span class="arr">→</span>
-      <div class="node">Leadership IA<span class="s">les arbitrages</span></div><span class="arr">→</span>
-      <div class="node">Les équipes<span class="s">l’embarquement</span></div>
+      <div class="node"><div class="sph">1</div><div class="t">Direction</div><div class="s">le cap</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">2</div><div class="t">Leadership IA</div><div class="s">les arbitrages</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">3</div><div class="t">Les équipes</div><div class="s">l’embarquement</div></div>
     </div>
     <h4 class="step"><span class="num">4</span> Rédiger la charte IA</h4>
     <p>On formalise dans le seul document de la phase : la charte. C’est un outil de communication
@@ -666,9 +681,9 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
     <p>Avant de choisir le moindre outil, je cadre le périmètre. Trois questions, toujours les mêmes. Tant
       que ce pipeline n’est pas clair, on ne choisit rien.</p>
     <div class="stepper">
-      <div class="node">La donnée qui entre<span class="s">input</span></div><span class="arr">→</span>
-      <div class="node">Ce qu’on en fait<span class="s">transformation</span></div><span class="arr">→</span>
-      <div class="node">Ce qu’on veut en sortie<span class="s">le livrable</span></div>
+      <div class="node"><div class="sph">1</div><div class="t">La donnée qui entre</div><div class="s">input</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">2</div><div class="t">Ce qu’on en fait</div><div class="s">transformation</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">3</div><div class="t">Ce qui sort</div><div class="s">le livrable</div></div>
     </div>
   </div>
   <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
@@ -851,11 +866,12 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
     <h4 class="step"><span class="num">1</span> Monter l’équipe de production</h4>
     <p>Avant de construire quoi que ce soit, je pose qui construit. Une production qui tient repose sur deux
       profils et le lien entre eux.</p>
-    <div class="cards3">
-      <div class="c"><div class="ic">B</div><div class="h">Le builder</div><div class="p">Il met les mains dans le système : prompts, workflows, agents. Il sait traduire un besoin en système qui marche.</div></div>
-      <div class="c"><div class="ic">C</div><div class="h">Le champion</div><div class="p">Pas un profil tech, et c’est volontaire. Il exprime le besoin, teste, fait évoluer, valide. Un expert de son propre métier.</div></div>
-      <div class="c"><div class="ic">∞</div><div class="h">Le binôme</div><div class="p">Un builder pour plusieurs champions. C’est ce qui rend la production tenable, sans armée de techniciens.</div></div>
+    <div class="binome">
+      <div class="pcard"><div class="ic">B</div><div class="h">Le builder</div><div class="p">Il met les mains dans le système : prompts, workflows, agents. Il traduit un besoin en système qui marche.</div></div>
+      <div class="link"><div class="lc">∞</div><div class="ll">en binôme</div></div>
+      <div class="pcard"><div class="ic">C</div><div class="h">Le champion</div><div class="p">Pas un profil tech, et c’est volontaire. Il exprime le besoin, teste, valide. Un expert de son propre métier.</div></div>
     </div>
+    <p class="binome-note">Jamais un pour un : <strong>un builder pour plusieurs champions</strong>. C’est ce qui rend la production tenable, sans armée de techniciens.</p>
     <h4 class="step"><span class="num">2</span> Choisir et poser le socle et la stack</h4>
     <p>Je fixe les fondations avant le premier agent, parce qu’en changer après coûte cher. Le socle se
       choisit selon l’entreprise : sa réalité de données, ses contraintes, son budget, sa sensibilité. On
@@ -877,9 +893,9 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
     <p>Le cœur de la production. Chaque agent se construit dans un aller-retour serré entre le builder et son
       champion, jamais d’un seul jet.</p>
     <div class="stepper">
-      <div class="node">Le builder produit<span class="s">une première version</span></div><span class="arr">→</span>
-      <div class="node">Le champion teste<span class="s">sur ses vrais cas</span></div><span class="arr">→</span>
-      <div class="node">On corrige<span class="s">et on recommence</span></div>
+      <div class="node"><div class="sph">1</div><div class="t">Le builder produit</div><div class="s">une première version</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">2</div><div class="t">Le champion teste</div><div class="s">sur ses vrais cas</div></div><span class="arr">→</span>
+      <div class="node"><div class="sph">↺</div><div class="t">On corrige</div><div class="s">et on recommence</div></div>
     </div>
     <p><span class="sub">4.2 Animer l’échange au quotidien.</span> J’anime la boucle sur un canal dédié, un
       Slack ou un Teams, pour régler les correctifs au fil de l’eau. <span class="sub">4.3 Tracker les
@@ -1245,7 +1261,8 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
       <div class="c"><div class="ic">03</div><div><div class="h">Agents IA</div><div class="p">Construire et déployer les agents avec vos équipes, service par service, jusqu’au run.</div></div></div>
       <div class="c"><div class="ic">04</div><div><div class="h">Direction IA externalisée</div><div class="p">Piloter votre transformation dans la durée, jusqu’à ce qu’elle tienne sans nous.</div></div></div>
     </div>
-    <div class="actions"><span class="btn">kokoro-ai.fr</span><span class="mail">samuel@kokoro-ai.fr</span></div>
+    <div class="actions"><span class="btn">Parlons de votre déploiement <span class="ar">→</span></span></div>
+    <div class="contact">kokoro-ai.fr&nbsp;·&nbsp;samuel@kokoro-ai.fr</div>
   </div>
   <div class="foot"><img src="assets/logo-black.png" alt="Kokoro"><span class="u">Déployer l’IA en entreprise · Édition 2026</span></div>
 </section>
