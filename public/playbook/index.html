@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=794, initial-scale=1">
+<title>Playbook Déploiement IA : Kokoro</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+/* ============================================================
+   PLAYBOOK DÉPLOIEMENT IA — KOKORO  ·  système de forme v2
+   Langage repris de kokoro-ai.fr : Inter, lavande, bleu #3A86FF,
+   cartes blanches arrondies, ombres douces. Motif sphérique discret.
+   A4 portrait, pages fixes. Rythme vertical homogène + furniture.
+   ============================================================ */
+
+:root{
+  --bg:     #F5F3FB;
+  --ink:    #191A2C;
+  --text:   #4C4F66;
+  --soft:   #8A8DA3;
+  --blue:   #3A86FF;
+  --violet: #7C4DE0;
+  --card:   #FFFFFF;
+  --line:   #ECEAF5;
+  --pill:   #ECEBFB;
+  --shadow: 0 8px 26px rgba(25,26,44,.06);
+  --sph-bg: radial-gradient(circle at 34% 28%, #8FB6FF 0%, #3A86FF 60%, #1E59D4 100%);
+  --sph-sh: 0 5px 13px rgba(46,107,230,.30), inset -2px -3px 6px rgba(18,46,128,.34), inset 2px 2px 4px rgba(255,255,255,.42);
+}
+
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; padding:0; background:#d8d6e0; }
+@page{ size:A4; margin:0; }
+
+.page{
+  position:relative; width:210mm; height:297mm; background:var(--bg);
+  margin:0 auto; padding:18mm 20mm 20mm; overflow:hidden; page-break-after:always;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+.page:last-child{ page-break-after:auto; }
+@media screen{ .page{ box-shadow:0 10px 40px rgba(0,0,0,.16); margin-bottom:16px; } body{ padding:26px 0; } }
+
+/* halo d'angle très discret (profondeur, rappel couverture) */
+.sheet .halo{ position:absolute; z-index:0; border-radius:50%; pointer-events:none; }
+.sheet .halo.b{ width:300px; height:300px; right:-95px; bottom:30px;
+  background:radial-gradient(circle, rgba(58,134,255,.07), rgba(58,134,255,0) 68%); }
+.sheet .halo.v{ width:200px; height:200px; left:-80px; top:120px;
+  background:radial-gradient(circle, rgba(124,77,224,.05), rgba(124,77,224,0) 70%); }
+
+/* ---------- Typo ---------- */
+.body p{ font-size:10.5pt; line-height:1.74; margin:0 0 12pt; color:var(--text); max-width:160mm; }
+.body p.lead{ font-size:12.5pt; line-height:1.66; color:#33364d; font-weight:450; max-width:162mm; }
+strong{ font-weight:700; color:var(--ink); }
+.hl{ color:var(--blue); }
+
+.eyebrow{ display:inline-block; font-size:8pt; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--blue); background:var(--pill);
+  padding:5px 11px; border-radius:999px; margin:0 0 16pt; }
+
+h2.section{ font-weight:800; font-size:31pt; line-height:1.06; letter-spacing:-.02em;
+  color:var(--ink); margin:0 0 16pt; }
+h2.section .bar{ display:block; width:46px; height:4px; border-radius:3px; margin-top:14pt;
+  background:linear-gradient(90deg, var(--blue), var(--violet)); }
+h3.block{ font-weight:700; font-size:13pt; letter-spacing:-.01em; color:var(--ink); margin:23pt 0 10pt; }
+
+/* étape : numéro en petite sphère */
+h4.step{ font-weight:700; font-size:13.5pt; color:var(--ink); margin:21pt 0 8pt;
+  display:flex; align-items:center; gap:13px; }
+h4.step .num{ width:27px; height:27px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10pt; font-weight:800; color:#fff; background:var(--sph-bg); box-shadow:var(--sph-sh); }
+.sub{ font-weight:700; color:var(--ink); }
+
+/* ---------- Header courant + pied de page ---------- */
+.runhead{ position:absolute; z-index:2; top:13mm; left:20mm; right:20mm;
+  display:flex; align-items:center; justify-content:space-between; }
+.runhead .left{ display:flex; align-items:center; gap:9px; }
+.runhead img{ height:11px; opacity:.9; }
+.runhead .sec{ font-size:7.6pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--soft); padding-left:9px; border-left:1px solid var(--line); }
+.folio{ font-size:8pt; font-weight:600; letter-spacing:.06em; color:var(--soft); }
+.pagefoot{ position:absolute; z-index:2; left:20mm; right:20mm; bottom:11mm;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:1px solid var(--line); padding-top:8pt;
+  font-size:7pt; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#A9ABBE; }
+.content{ position:relative; z-index:1; margin-top:11mm; }
+
+/* ---------- Puces ---------- */
+ul.dots{ list-style:none; margin:6pt 0; padding:0; max-width:160mm; }
+ul.dots li{ position:relative; padding-left:21px; margin:0 0 11pt; font-size:10.5pt; line-height:1.62; }
+ul.dots li:last-child{ margin-bottom:0; }
+ul.dots li::before{ content:""; position:absolute; left:0; top:7px; width:7px; height:7px;
+  border-radius:50%; background:var(--sph-bg); box-shadow:0 1px 2px rgba(46,107,230,.4); }
+
+/* ---------- Feuille de route (roadmap à pastilles) ---------- */
+.roadmap{ margin:8pt 0 4pt; }
+.roadmap .it{ display:flex; gap:16px; padding:13pt 0; border-top:1px solid var(--line); }
+.roadmap .it:first-child{ border-top:0; padding-top:4pt; }
+.roadmap .sph{ width:34px; height:34px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:12pt;
+  background:var(--sph-bg); box-shadow:var(--sph-sh); }
+.roadmap .tx .t{ font-weight:700; font-size:11.5pt; color:var(--ink); }
+.roadmap .tx .d{ font-size:10pt; color:var(--text); margin-top:4px; line-height:1.55; max-width:150mm; }
+
+/* ---------- Trio de cartes ---------- */
+.cards3{ display:flex; gap:13px; margin:14pt 0 4pt; }
+.cards3 .c{ flex:1; background:var(--card); border:1px solid var(--line); border-radius:16px;
+  padding:16pt 15pt; box-shadow:var(--shadow); }
+.cards3 .c .ic{ width:30px; height:30px; border-radius:50%; background:var(--sph-bg);
+  box-shadow:var(--sph-sh); margin-bottom:11pt; display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:800; font-size:9.5pt; }
+.cards3 .c .h{ font-weight:700; font-size:11pt; color:var(--ink); }
+.cards3 .c .p{ font-size:9pt; line-height:1.5; color:var(--text); margin-top:6px; }
+
+/* ---------- Chips (interventions) ---------- */
+.chips-label{ font-size:7.6pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--soft); margin-bottom:9pt; display:block; }
+.chips{ display:flex; flex-wrap:wrap; gap:9px; }
+.chips span{ font-size:9pt; font-weight:600; color:var(--ink); background:var(--card);
+  border:1px solid var(--line); border-radius:999px; padding:8px 15px; box-shadow:var(--shadow); }
+
+/* ---------- Stepper (ordre d'alignement) ---------- */
+.stepper{ display:flex; align-items:center; gap:12px; margin:13pt 0 4pt; background:var(--card);
+  border:1px solid var(--line); border-radius:16px; padding:16pt 18pt; box-shadow:var(--shadow); }
+.stepper .node{ font-weight:700; font-size:10pt; color:var(--ink); }
+.stepper .node .s{ display:block; font-size:8pt; font-weight:600; color:var(--soft); margin-top:2px; text-transform:none; letter-spacing:0; }
+.stepper .arr{ color:var(--blue); font-weight:800; font-size:13pt; }
+
+/* ---------- Carte / citation / stats / checklist / table ---------- */
+.card{ position:relative; z-index:1; background:var(--card); border:1px solid var(--line); border-radius:18px;
+  padding:18pt 21pt; box-shadow:var(--shadow); margin:14pt 0; }
+.card .tag{ display:inline-block; font-size:7.4pt; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--blue); background:var(--pill); padding:4px 9px; border-radius:999px; margin:0 0 9pt; }
+.card p{ font-size:10pt; line-height:1.62; margin:0 0 7pt; }
+.card p:last-child{ margin-bottom:0; }
+.card .lead-in{ font-weight:700; color:var(--ink); }
+
+.quote{ position:relative; z-index:1; background:var(--card); border:1px solid var(--line);
+  border-left:3px solid var(--blue); border-radius:14px; padding:16pt 20pt; box-shadow:var(--shadow); margin:14pt 0; }
+.quote p{ font-size:11.5pt; line-height:1.6; color:var(--ink); font-weight:450; margin:0; }
+
+.stats{ position:relative; z-index:1; display:flex; background:var(--card); border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+.stats .cell{ flex:1; padding:16pt 18pt; border-right:1px solid var(--line); }
+.stats .cell:last-child{ border-right:0; }
+.stats .n{ font-weight:800; font-size:25pt; line-height:1; color:var(--ink); letter-spacing:-.02em; }
+.stats .n .hl{ color:var(--blue); }
+.stats .c{ font-size:8pt; font-weight:600; letter-spacing:.04em; color:var(--soft); margin-top:9pt; text-transform:uppercase; }
+
+.check{ position:relative; z-index:1; background:var(--card); border:1px solid var(--line); border-radius:18px;
+  padding:17pt 20pt; box-shadow:var(--shadow); }
+.check ul{ margin:0; padding:0; }
+.check li{ list-style:none; position:relative; padding-left:28px; margin:0 0 13pt; font-size:10.4pt; line-height:1.5; }
+.check li:last-child{ margin-bottom:0; }
+.check li::before{ content:""; position:absolute; left:0; top:1px; width:15px; height:15px;
+  border:1.6px solid var(--blue); border-radius:50%; }
+
+table.deliv{ position:relative; z-index:1; width:100%; border-collapse:separate; border-spacing:0;
+  border:1px solid var(--line); border-radius:14px; overflow:hidden; font-size:9pt; box-shadow:var(--shadow); background:#fff; }
+table.deliv th{ background:var(--pill); color:var(--ink); font-weight:700; text-align:left;
+  padding:10pt 12pt; font-size:8pt; letter-spacing:.03em; text-transform:uppercase; }
+table.deliv td{ padding:11pt 12pt; border-top:1px solid var(--line); vertical-align:top; line-height:1.5; }
+table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
+
+/* ====================  COUVERTURE  ==================== */
+.cover{ display:flex; flex-direction:column; text-align:center;
+  background:radial-gradient(130% 92% at 50% 4%, #FFFFFF 0%, #F2EFFB 50%, #E6E2F5 100%); }
+.cover .orb{ position:absolute; border-radius:50%; }
+.cover .orb.o1{ width:430px; height:430px; top:-150px; right:-130px;
+  background:radial-gradient(circle, rgba(58,134,255,.42), rgba(58,134,255,0) 66%); }
+.cover .orb.o2{ width:380px; height:380px; bottom:-120px; left:-130px;
+  background:radial-gradient(circle, rgba(124,77,224,.26), rgba(124,77,224,0) 66%); }
+.cover .orb.o3{ width:150px; height:150px; top:170px; left:46px;
+  background:radial-gradient(circle, rgba(255,107,107,.16), rgba(255,107,107,0) 66%); }
+.cover > *{ position:relative; }
+.cover .top{ display:flex; align-items:center; justify-content:space-between; text-align:left; }
+.cover .top img.logo{ height:19px; }
+.pill{ background:#fff; border:1px solid var(--line); color:var(--soft);
+  font-size:8pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:6px 13px; border-radius:999px; }
+.cover .hero{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.cover .sphere{ width:120px; height:120px; border-radius:50%; margin-bottom:36px;
+  background:radial-gradient(circle at 32% 26%, #EDF3FF 0%, #86B1FF 26%, #3A86FF 58%, #1E59D4 100%);
+  box-shadow:0 26px 54px rgba(46,107,230,.32), inset -9px -13px 28px rgba(18,46,128,.36), inset 7px 9px 20px rgba(255,255,255,.42); }
+.cover h1{ font-weight:800; font-size:51pt; line-height:1.03; letter-spacing:-.03em; color:var(--ink); margin:0; }
+.cover .t-blue{ font-weight:700; font-size:25pt; line-height:1.12; letter-spacing:-.02em; color:var(--blue); margin:15px 0 0; }
+.cover .desc{ margin-top:24px; max-width:126mm; font-size:12pt; line-height:1.6; color:var(--text); }
+.cover .cfoot{ display:flex; align-items:center; justify-content:center; gap:9px;
+  font-size:8.5pt; font-weight:600; letter-spacing:.08em; color:var(--soft); text-transform:uppercase; }
+.cover .cfoot .dot{ width:3px; height:3px; border-radius:50%; background:var(--soft); }
+
+/* ====================  QUI SOMMES-NOUS  ==================== */
+.profile{ position:relative; z-index:1; display:flex; align-items:center; gap:18px; background:var(--card);
+  border:1px solid var(--line); border-radius:18px; padding:16pt 21pt; box-shadow:var(--shadow); margin:15pt 0; }
+.profile img{ width:72px; height:72px; border-radius:50%; object-fit:cover; object-position:50% 20%; flex:none; border:2px solid #fff; box-shadow:var(--shadow); }
+.profile .nm{ font-weight:700; font-size:13pt; color:var(--ink); }
+.profile .rl{ font-size:8.5pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); margin:4px 0 7px; }
+.profile .bio{ font-size:9.5pt; line-height:1.5; color:var(--text); margin:0; }
+
+/* ====================  SOMMAIRE  ==================== */
+.toc{ margin-top:4mm; }
+.toc .row{ display:flex; align-items:flex-start; gap:22px; padding:17pt 0; border-top:1px solid var(--line); }
+.toc .row:last-child{ border-bottom:1px solid var(--line); }
+.toc .rn{ font-weight:800; font-size:30pt; line-height:.9; color:var(--blue); width:60px; flex:none; letter-spacing:-.03em; }
+.toc .rt{ flex:1; }
+.toc .rt .t{ font-weight:700; font-size:13.5pt; color:var(--ink); }
+.toc .rt .d{ font-size:10pt; color:var(--soft); margin-top:5px; line-height:1.45; }
+.toc .rp{ font-size:11pt; font-weight:600; color:var(--soft); flex:none; padding-top:8px; }
+.toc .row.soon .rn{ color:#c4c5d9; }
+
+/* ====================  DIVIDER DE PHASE  ==================== */
+.divider{ display:flex; flex-direction:column; justify-content:center;
+  background:radial-gradient(120% 90% at 80% 12%, #FFFFFF 0%, #F1EEFB 55%, #E9E5F7 100%); }
+.divider .orb{ position:absolute; border-radius:50%; }
+.divider .orb.o1{ width:380px; height:380px; top:-120px; right:-120px;
+  background:radial-gradient(circle, rgba(58,134,255,.34), rgba(58,134,255,0) 66%); }
+.divider .orb.o2{ width:320px; height:320px; bottom:-120px; left:-110px;
+  background:radial-gradient(circle, rgba(124,77,224,.22), rgba(124,77,224,0) 66%); }
+.divider .ghost{ position:absolute; bottom:-14mm; right:6mm; font-weight:800; font-size:150pt;
+  line-height:.7; color:rgba(58,134,255,.07); letter-spacing:-.04em; }
+.divider > *{ position:relative; }
+.divider .sphere{ width:78px; height:78px; border-radius:50%; margin-bottom:24px;
+  background:radial-gradient(circle at 32% 26%, #EDF3FF 0%, #86B1FF 26%, #3A86FF 58%, #1E59D4 100%);
+  box-shadow:0 20px 40px rgba(46,107,230,.30), inset -7px -10px 22px rgba(18,46,128,.36), inset 6px 8px 16px rgba(255,255,255,.42); }
+.divider h2{ font-weight:800; font-size:46pt; line-height:1.03; letter-spacing:-.025em; color:var(--ink); margin:14px 0 0; }
+.divider h2 .hl{ color:var(--blue); }
+.divider .arc{ margin-top:18px; font-size:12.5pt; line-height:1.55; color:var(--text); max-width:138mm; }
+.divider .stats{ margin-top:26px; }
+
+/* signature prélude */
+.signoff{ position:relative; z-index:1; display:flex; align-items:center; gap:13px; margin-top:18pt;
+  padding-top:14pt; border-top:1px solid var(--line); }
+.signoff img{ width:46px; height:46px; border-radius:50%; object-fit:cover; object-position:50% 20%; border:2px solid #fff; box-shadow:var(--shadow); }
+/* clôture */
+.sphere-sm{ width:64px; height:64px; border-radius:50%; margin-bottom:18pt;
+  background:radial-gradient(circle at 32% 26%, #EDF3FF 0%, #86B1FF 26%, #3A86FF 58%, #1E59D4 100%);
+  box-shadow:0 18px 36px rgba(46,107,230,.28), inset -6px -9px 20px rgba(18,46,128,.34), inset 5px 7px 15px rgba(255,255,255,.42); }
+.cloture{ background:radial-gradient(120% 90% at 50% 0%, #FFFFFF 0%, #F1EEFB 60%, #E9E5F7 100%); }
+.signoff .s1{ font-weight:700; font-size:11.5pt; color:var(--ink); }
+.signoff .s2{ font-size:8pt; font-weight:600; letter-spacing:.04em; color:var(--soft); margin-top:2px; }
+</style>
+</head>
+<body>
+
+<!-- ===== 1. COUVERTURE ===== -->
+<section class="page cover">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="top">
+    <img class="logo" src="assets/logo-black.png" alt="Kokoro">
+    <span class="pill">Édition 2026</span>
+  </div>
+  <div class="hero">
+    <div class="sphere"></div>
+    <h1>Déployer l’IA<br>en entreprise.</h1>
+    <div class="t-blue">Un métier humain.</div>
+    <p class="desc">La méthode Kokoro de déploiement de l’IA en PME et ETI,
+      tirée de plus de cinquante accompagnements.</p>
+  </div>
+  <div class="cfoot">kokoro-ai.fr<span class="dot"></span>Édition 2026</div>
+</section>
+
+<!-- ===== 2. QUI SOMMES-NOUS ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Qui sommes-nous</span></span><span class="folio">02</span></div>
+  <div class="content body">
+    <span class="eyebrow">Qui sommes-nous</span>
+    <h2 class="section">Kokoro<span class="bar"></span></h2>
+    <p class="lead">Kokoro est une agence IA pour les PME et les ETI. En deux ans, nous avons
+      accompagné plus de cinquante entreprises dans leur déploiement de l’IA, du premier cadrage
+      jusqu’à l’autonomie des équipes.</p>
+    <p>Notre terrain, ce sont des entreprises de dix à plusieurs milliers de personnes. Beaucoup
+      ont une histoire forte : maisons familiales, transmissions en cours, reprises sous LBO,
+      cultures façonnées par des décennies de métier. On ne plaque pas une méthode dessus : on
+      rejoint chaque entreprise avec ses gens et son histoire.</p>
+    <p>Notre conviction tient en une phrase : déployer l’IA est d’abord un métier humain. L’outil
+      compte, mais il ne change rien tout seul. Ce qui transforme une organisation, c’est sa
+      capacité à embarquer ses équipes. Ce playbook est la méthode que nous appliquons sur le
+      terrain, mission après mission.</p>
+    <div class="profile">
+      <img src="assets/samuel.png" alt="Samuel Braniste">
+      <div>
+        <div class="nm">Samuel Braniste</div>
+        <div class="rl">Fondateur de Kokoro</div>
+        <p class="bio">Je pilote les déploiements sur le terrain, aux côtés de Simon, mon associé, à la delivery.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="cell"><div class="n">50<span class="hl">+</span></div><div class="c">Entreprises accompagnées</div></div>
+      <div class="cell"><div class="n">2 ans</div><div class="c">De terrain</div></div>
+      <div class="cell"><div class="n">PME · ETI</div><div class="c">Notre spécialité</div></div>
+    </div>
+    <div style="margin-top:18pt">
+      <span class="chips-label">Nos façons d’intervenir</span>
+      <div class="chips"><span>Formation</span><span>Audit IA</span><span>Agents IA</span><span>Direction IA externalisée</span></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 3. SOMMAIRE ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Sommaire</span></span><span class="folio">03</span></div>
+  <div class="content">
+    <span class="eyebrow">Sommaire</span>
+    <h2 class="section">Le chemin, en six temps<span class="bar"></span></h2>
+    <div class="toc">
+      <div class="row"><div class="rn">00</div><div class="rt"><div class="t">Prélude</div><div class="d">Pourquoi ce playbook, le chemin en quatre phases, et comment le lire.</div></div><div class="rp">04</div></div>
+      <div class="row"><div class="rn">01</div><div class="rt"><div class="t">Phase 1 — Gouvernance</div><div class="d">De l’usage sauvage au cap partagé : qui décide, charte, kickoff porté par la direction.</div></div><div class="rp">06</div></div>
+      <div class="row"><div class="rn">02</div><div class="rt"><div class="t">Phase 2 — Acculturation et cas d’usage</div><div class="d">Démystifier, former, faire émerger les usages qui comptent avec les équipes.</div></div><div class="rp">12</div></div>
+      <div class="row"><div class="rn">03</div><div class="rt"><div class="t">Phase 3 — Production</div><div class="d">Construire et déployer pour de vrai, équipe par équipe, builders et champions.</div></div><div class="rp">20</div></div>
+      <div class="row"><div class="rn">04</div><div class="rt"><div class="t">Phase 4 — Ancrage et autonomie</div><div class="d">Mesurer l’impact, ancrer les usages, rendre l’entreprise autonome.</div></div><div class="rp">28</div></div>
+      <div class="row"><div class="rn">05</div><div class="rt"><div class="t">Clôture</div><div class="d">Trois messages pour passer à l’action.</div></div><div class="rp">36</div></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 4. PRÉLUDE (1/2) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Prélude</span></span><span class="folio">04</span></div>
+  <div class="content body">
+    <span class="eyebrow">Prélude</span>
+    <h2 class="section">Les gens d’abord.<span class="bar"></span></h2>
+    <p class="lead">Depuis près de deux ans, j’ai accompagné plus de cinquante PME et ETI dans leur
+      déploiement de l’IA. J’ai appris une chose simple : l’IA n’échoue presque jamais pour des
+      raisons techniques. Elle échoue parce qu’on a oublié les gens.</p>
+    <p>Le scénario se répète. Une direction motivée, des abonnements achetés, deux ou trois
+      enthousiastes qui s’y mettent. Et puis rien ne se diffuse. Six mois plus tard, l’IA est dans
+      l’entreprise sans avoir rien changé à la façon de travailler.</p>
+    <p>Ce playbook met les équipes, les métiers et la conduite du changement au centre.
+      L’outil reste à sa place : un moyen, jamais une fin.</p>
+    <div class="quote"><p>Une organisation ne se transforme pas parce qu’elle a installé l’IA.
+      Elle se transforme quand ses équipes s’en emparent.</p></div>
+    <p>C’est un travail collectif, pas une décision qui descend d’en haut. À chaque étape,
+      l’enjeu est le même : recréer du collectif autour du sujet. C’est ce qui sépare un
+      déploiement qui tient d’un outil de plus que personne n’ouvre.</p>
+  </div>
+  <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 5. PRÉLUDE (2/2) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Prélude</span></span><span class="folio">05</span></div>
+  <div class="content body">
+    <h3 class="block">Le chemin</h3>
+    <p>Quatre étapes reviennent dans chacune de mes missions. Elles donnent le plan de ce playbook.</p>
+    <div class="roadmap">
+      <div class="it"><div class="sph">1</div><div class="tx"><div class="t">Gouvernance</div><div class="d">Sortir de l’usage dispersé et poser un cap : qui décide, pour quoi, avec quelles règles.</div></div></div>
+      <div class="it"><div class="sph">2</div><div class="tx"><div class="t">Acculturation et cas d’usage</div><div class="d">Mettre les équipes au niveau et faire émerger, avec elles, les usages qui comptent.</div></div></div>
+      <div class="it"><div class="sph">3</div><div class="tx"><div class="t">Production</div><div class="d">Construire et déployer pour de vrai, équipe par équipe, avec ceux qui bâtissent et les relais de terrain.</div></div></div>
+      <div class="it"><div class="sph">4</div><div class="tx"><div class="t">Ancrage et autonomie</div><div class="d">Mesurer l’impact, ancrer les usages, rendre l’entreprise capable d’avancer sans nous.</div></div></div>
+    </div>
+    <p>La plupart des dirigeants se croient plus avancés qu’ils ne le sont. Situer honnêtement
+      son entreprise sur ce chemin est souvent le premier vrai pas.</p>
+
+    <h3 class="block">Comment lire ce playbook</h3>
+    <p>Quatre phases, une par étape. Chacune suit le même fil : l’objectif, la méthode pas à pas,
+      les erreurs à éviter, un ou deux cas réels rendus anonymes, et les ressources prêtes à l’emploi.
+      Tout vient de nos missions. Les chiffres sont ceux que j’ai mesurés sur le terrain.</p>
+
+    <div class="signoff">
+      <img src="assets/samuel.png" alt="Samuel Braniste">
+      <div><div class="s1">Sam</div><div class="s2">Samuel Braniste · Fondateur de Kokoro</div></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 6. PHASE 1 — DIVIDER ===== -->
+<section class="page divider">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="ghost">01</div>
+  <div class="hero">
+    <div class="sphere"></div>
+    <span class="eyebrow">Phase 01</span>
+    <h2>Gouvernance<br><span class="hl">poser le cap.</span></h2>
+    <p class="arc">De l’usage sauvage au cap partagé. Cette phase ne produit presque rien de visible :
+      c’est pourtant elle qui décide si tout le reste tiendra.</p>
+    <div class="stats">
+      <div class="cell"><div class="n">5</div><div class="c">Étapes de méthode</div></div>
+      <div class="cell"><div class="n">4</div><div class="c">Livrables de phase</div></div>
+      <div class="cell"><div class="n">0</div><div class="c">Agent construit, et tout se joue ici</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. PHASE 1 — OBJECTIF ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">06</span></div>
+  <div class="content body">
+    <span class="eyebrow">Objectif</span>
+    <h2 class="section">L’objectif de la phase<span class="bar"></span></h2>
+    <p>Avant cette phase, l’IA circule dans l’entreprise sans cap ni règles. Chacun bricole de son
+      côté, personne ne décide. La Phase 1 ne produit presque rien de visible, et c’est ce qui la
+      rend si facile à négliger. Pourtant, c’est elle qui décide si tout le reste tiendra.</p>
+    <p>Avant de toucher au moindre outil, une question doit trouver sa réponse, et presque personne
+      ne se la pose : qui, dans l’entreprise, a le droit de décider sur l’IA, et au nom de quoi ?
+      C’est la mission de la gouvernance : donner un cap et un cadre de décision. C’est ce qui fait
+      passer l’IA d’une collection d’initiatives individuelles à un projet que l’entreprise porte ensemble.</p>
+    <h3 class="block">À la fin de la phase, la direction repart avec quatre choses</h3>
+    <ul class="dots">
+      <li>une intention claire, formulable en une phrase ;</li>
+      <li>une gouvernance posée : qui décide, qui pilote, qui construit, avec un responsable IA nommé ;</li>
+      <li>une charte IA qui fixe les engagements et les limites ;</li>
+      <li>un kickoff qui a officialisé le sujet auprès des équipes.</li>
+    </ul>
+    <p>Aucun agent n’a encore été construit. Mais l’entreprise sait désormais pourquoi elle s’y
+      met, et qui mène.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 8. PHASE 1 — MÉTHODE A ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">07</span></div>
+  <div class="content body">
+    <span class="eyebrow">Méthode pas à pas</span>
+    <h2 class="section">Méthode<span class="bar"></span></h2>
+    <p>Le fil est simple : amener une direction qui veut faire de l’IA à une direction qui sait qui
+      décide, pour quoi, et qui l’a dit à ses équipes. Cinq étapes, dans l’ordre.</p>
+    <h4 class="step"><span class="num">1</span> Comprendre l’organisation</h4>
+    <p>Je commence toujours par lire l’entreprise. Pas ses outils, son fonctionnement humain.
+      C’est ce diagnostic qui rend tout le reste possible.</p>
+    <p><span class="sub">1.1 Lire le management.</span> La place du dirigeant, comment les décisions
+      circulent, l’entreprise est-elle plutôt verticale ou horizontale. En vertical, un projet
+      porté d’en haut avance vite mais n’embarque que si l’ordre est clair. En horizontal, il faut
+      convaincre plus de monde, mais l’adhésion est plus solide.</p>
+    <p><span class="sub">1.2 Repérer les appuis et les freins.</span> Le frein vient rarement du
+      dirigeant, plus souvent de la DSI, du juridique, parfois du DRH inquiet pour ses équipes.
+      Ce ne sont pas des adversaires : chacun voit les risques de son périmètre. Je les repère tôt
+      pour avancer avec eux.</p>
+    <p><span class="sub">1.3 Vérifier la standardisation.</span> Une entreprise qui veut de l’IA mais
+      n’a jamais standardisé ses process : on ne peut pas demander à une machine d’automatiser un
+      terrain mouvant. Ce qui est standardisable doit l’être d’abord.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 9. PHASE 1 — MÉTHODE B ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">08</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">2</span> Définir les objectifs avec la direction</h4>
+    <p>L’objectif revient toujours à trois choses : gagner du temps, gagner de l’argent, ou réduire
+      la pénibilité. Mais l’ordre de priorité change tout, et toute la feuille de route en découle.</p>
+    <div class="quote"><p>Je ne juge jamais la vision du dirigeant, je construis l’exécution en face.
+      L’un veut réduire sa masse salariale, l’autre met le bien-être de ses équipes au centre.
+      Ce ne sont pas mes valeurs qui priorisent les projets, ce sont les siennes.</p></div>
+    <h4 class="step"><span class="num">3</span> Poser la gouvernance</h4>
+    <p>L’intention claire, je structure la décision. Une gouvernance claire tient sur trois rôles,
+      et les confondre coûte cher.</p>
+    <div class="cards3">
+      <div class="c"><div class="ic">L</div><div class="h">Leadership IA</div><div class="p">Décide, arbitre et valide. Une seule personne nommée décideur.</div></div>
+      <div class="c"><div class="ic">P</div><div class="h">Pilote</div><div class="p">Organise le suivi et les évolutions dans la durée.</div></div>
+      <div class="c"><div class="ic">B</div><div class="h">Builder</div><div class="p">Construit les systèmes, forme les équipes et fait tourner.</div></div>
+    </div>
+    <p><span class="sub">Cadrer le comité IA.</span> Quand on élargit le cercle, le comité communique
+      et embarque, il ne décide pas : la décision reste à la direction et au leadership IA. Poser ce
+      cadre dès le départ évite la dérive la plus fréquente de cette phase.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 10. PHASE 1 — MÉTHODE C ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">09</span></div>
+  <div class="content body">
+    <h3 class="block" style="margin-top:0">L’ordre d’alignement</h3>
+    <p>On aligne d’abord la direction, ensuite le leadership IA, et seulement après on élargit.
+      Sauter une marche, c’est ouvrir le débat avant d’avoir un cap, et le débat sans cap ne se referme jamais.</p>
+    <div class="stepper">
+      <div class="node">Direction<span class="s">le cap</span></div><span class="arr">→</span>
+      <div class="node">Leadership IA<span class="s">les arbitrages</span></div><span class="arr">→</span>
+      <div class="node">Les équipes<span class="s">l’embarquement</span></div>
+    </div>
+    <h4 class="step"><span class="num">4</span> Rédiger la charte IA</h4>
+    <p>On formalise dans le seul document de la phase : la charte. C’est un outil de communication
+      avant tout. Le fond est stable : ce que la direction s’engage à faire avec l’IA, ce qu’elle ne
+      fera pas, qui gouverne, et quelques lignes d’éthique. Elle devient la référence commune.</p>
+    <h4 class="step"><span class="num">5</span> Lancer le kickoff</h4>
+    <p>Tout ce qui précède ne vaut que si la direction le dit elle-même. Le dirigeant porte le
+      message en personne : ce sujet compte, et chacun est attendu. C’est ce moment qui fait
+      basculer l’IA du statut de rumeur à celui de projet officiel.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 11. PHASE 1 — ERREURS + TERRAIN ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">10</span></div>
+  <div class="content body">
+    <span class="eyebrow">Les erreurs à ne pas faire</span>
+    <h2 class="section">Erreurs<span class="bar"></span></h2>
+    <ul class="dots">
+      <li><span class="sub">Laisser le comité IA décider.</span> Faute de cadre, il discute pendant des mois, dérive sur la RH, et personne ne tranche.</li>
+      <li><span class="sub">Ne nommer personne.</span> Quand personne n’est responsable d’une décision, personne ne la prend.</li>
+      <li><span class="sub">Une direction en retrait.</span> Si le dirigeant ne porte pas le sujet, aucune gouvernance ne compensera.</li>
+      <li><span class="sub">Commencer par l’outil.</span> Choisir une solution avant d’avoir posé le cap, c’est une techno que personne ne s’approprie.</li>
+    </ul>
+    <h3 class="block">Sur le terrain</h3>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Sans responsable, rien ne se décide.</span> Plusieurs entreprises où
+        il était impossible d’avancer : tout le monde voulait s’y mettre, mais personne n’avait le
+        droit de choisir une solution. Tant qu’un nom n’est pas posé en face de la décision, je ne
+        lance rien. Le décideur nommé n’est pas une formalité, c’est ce qui débloque le reste.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">La gouvernance qui porte une reprise.</span> Une ETI de services de
+        près de quatre mille personnes, reprise par le fils du fondateur, qui a fait du projet IA le
+        cœur de l’évolution. Chaque manager était responsable, et incentivé, sur la transformation
+        de son équipe. Les plus anciens étaient parmi les plus investis. Tout a tenu parce que le
+        cap descendait jusqu’au dernier manager. Une transmission bien portée, c’est un moteur.</p>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== 12. PHASE 1 — POINT D'ÉTAPE + LIVRABLES ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">11</span></div>
+  <div class="content body">
+    <span class="eyebrow">Le point d’étape</span>
+    <h2 class="section">C’est fait quand<span class="bar"></span></h2>
+    <p>On ne passe pas à la suite tant qu’il reste un non.</p>
+    <div class="check">
+      <ul>
+        <li>La direction sait-elle dire, en une phrase, pourquoi elle se lance ?</li>
+        <li>Une personne est-elle clairement nommée comme responsable IA ?</li>
+        <li>Le comité IA sait-il qu’il communique et n’arbitre pas ?</li>
+        <li>Le dirigeant a-t-il dit aux équipes, avec ses mots, que le sujet compte ?</li>
+        <li>Ai-je identifié qui freine dans la direction, et pourquoi ?</li>
+      </ul>
+    </div>
+    <h3 class="block">Livrables et ressources</h3>
+    <table class="deliv">
+      <thead><tr><th style="width:34%">Livrable de la phase</th><th style="width:33%">Ressource Kokoro</th><th style="width:33%">C’est fait quand</th></tr></thead>
+      <tbody>
+        <tr><td>La charte IA (engagements, limites, gouvernance, éthique)</td><td>Le canevas de charte IA</td><td>un salarié vous parle spontanément d’un usage qu’il a tenté</td></tr>
+        <tr><td>Le schéma de gouvernance (qui décide, pilote, construit + responsable nommé)</td><td>La trame de gouvernance et son ordre d’alignement</td><td>un autre que vous peut dire qui tranche sur l’IA</td></tr>
+        <tr><td>Le kickoff porté par la direction</td><td>La trame de kickoff (les points à dire aux équipes)</td><td>on en parle en réunion d’équipe, pas qu’au comité</td></tr>
+        <tr><td>La validation de sortie de phase</td><td>La grille du point d’étape (oui / non)</td><td>plus aucun non ne reste</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== PHASE 2 — DIVIDER ===== -->
+<section class="page divider">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="ghost">02</div>
+  <div class="hero">
+    <div class="sphere"></div>
+    <span class="eyebrow">Phase 02</span>
+    <h2>Acculturation<br><span class="hl">et cas d’usage.</span></h2>
+    <p class="arc">La gouvernance a posé le cap. Reste le plus délicat : transformer les irritants du
+      terrain en cas d’usage que les équipes adoptent, et en un plan que la direction peut tenir.</p>
+    <div class="stats">
+      <div class="cell"><div class="n">7</div><div class="c">Étapes de méthode</div></div>
+      <div class="cell"><div class="n">3</div><div class="c">Catégories de produit</div></div>
+      <div class="cell"><div class="n">4</div><div class="c">Degrés d’autonomie</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== P2 OBJECTIF (12) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">12</span></div>
+  <div class="content body">
+    <span class="eyebrow">Objectif</span>
+    <h2 class="section">L’objectif de la phase<span class="bar"></span></h2>
+    <p>La mission de cette phase est de faire émerger, avec les équipes, les usages qui comptent, puis
+      de les transformer en un plan priorisé et défendable. Un principe la tient d’un bout à l’autre :
+      les meilleurs cas d’usage ne se décrètent pas en réunion de direction, ils remontent du terrain.
+      Mon rôle est de créer les conditions de cette remontée, puis de mettre de l’ordre dans ce qui remonte.</p>
+    <p>Deux attentes se rencontrent ici. Pour le dirigeant : sortir de la liste de bonnes intentions et
+      obtenir un plan lisible. Pour les équipes : passer de spectatrices à actrices, et reconnaître leur
+      propre métier dans ce qu’on va construire.</p>
+    <h3 class="block">Concrètement, à la fin de la phase, on a produit</h3>
+    <ul class="dots">
+      <li>un diagnostic du terrain (process, irritants, pistes), quand on est entré par l’audit ;</li>
+      <li>un catalogue de cas d’usage cadrés ;</li>
+      <li>une feuille de route IA priorisée, son tableau de bord et sa présentation pour la direction.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 MÉTHODE A (13) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">13</span></div>
+  <div class="content body">
+    <span class="eyebrow">Méthode pas à pas</span>
+    <h2 class="section">Méthode<span class="bar"></span></h2>
+    <p>Le fil : partir des gens et de leurs irritants, finir avec un plan que la direction peut tenir.
+      Sept étapes, dans l’ordre.</p>
+    <h4 class="step"><span class="num">1</span> Choisir la porte d’entrée</h4>
+    <p>Il y a deux façons d’entrer dans cette phase, et les deux marchent. Le choix dépend de l’entreprise.</p>
+    <div class="cards3">
+      <div class="c"><div class="ic">C</div><div class="h">Prisme collectif</div><div class="p">On réunit les équipes et on fait émerger les usages ensemble, par un hackathon ou une formation par métier. On entre par l’énergie.</div></div>
+      <div class="c"><div class="ic">A</div><div class="h">Prisme centralisé</div><div class="p">On entre par un audit, des entretiens et une cartographie, pour comprendre chacun en profondeur avant de construire.</div></div>
+      <div class="c"><div class="ic">+</div><div class="h">Souvent, les deux</div><div class="p">Un peu d’audit pour cartographier, un hackathon pour embarquer. L’entreprise qui se confie en tête à tête se prête à l’audit ; celle qui ne s’ouvre qu’entre collègues donne plus en collectif.</div></div>
+    </div>
+    <h4 class="step"><span class="num">2</span> Créer un langage commun : l’acculturation</h4>
+    <p>Avant de faire émerger quoi que ce soit, je mets tout le monde au même niveau. Une acculturation
+      courte, de deux heures à une journée selon la maturité. L’objectif n’est pas de former des experts,
+      c’est de démystifier l’IA et de donner un langage commun, pour que les gens osent proposer. Sans ce
+      préalable, seuls les plus à l’aise parlent, et on passe à côté des autres.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 MÉTHODE B (14) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">14</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">3</span> Faire remonter les usages du terrain</h4>
+    <p>C’est le cœur de la phase. Dans les deux cas, je cherche la même chose : l’irritant réel et le gain
+      potentiel, en temps, en argent ou en pénibilité.</p>
+    <p><span class="sub">3.1 Par le hackathon ou la formation par métier.</span> Une masterclass pour montrer
+      comment se construit un agent, puis chaque équipe construit les siens sur ses propres problèmes, avec
+      des formateurs qui circulent. La sortie n’est pas un livrable fini, c’est que chacun reparte en sachant
+      construire. Et pour moi, c’est le meilleur outil de remontée : je vois ce qui marche, ce qui bloque, et
+      l’effort réel que demande chaque idée.</p>
+    <p><span class="sub">3.2 Par l’audit.</span> Des entretiens en tête à tête, l’analyse des systèmes et de
+      la qualité des données, puis des ateliers. L’outil clé : la journée du collaborateur, qu’on décrit pas
+      à pas pour en extraire les irritants. On cartographie les process qui comptent, pas tous.</p>
+    <h4 class="step"><span class="num">4</span> Cadrer chaque cas d’usage</h4>
+    <p>Avant de choisir le moindre outil, je cadre le périmètre. Trois questions, toujours les mêmes. Tant
+      que ce pipeline n’est pas clair, on ne choisit rien.</p>
+    <div class="stepper">
+      <div class="node">La donnée qui entre<span class="s">input</span></div><span class="arr">→</span>
+      <div class="node">Ce qu’on en fait<span class="s">transformation</span></div><span class="arr">→</span>
+      <div class="node">Ce qu’on veut en sortie<span class="s">le livrable</span></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 MÉTHODE C (15) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">15</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">5</span> Choisir la nature de la solution</h4>
+    <p>Un cas cadré se range dans une des trois catégories. Ce ne sont pas des niveaux de qualité, mais des
+      natures différentes.</p>
+    <div class="cards3">
+      <div class="c"><div class="ic">P</div><div class="h">Prompt</div><div class="p">Pour une demande simple et ponctuelle.</div></div>
+      <div class="c"><div class="ic">W</div><div class="h">Workflow</div><div class="p">Quand ça doit se déclencher tout seul, sur un cas prédictif où il faut toujours le même résultat.</div></div>
+      <div class="c"><div class="ic">A</div><div class="h">Agent</div><div class="p">Quand il peut y avoir des exceptions, du non-prédictif, et qu’on veut qu’il décide.</div></div>
+    </div>
+    <div class="quote"><p>Mon parti-pris : viser l’agent le plus simple possible, jamais le plus impressionnant.
+      Un bon prompt bien intégré crée souvent plus de valeur qu’un agent que personne n’ose lancer.</p></div>
+    <p><span class="sub">5.1 Pour un agent, fixer le degré d’autonomie.</span> Quatre degrés, du plus prudent
+      au plus libre. Ce choix n’est pas technique, il est humain : plus le degré monte, plus l’enjeu de
+      confiance monte. Dans une entreprise à forte culture, on commence bas.</p>
+    <ul class="dots">
+      <li>Il lit et conseille, sans rien engager.</li>
+      <li>Il propose et attend une validation à chaque action.</li>
+      <li>Il exécute des actions préapprouvées, sous surveillance.</li>
+      <li>Il agit seul, l’humain ne fait que superviser.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 MÉTHODE D (16) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">16</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">6</span> Prioriser</h4>
+    <p>Toutes les idées ne se valent pas. Je les score avec une matrice ICE : l’impact, la confiance dans
+      la faisabilité, la facilité de mise en œuvre. Ce score est mon travail, pas celui des équipes : ni un
+      vote, ni un calcul automatique, mais une lecture du terrain croisée entre les profils. Sa force tient
+      à une règle : il ne se remplit jamais sur du déclaratif, mais sur ce que le hackathon ou l’audit ont
+      réellement montré. Souvent, le cas au plus fort impact n’est pas celui qu’on lance en premier : quand
+      la donnée n’est pas accessible ou que le process n’est pas standardisé, on prépare le terrain avant.</p>
+    <h4 class="step"><span class="num">7</span> Produire la feuille de route IA</h4>
+    <p>Tout se consolide dans un seul livrable : la feuille de route. Un tableau qui suit chaque cas d’usage,
+      de l’irritant d’origine jusqu’à sa vague de déploiement, et une présentation pour la direction. Chaque
+      ligne relie un problème de terrain à une solution, un degré d’autonomie, une priorité et un gain
+      attendu. C’est le document qui fait passer l’entreprise de l’intention au plan, et qui donne au
+      dirigeant un objet qu’il peut réellement piloter.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 ERREURS (17) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">17</span></div>
+  <div class="content body">
+    <span class="eyebrow">Les erreurs à ne pas faire</span>
+    <h2 class="section">Erreurs<span class="bar"></span></h2>
+    <ul class="dots">
+      <li><span class="sub">Traiter l’audit ou le hackathon comme un exercice technique.</span> Parler uniquement process, outils et données déshumanise la démarche et fait décrocher les équipes. Ces moments embarquent d’abord des gens.</li>
+      <li><span class="sub">Prendre la solution rêvée pour le problème.</span> Ce qu’un collaborateur imagine comme solution n’est pas toujours la source de son irritant. On creuse jusqu’à la cause avant de construire.</li>
+      <li><span class="sub">Rester en surface sans cartographier.</span> On repart avec un irritant mais incapable de construire derrière, faute d’avoir compris le process en détail.</li>
+      <li><span class="sub">Vouloir l’agent parfait.</span> L’agent utile et adopté vaut mieux que celui qui impressionne en démo. Le perfectionnisme retarde la mise en service et démobilise.</li>
+      <li><span class="sub">Décider d’en haut sans les opérationnels.</span> Les bons cas d’usage viennent de ceux qui font le travail. Imposés depuis une réunion de direction, ils tombent à plat.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 TERRAIN (18) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">18</span></div>
+  <div class="content body">
+    <span class="eyebrow">Cas réels, anonymisés</span>
+    <h2 class="section">Sur le terrain<span class="bar"></span></h2>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Un hackathon qui débloque tout.</span> Dans une ETI où une trentaine de
+        personnes étaient mobilisées, on a tenu un hackathon. La plupart utilisaient l’IA de façon très
+        basique, un chat de temps en temps. En un à deux jours, par équipes, ils ont construit une dizaine
+        d’agents sur leurs propres irritants. Ce qui a changé, ce n’est pas les agents, c’est qu’ils ont
+        compris qu’ils pouvaient construire. À partir de là, les idées ont continué à remonter toutes seules.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Le plus fort impact n’est pas le premier projet.</span> Plusieurs fois, le cas
+        le plus prometteur sur le papier butait sur une donnée qu’on ne pouvait pas récupérer, ou sur un
+        process que chacun faisait à sa façon. Avant de mettre de l’IA, il a fallu standardiser. J’ai appris
+        à le voir tôt : un cas séduisant posé sur une base instable coûte plus cher qu’il ne rapporte.</p>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P2 POINT + LIVRABLES (19) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 2 · Acculturation</span></span><span class="folio">19</span></div>
+  <div class="content body">
+    <span class="eyebrow">Le point d’étape</span>
+    <h2 class="section">C’est fait quand<span class="bar"></span></h2>
+    <div class="check"><ul>
+      <li>Les irritants sont-ils remontés du terrain, pas devinés en réunion ?</li>
+      <li>Chaque cas retenu est-il cadré : quelle donnée entre, ce qu’on en fait, ce qui sort ?</li>
+      <li>La priorisation s’appuie-t-elle sur du concret produit, pas sur du déclaratif ?</li>
+      <li>La feuille de route relie-t-elle chaque cas à un irritant, une priorité et un gain ?</li>
+      <li>La direction a-t-elle validé le plan et son séquencement ?</li>
+    </ul></div>
+    <h3 class="block">Livrables et ressources</h3>
+    <table class="deliv">
+      <thead><tr><th style="width:34%">Livrable de la phase</th><th style="width:33%">Ressource Kokoro</th><th style="width:33%">C’est fait quand</th></tr></thead>
+      <tbody>
+        <tr><td>Le diagnostic du terrain</td><td>La trame d’audit et le template « journée du collaborateur »</td><td>l’irritant que personne n’osait nommer est écrit noir sur blanc</td></tr>
+        <tr><td>L’émergence des usages avec les équipes</td><td>Le canevas de hackathon ou de formation par métier</td><td>une équipe non-tech repart en sachant construire un premier agent</td></tr>
+        <tr><td>Le catalogue de cas d’usage cadrés</td><td>La grille entrée / transformation / sortie et les deux grilles de lecture</td><td>chaque cas dit quelle donnée entre et ce qu’on veut en sortie</td></tr>
+        <tr><td>La feuille de route IA priorisée</td><td>Le template Excel, la matrice ICE et le slide deck</td><td>la direction peut piloter le plan ligne par ligne</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== PHASE 3 — DIVIDER ===== -->
+<section class="page divider">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="ghost">03</div>
+  <div class="hero">
+    <div class="sphere"></div>
+    <span class="eyebrow">Phase 03</span>
+    <h2>Production<br><span class="hl">construire ensemble.</span></h2>
+    <p class="arc">On sait quoi construire. Reste à le faire avec les équipes, et à déployer service par
+      service jusqu’à ce que les outils servent vraiment.</p>
+    <div class="stats">
+      <div class="cell"><div class="n">7</div><div class="c">Étapes de méthode</div></div>
+      <div class="cell"><div class="n">2</div><div class="c">Profils clés : builder, champion</div></div>
+      <div class="cell"><div class="n">Batch</div><div class="c">Déploiement service par service</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== P3 OBJECTIF (20) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">20</span></div>
+  <div class="content body">
+    <span class="eyebrow">Objectif</span>
+    <h2 class="section">L’objectif de la phase<span class="bar"></span></h2>
+    <p>La mission de cette phase est de transformer la feuille de route en systèmes qui tournent et que les
+      équipes utilisent. Pas une démo qui impressionne, pas un prototype qui dort dans un dossier : des
+      agents en service, adoptés par ceux dont ils étaient censés alléger le travail.</p>
+    <p>Un principe la tient d’un bout à l’autre : on ne construit jamais pour les équipes, on construit avec
+      elles. La technique est la partie facile. Le vrai travail est de garder, à chaque étape, la personne du
+      métier dans la boucle, parce que c’est elle qui décidera de l’utiliser ou de l’abandonner.</p>
+    <h3 class="block">Concrètement, à la fin de la phase, on a produit</h3>
+    <ul class="dots">
+      <li>une organisation de production : des builders, une équipe de champions, et le binôme qui les relie ;</li>
+      <li>un socle et une stack techniques choisis et posés ;</li>
+      <li>une feuille de production qui ordonne les cas d’usage en vagues ;</li>
+      <li>les premiers agents construits, validés et déployés par batch ;</li>
+      <li>une équipe reformée sur les outils qu’elle vient de recevoir.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 MÉTHODE A (21) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">21</span></div>
+  <div class="content body">
+    <span class="eyebrow">Méthode pas à pas</span>
+    <h2 class="section">Méthode<span class="bar"></span></h2>
+    <p>Le fil : partir de la feuille de route priorisée, construire au plus près des métiers, et déployer
+      service par service. Sept étapes, dans l’ordre.</p>
+    <h4 class="step"><span class="num">1</span> Monter l’équipe de production</h4>
+    <p>Avant de construire quoi que ce soit, je pose qui construit. Une production qui tient repose sur deux
+      profils et le lien entre eux.</p>
+    <div class="cards3">
+      <div class="c"><div class="ic">B</div><div class="h">Le builder</div><div class="p">Il met les mains dans le système : prompts, workflows, agents. Il sait traduire un besoin en système qui marche.</div></div>
+      <div class="c"><div class="ic">C</div><div class="h">Le champion</div><div class="p">Pas un profil tech, et c’est volontaire. Il exprime le besoin, teste, fait évoluer, valide. Un expert de son propre métier.</div></div>
+      <div class="c"><div class="ic">∞</div><div class="h">Le binôme</div><div class="p">Un builder pour plusieurs champions. C’est ce qui rend la production tenable, sans armée de techniciens.</div></div>
+    </div>
+    <h4 class="step"><span class="num">2</span> Choisir et poser le socle et la stack</h4>
+    <p>Je fixe les fondations avant le premier agent, parce qu’en changer après coûte cher. Le socle se
+      choisit selon l’entreprise : sa réalité de données, ses contraintes, son budget, sa sensibilité. On
+      choisit l’outillage qui sert les cas d’usage prioritaires, pas l’inverse.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 MÉTHODE B (22) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">22</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">3</span> Établir la feuille de production</h4>
+    <p>La feuille de route disait quoi construire et dans quel ordre. La feuille de production traduit cette
+      priorité en travail concret : quel cas part en premier, qui le porte, quel champion lui est associé,
+      dans quelle vague il tombe. C’est le plan de marche des builders.</p>
+    <h4 class="step"><span class="num">4</span> Construire en boucle ping-pong</h4>
+    <p>Le cœur de la production. Chaque agent se construit dans un aller-retour serré entre le builder et son
+      champion, jamais d’un seul jet.</p>
+    <div class="stepper">
+      <div class="node">Le builder produit<span class="s">une première version</span></div><span class="arr">→</span>
+      <div class="node">Le champion teste<span class="s">sur ses vrais cas</span></div><span class="arr">→</span>
+      <div class="node">On corrige<span class="s">et on recommence</span></div>
+    </div>
+    <p><span class="sub">4.2 Animer l’échange au quotidien.</span> J’anime la boucle sur un canal dédié, un
+      Slack ou un Teams, pour régler les correctifs au fil de l’eau. <span class="sub">4.3 Tracker les
+      évolutions.</span> Toutes les demandes se consignent dans une base (Notion, Sheet, Excel) : ça donne
+      une mémoire à la production et ça nourrit les vagues d’après.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 MÉTHODE C (23) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">23</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">5</span> Valider la qualité de l’agent</h4>
+    <p>Un agent ne sort de la boucle que quand le champion confirme qu’il répond à son besoin, sur ses vrais
+      cas, pas en démo. C’est lui le juge, parce que c’est lui qui devra s’en servir tous les jours. Cette
+      validation par l’usage réel, et non par une recette technique, sépare un système adopté d’un prototype
+      abandonné.</p>
+    <h4 class="step"><span class="num">6</span> Déployer par batch</h4>
+    <p>Les agents validés, je les déploie service par service. Je regroupe par service parce que c’est là
+      qu’on maximise le rendement : mêmes process, mêmes données, mêmes irritants, et un agent qui marche
+      pour l’un marche souvent pour ses voisins.</p>
+    <h4 class="step"><span class="num">7</span> Reformer l’équipe sur les outils livrés</h4>
+    <p>Un agent déployé n’est pas un agent adopté. À chaque batch, je reforme l’équipe qui le reçoit sur
+      l’outil qu’elle vient d’avoir entre les mains, sur ses cas à elle. Sans ce passage, l’outil reste à
+      côté du travail au lieu d’entrer dedans. C’est la dernière marche avant le run.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 ERREURS (24) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">24</span></div>
+  <div class="content body">
+    <span class="eyebrow">Les erreurs à ne pas faire</span>
+    <h2 class="section">Erreurs<span class="bar"></span></h2>
+    <ul class="dots">
+      <li><span class="sub">Construire sans champion.</span> Un agent monté par le builder seul répond à un problème imaginé, pas au vrai. Il finit dans un dossier que personne n’ouvre.</li>
+      <li><span class="sub">Prendre un profil trop technique comme champion.</span> On cherche quelqu’un qui connaît le métier et sait dire son besoin, pas un second builder.</li>
+      <li><span class="sub">Faire du builder un binôme unique.</span> Coller un builder à un seul champion gâche la ressource rare. Un builder doit tenir plusieurs champions.</li>
+      <li><span class="sub">Espacer les allers-retours.</span> Valider de loin en loin laisse l’agent dériver loin du besoin. Le ping-pong doit être rapide et continu.</li>
+      <li><span class="sub">Choisir le socle après avoir commencé.</span> Poser la stack en cours de route oblige à tout refaire. On fixe les fondations avant le premier agent.</li>
+      <li><span class="sub">Déployer un batch sur des systèmes pas au propre.</span> Lancer un service dont les process ne sont pas standardisés, c’est bâtir sur du sable.</li>
+      <li><span class="sub">Croire le déploiement terminé à la livraison.</span> Un agent livré sans reformation reste à côté du travail. La prise en main fait partie du déploiement.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 TERRAIN (25) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">25</span></div>
+  <div class="content body">
+    <span class="eyebrow">Cas réels, anonymisés</span>
+    <h2 class="section">Sur le terrain<span class="bar"></span></h2>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Un builder, plusieurs champions, un canal qui ne dort jamais.</span> Sur les
+        productions qui ont le mieux tourné, je n’ai jamais collé un technicien derrière chaque équipe. Un
+        builder accompagnait plusieurs champions, des gens pas du tout tech mais qui connaissaient leur métier
+        sur le bout des doigts. Tout passait par un canal Slack dédié : le champion testait, remontait, le
+        builder corrigeait dans la foulée. Ce n’est pas la technique qui faisait la différence, c’est ce
+        dialogue rapide et le fait que le métier validait lui-même.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Le batch coince quand le service n’est pas au propre.</span> Quand je déploie
+        par service, c’est pour maximiser le rendement. La vraie difficulté n’est presque jamais l’agent,
+        c’est l’état des systèmes du service. Là où tout était clean et standardisé, le batch passait vite.
+        Là où chacun faisait à sa façon, il fallait d’abord remettre de l’ordre.</p>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 POINT (26) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">26</span></div>
+  <div class="content body">
+    <span class="eyebrow">Le point d’étape</span>
+    <h2 class="section">C’est fait quand<span class="bar"></span></h2>
+    <p>On ne passe pas à la suite tant qu’il reste un non.</p>
+    <div class="check"><ul>
+      <li>Chaque cas d’usage a-t-il un builder et un champion du métier identifiés ?</li>
+      <li>Les champions sont-ils des profils métier, pas des techniciens ?</li>
+      <li>Le socle et la stack ont-ils été posés avant de construire ?</li>
+      <li>La construction se fait-elle en aller-retour rapide, avec un canal dédié et une base qui trace ?</li>
+      <li>Chaque agent déployé a-t-il été validé par son champion, sur de vrais cas ?</li>
+      <li>Les services visés ont-ils des process assez au propre pour recevoir leur batch ?</li>
+      <li>Chaque équipe a-t-elle été reformée sur l’outil qu’elle vient de recevoir ?</li>
+    </ul></div>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P3 LIVRABLES (27) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 3 · Production</span></span><span class="folio">27</span></div>
+  <div class="content body">
+    <span class="eyebrow">Livrables et ressources</span>
+    <h2 class="section">Ce que la phase produit<span class="bar"></span></h2>
+    <p>Cette phase produit les premiers systèmes qui tournent en vrai. Chaque livrable vient avec la
+      ressource Kokoro qui sert à le produire.</p>
+    <table class="deliv">
+      <thead><tr><th style="width:34%">Livrable de la phase</th><th style="width:33%">Ressource Kokoro</th><th style="width:33%">C’est fait quand</th></tr></thead>
+      <tbody>
+        <tr><td>L’organisation de production</td><td>La trame de rôles builder / champion et le profil-type du champion</td><td>chaque cas d’usage a son champion du métier nommé</td></tr>
+        <tr><td>Le socle et la stack techniques</td><td>La grille de choix de socle et de stack</td><td>un agent peut être construit sans rien avoir à refaire derrière</td></tr>
+        <tr><td>La feuille de production</td><td>Le template de feuille de production (cas, porteur, champion, vague)</td><td>un builder sait quel agent il construit en premier, et avec qui</td></tr>
+        <tr><td>Les agents construits et validés</td><td>Le canevas de boucle ping-pong et la base de suivi des demandes</td><td>le champion confirme que l’agent répond à son vrai besoin</td></tr>
+        <tr><td>Le déploiement par batch</td><td>Le plan par service et sa checklist « système au propre »</td><td>un service entier utilise l’agent dans son quotidien</td></tr>
+        <tr><td>La reformation des équipes</td><td>La trame de prise en main par outil livré</td><td>l’équipe se sert de l’outil sans redemander comment faire</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== PHASE 4 — DIVIDER ===== -->
+<section class="page divider">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="ghost">04</div>
+  <div class="hero">
+    <div class="sphere"></div>
+    <span class="eyebrow">Phase 04</span>
+    <h2>Ancrage<br><span class="hl">rendre autonome.</span></h2>
+    <p class="arc">Un usage qui marche pendant qu’on est là ne prouve rien. Cette phase a un seul enjeu :
+      faire en sorte que tout tienne sans nous. C’est la phase où l’on prépare son propre départ.</p>
+    <div class="stats">
+      <div class="cell"><div class="n">6</div><div class="c">Étapes de méthode</div></div>
+      <div class="cell"><div class="n">4</div><div class="c">Conditions de l’autonomie</div></div>
+      <div class="cell"><div class="n">0</div><div class="c">Dépendance créée : on part</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== P4 OBJECTIF (28) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">28</span></div>
+  <div class="content body">
+    <span class="eyebrow">Objectif</span>
+    <h2 class="section">L’objectif de la phase<span class="bar"></span></h2>
+    <p>La mission de cette phase est de transformer des usages qui fonctionnent en une capacité qui dure :
+      ancrer l’IA dans les habitudes, mesurer ce qu’elle produit vraiment, aller chercher ceux qui résistent
+      encore, et rendre l’entreprise capable de continuer seule. La vraie réussite ne se mesure pas le jour
+      de la mise en service, mais des mois plus tard, quand l’équipe n’a plus besoin de nous.</p>
+    <h3 class="block">Un client autonome, pour moi, c’est quatre choses réunies</h3>
+    <ul class="dots">
+      <li>une charte qui tient et sert de référence commune ;</li>
+      <li>un niveau de maîtrise à peu près homogène en interne, pas concentré dans deux têtes ;</li>
+      <li>une équipe support capable de porter les évolutions de l’IA seule ;</li>
+      <li>une feuille de route claire que l’entreprise sait réévaluer elle-même.</li>
+    </ul>
+    <p>Tant que ces quatre conditions ne sont pas réunies, le déploiement n’est pas terminé, même si les
+      agents tournent.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 MÉTHODE A (29) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">29</span></div>
+  <div class="content body">
+    <span class="eyebrow">Méthode pas à pas</span>
+    <h2 class="section">Méthode<span class="bar"></span></h2>
+    <p>Le fil : passer d’usages qui marchent quand on est là à une entreprise qui continue sans nous. Six
+      étapes, dans l’ordre.</p>
+    <h4 class="step"><span class="num">1</span> Mener la conduite du changement en profondeur</h4>
+    <p><span class="sub">1.1 Devenir l’allié de chaque personne.</span> Je deviens l’allié de chacun : je
+      montre que je comprends son métier, ses contraintes, ce qui l’agace. Les gens n’adoptent pas une
+      technologie, ils adoptent quelqu’un qui les a compris. <span class="sub">1.2 Faire entrer l’IA par les
+      gestes déjà en place.</span> On ne plaque pas un outil par-dessus une organisation, on le fait entrer
+      par les habitudes qui existent déjà. Dans une entreprise à forte culture, on prolonge le déjà-là.</p>
+    <h4 class="step"><span class="num">2</span> Reformer en T2, ciblé par métier</h4>
+    <p>La Phase 2 a donné une formation généraliste. Ici, on monte d’un cran, mais ciblé : une formation par
+      métier, sur les usages réels de chaque équipe. C’est ce passage qui homogénéise la maîtrise et évite
+      que le savoir reste coincé chez les champions.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 MÉTHODE B (30) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">30</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">3</span> Outiller l’autonomie quotidienne</h4>
+    <p>Une équipe autonome a besoin de points d’appui. Le principal, c’est la banque de prompts : un
+      référentiel des prompts qui marchent, rangés par métier, que n’importe qui peut reprendre sans tout
+      réinventer. Elle transforme le savoir de quelques-uns en ressource commune, disponible tout le temps,
+      et permet aux profils les plus standards d’utiliser ce qui a été produit.</p>
+    <h4 class="step"><span class="num">4</span> Mesurer l’impact</h4>
+    <p>On ne peut ancrer durablement que ce qu’on sait mesurer. Les outils remontent de plus en plus de
+      données d’usage : on voit qui utilise quoi, à quelle fréquence, sur quels cas.</p>
+    <p><span class="sub">4.1 Relier l’usage au gain.</span> Mesurer, ce n’est pas compter les connexions,
+      c’est rattacher chaque usage à un gain réel, en temps, en argent ou en pénibilité évitée.
+      <span class="sub">4.2 En faire un levier d’adoption.</span> Quand une équipe voit le temps qu’une autre
+      a récupéré, elle veut la même chose. La mesure ne sert pas qu’à reporter, elle sert à embarquer.</p>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 MÉTHODE C (31) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">31</span></div>
+  <div class="content body">
+    <h4 class="step"><span class="num">5</span> Aller chercher ceux qui résistent encore</h4>
+    <p>Il reste presque toujours des réticents. Et il faut voir qui ils sont : pas des profils techniques qui
+      contesteraient un choix d’outil, mais des réticents au changement, tout court. On ne les retourne pas
+      avec un argument technique.</p>
+    <p><span class="sub">5.1 Allier l’humain et la preuve.</span> On retourne un réticent en mêlant deux
+      choses. D’abord l’humain, en devenant son allié, par empathie réelle. Ensuite la preuve, par des cas
+      d’usage qui marchent, conçus parce qu’on a compris son problème. L’humain seul ne suffit pas, la preuve
+      seule non plus. C’est les deux ensemble qui font basculer.</p>
+    <h4 class="step"><span class="num">6</span> Passer le relais et choisir la posture de sortie</h4>
+    <p>Le déploiement se termine par une décision, et elle appartient au client. Deux postures, toutes deux
+      légitimes.</p>
+    <div class="cards3">
+      <div class="c"><div class="ic">A</div><div class="h">Autonomie installée</div><div class="p">On transmet la charte, on forme l’équipe support, on laisse une feuille de route qu’ils pilotent seuls, et on s’efface.</div></div>
+      <div class="c"><div class="ic">D</div><div class="h">Accompagnement continu</div><div class="p">Le client préfère nous déléguer le travail dans la durée, garder un appui pour porter les évolutions.</div></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 ERREURS (32) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">32</span></div>
+  <div class="content body">
+    <span class="eyebrow">Les erreurs à ne pas faire</span>
+    <h2 class="section">Erreurs<span class="bar"></span></h2>
+    <ul class="dots">
+      <li><span class="sub">Confondre usage et adoption.</span> Des agents qui tournent pendant qu’on est là ne prouvent rien. L’adoption se vérifie quand on n’y est plus, des mois après.</li>
+      <li><span class="sub">Laisser le savoir concentré dans deux têtes.</span> Si la maîtrise reste chez les champions, l’entreprise dépend d’un point de fragilité. La T2 et la banque de prompts existent pour répartir ce savoir.</li>
+      <li><span class="sub">Traiter un réticent comme un problème technique.</span> Leur sortir des arguments de données ne les retourne jamais. Sans l’humain, la preuve ne passe pas.</li>
+      <li><span class="sub">Être dédaigneux avec ceux qui résistent.</span> Le mépris pour celui qui n’adhère pas encore tue l’adoption. On devient son allié, on ne le contourne pas.</li>
+      <li><span class="sub">Ne pas mesurer.</span> Un gain qu’on ne montre pas est un gain qui n’embarque personne, et qu’on ne peut pas défendre.</li>
+      <li><span class="sub">Créer une dépendance à soi.</span> Notre réussite, c’est que ça tienne sans nous. Un accompagnement qui se rend indispensable a raté sa Phase 4.</li>
+    </ul>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 TERRAIN (33) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">33</span></div>
+  <div class="content body">
+    <span class="eyebrow">Cas réels, anonymisés</span>
+    <h2 class="section">Sur le terrain<span class="bar"></span></h2>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Un seul cas bien standardisé, un gain énorme.</span> Dans des entreprises où les
+        équipes commerciales produisaient beaucoup de slides, on a standardisé les présentations dans l’outil
+        et accompagné les équipes pour les produire avec. Selon la complexité, le gain allait d’une heure à
+        une journée de travail entière, par présentation. La leçon : on cherche souvent l’agent sophistiqué,
+        alors qu’un seul cas banal, bien standardisé et vraiment adopté, produit parfois le plus gros gain.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Cas réel · anonymisé</span>
+      <p><span class="lead-in">Retourner celui qui ne voulait pas.</span> Sur plusieurs missions, les derniers
+        à convaincre n’étaient pas des profils techniques. C’étaient des gens réticents au changement, point.
+        Ce qui les a fait basculer, ce n’est jamais un argument technique. C’est d’être devenu leur allié
+        d’abord, puis de poser devant eux un cas d’usage qui marchait, conçu parce qu’on les avait écoutés.
+        L’humain ouvre la porte, la preuve la franchit.</p>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 POINT (34) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">34</span></div>
+  <div class="content body">
+    <span class="eyebrow">Le point d’étape</span>
+    <h2 class="section">C’est fait quand<span class="bar"></span></h2>
+    <p>On ne passe pas à la suite tant qu’il reste un non.</p>
+    <div class="check"><ul>
+      <li>L’usage tient-il sans nous, ou seulement parce qu’on est encore là ?</li>
+      <li>La maîtrise est-elle homogène en interne, et pas concentrée chez deux personnes ?</li>
+      <li>Une équipe support est-elle capable de porter les évolutions seule ?</li>
+      <li>L’entreprise a-t-elle une feuille de route claire qu’elle sait réévaluer elle-même ?</li>
+      <li>Mesure-t-on l’impact réel, en temps, en argent ou en pénibilité ?</li>
+      <li>Les derniers réticents ont-ils été abordés par l’humain autant que par la preuve ?</li>
+    </ul></div>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== P4 LIVRABLES (35) ===== -->
+<section class="page sheet">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 4 · Ancrage</span></span><span class="folio">35</span></div>
+  <div class="content body">
+    <span class="eyebrow">Livrables et ressources</span>
+    <h2 class="section">Ce que la phase produit<span class="bar"></span></h2>
+    <p>Cette phase ne produit pas de nouveaux agents, elle produit de l’autonomie.</p>
+    <table class="deliv">
+      <thead><tr><th style="width:34%">Livrable de la phase</th><th style="width:33%">Ressource Kokoro</th><th style="width:33%">C’est fait quand</th></tr></thead>
+      <tbody>
+        <tr><td>La formation T2, ciblée par métier</td><td>Le canevas de formation T2 (par équipe, sur les usages réels)</td><td>chaque équipe sait se servir de ce qui a été construit pour elle</td></tr>
+        <tr><td>La banque de prompts</td><td>Le référentiel de prompts rangés par métier</td><td>un profil non-tech reprend un prompt qui marche sans tout réinventer</td></tr>
+        <tr><td>Le reporting d’impact</td><td>La trame de mesure (usage, fréquence, gain rattaché)</td><td>le dirigeant sait, chiffres en main, ce que son projet IA lui rapporte</td></tr>
+        <tr><td>Le passage de relais</td><td>La grille des deux postures de sortie</td><td>l’entreprise a une équipe support, une charte et une feuille de route qu’elle réévalue seule</td></tr>
+        <tr><td>Le retour d’expérience de clôture</td><td>La trame de REX final</td><td>le bilan est partagé et la suite est décidée par le client</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagefoot"><span>Phase 4 · Ancrage et autonomie</span><span>Kokoro</span></div>
+</section>
+
+<!-- ===== CLÔTURE (36) ===== -->
+<section class="page sheet cloture">
+  <div class="halo b"></div><div class="halo v"></div>
+  <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Clôture</span></span><span class="folio">36</span></div>
+  <div class="content body">
+    <div class="sphere-sm"></div>
+    <span class="eyebrow">Clôture</span>
+    <h2 class="section">Rendre les clés.<span class="bar"></span></h2>
+    <p>Au début de ce playbook, je décrivais le scénario que je rencontre le plus souvent : six mois après
+      l’achat des outils, l’IA est dans l’entreprise sans avoir rien changé à la façon de travailler. Tout
+      ce qui précède sert à écrire l’autre histoire, celle où, six mois plus tard, l’IA a changé des gestes,
+      allégé des journées, et où l’équipe avance sans nous.</p>
+    <p>D’une phase à l’autre, ce qui a fait la différence n’a jamais été l’outil. C’était la gouvernance qui
+      donne un cap, les équipes qu’on écoute avant de construire, les champions qu’on reconnaît, les réticents
+      qu’on retourne un par un. À chaque étape, le même travail : recréer du collectif autour du sujet.</p>
+    <div class="quote"><p>Une organisation ne se transforme pas parce qu’elle a installé l’IA. Elle se
+      transforme quand ses équipes s’en emparent.</p></div>
+    <p>C’est pour cela que la dernière phase rend les clés. On ne vient pas pour rester. Le jour où je quitte
+      une entreprise et que l’IA continue d’y vivre, de se corriger et d’évoluer sans moi, la mission est
+      réussie. Après plus de cinquante de ces accompagnements, ce que j’en retiens tient en une phrase : on
+      ne réussit pas un déploiement à la place d’une équipe, on la rend capable de le réussir elle-même.</p>
+    <div class="signoff">
+      <img src="assets/samuel.png" alt="Samuel Braniste">
+      <div><div class="s1">Sam</div><div class="s2">Samuel Braniste · Fondateur de Kokoro</div></div>
+    </div>
+  </div>
+  <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
+</section>
+
+</body>
+</html>
