@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 /* ============================================================
-   PLAYBOOK DÉPLOIEMENT IA — KOKORO  ·  système de forme v2
+   PLAYBOOK DÉPLOIEMENT IA · KOKORO  ·  système de forme v2
    Langage repris de kokoro-ai.fr : Inter, lavande, bleu #3A86FF,
    cartes blanches arrondies, ombres douces. Motif sphérique discret.
    A4 portrait, pages fixes. Rythme vertical homogène + furniture.
@@ -238,6 +238,28 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
 .cloture{ background:radial-gradient(120% 90% at 50% 0%, #FFFFFF 0%, #F1EEFB 60%, #E9E5F7 100%); }
 .signoff .s1{ font-weight:700; font-size:11.5pt; color:var(--ink); }
 .signoff .s2{ font-size:8pt; font-weight:600; letter-spacing:.04em; color:var(--soft); margin-top:2px; }
+
+/* ====================  CTA / ACCOMPAGNEMENTS  ==================== */
+.cta{ display:flex; flex-direction:column; background:radial-gradient(120% 95% at 50% 0%, #FFFFFF 0%, #EFECFA 55%, #E6E2F5 100%); }
+.cta .orb{ position:absolute; border-radius:50%; }
+.cta .orb.o1{ width:400px; height:400px; top:-130px; right:-120px; background:radial-gradient(circle, rgba(58,134,255,.34), rgba(58,134,255,0) 66%); }
+.cta .orb.o2{ width:320px; height:320px; bottom:-120px; left:-110px; background:radial-gradient(circle, rgba(124,77,224,.22), rgba(124,77,224,0) 66%); }
+.cta > *{ position:relative; }
+.cta .block{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+.cta h2{ font-weight:800; font-size:40pt; line-height:1.03; letter-spacing:-.03em; color:var(--ink); margin:0; }
+.cta h2 .hl{ color:var(--blue); }
+.cta .intro{ margin-top:16px; max-width:152mm; font-size:12.5pt; line-height:1.6; color:var(--text); }
+.grid4{ display:flex; flex-wrap:wrap; gap:13px; margin:26px 0 22px; }
+.grid4 .c{ flex:1 1 calc(50% - 7px); background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16pt 18pt; box-shadow:var(--shadow); display:flex; gap:14px; align-items:flex-start; }
+.grid4 .c .ic{ width:34px; height:34px; border-radius:50%; flex:none; background:var(--sph-bg); box-shadow:var(--sph-sh); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:10.5pt; }
+.grid4 .c .h{ font-weight:700; font-size:11.5pt; color:var(--ink); }
+.grid4 .c .p{ font-size:9.5pt; line-height:1.5; color:var(--text); margin-top:5px; }
+.cta .actions{ display:flex; align-items:center; gap:18px; }
+.cta .btn{ background:var(--blue); color:#fff; font-weight:700; font-size:10.5pt; padding:13px 26px; border-radius:999px; box-shadow:0 10px 22px rgba(58,134,255,.30); }
+.cta .mail{ font-weight:600; font-size:10.5pt; color:var(--ink); }
+.cta .foot{ margin-top:26px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:14pt; }
+.cta .foot img{ height:18px; }
+.cta .foot .u{ font-size:8pt; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); }
 </style>
 </head>
 <body>
@@ -307,10 +329,10 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
     <h2 class="section">Le chemin, en six temps<span class="bar"></span></h2>
     <div class="toc">
       <div class="row"><div class="rn">00</div><div class="rt"><div class="t">Prélude</div><div class="d">Pourquoi ce playbook, le chemin en quatre phases, et comment le lire.</div></div><div class="rp">04</div></div>
-      <div class="row"><div class="rn">01</div><div class="rt"><div class="t">Phase 1 — Gouvernance</div><div class="d">De l’usage sauvage au cap partagé : qui décide, charte, kickoff porté par la direction.</div></div><div class="rp">06</div></div>
-      <div class="row"><div class="rn">02</div><div class="rt"><div class="t">Phase 2 — Acculturation et cas d’usage</div><div class="d">Démystifier, former, faire émerger les usages qui comptent avec les équipes.</div></div><div class="rp">12</div></div>
-      <div class="row"><div class="rn">03</div><div class="rt"><div class="t">Phase 3 — Production</div><div class="d">Construire et déployer pour de vrai, équipe par équipe, builders et champions.</div></div><div class="rp">20</div></div>
-      <div class="row"><div class="rn">04</div><div class="rt"><div class="t">Phase 4 — Ancrage et autonomie</div><div class="d">Mesurer l’impact, ancrer les usages, rendre l’entreprise autonome.</div></div><div class="rp">28</div></div>
+      <div class="row"><div class="rn">01</div><div class="rt"><div class="t">Phase 1 · Gouvernance</div><div class="d">De l’usage sauvage au cap partagé : qui décide, charte, kickoff porté par la direction.</div></div><div class="rp">06</div></div>
+      <div class="row"><div class="rn">02</div><div class="rt"><div class="t">Phase 2 · Acculturation et cas d’usage</div><div class="d">Démystifier, former, faire émerger les usages qui comptent avec les équipes.</div></div><div class="rp">12</div></div>
+      <div class="row"><div class="rn">03</div><div class="rt"><div class="t">Phase 3 · Production</div><div class="d">Construire et déployer pour de vrai, équipe par équipe, builders et champions.</div></div><div class="rp">20</div></div>
+      <div class="row"><div class="rn">04</div><div class="rt"><div class="t">Phase 4 · Ancrage et autonomie</div><div class="d">Mesurer l’impact, ancrer les usages, rendre l’entreprise autonome.</div></div><div class="rp">28</div></div>
       <div class="row"><div class="rn">05</div><div class="rt"><div class="t">Clôture</div><div class="d">Trois messages pour passer à l’action.</div></div><div class="rp">36</div></div>
     </div>
   </div>
@@ -323,7 +345,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Prélude</span></span><span class="folio">04</span></div>
   <div class="content body">
     <span class="eyebrow">Prélude</span>
-    <h2 class="section">Les gens d’abord.<span class="bar"></span></h2>
+    <h2 class="section">Les équipes d’abord.<span class="bar"></span></h2>
     <p class="lead">Depuis près de deux ans, j’ai accompagné plus de cinquante PME et ETI dans leur
       déploiement de l’IA. J’ai appris une chose simple : l’IA n’échoue presque jamais pour des
       raisons techniques. Elle échoue parce qu’on a oublié les gens.</p>
@@ -370,7 +392,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 6. PHASE 1 — DIVIDER ===== -->
+<!-- ===== 6. PHASE 1 · DIVIDER ===== -->
 <section class="page divider">
   <div class="orb o1"></div><div class="orb o2"></div>
   <div class="ghost">01</div>
@@ -388,7 +410,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   </div>
 </section>
 
-<!-- ===== 7. PHASE 1 — OBJECTIF ===== -->
+<!-- ===== 7. PHASE 1 · OBJECTIF ===== -->
 <section class="page sheet">
   <div class="halo b"></div><div class="halo v"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">06</span></div>
@@ -415,7 +437,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 8. PHASE 1 — MÉTHODE A ===== -->
+<!-- ===== 8. PHASE 1 · MÉTHODE A ===== -->
 <section class="page sheet">
   <div class="halo b"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">07</span></div>
@@ -442,7 +464,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 9. PHASE 1 — MÉTHODE B ===== -->
+<!-- ===== 9. PHASE 1 · MÉTHODE B ===== -->
 <section class="page sheet">
   <div class="halo b"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">08</span></div>
@@ -468,7 +490,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 10. PHASE 1 — MÉTHODE C ===== -->
+<!-- ===== 10. PHASE 1 · MÉTHODE C ===== -->
 <section class="page sheet">
   <div class="halo b"></div><div class="halo v"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">09</span></div>
@@ -493,7 +515,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 11. PHASE 1 — ERREURS + TERRAIN ===== -->
+<!-- ===== 11. PHASE 1 · ERREURS + TERRAIN ===== -->
 <section class="page sheet">
   <div class="halo b"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">10</span></div>
@@ -526,7 +548,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== 12. PHASE 1 — POINT D'ÉTAPE + LIVRABLES ===== -->
+<!-- ===== 12. PHASE 1 · POINT D'ÉTAPE + LIVRABLES ===== -->
 <section class="page sheet">
   <div class="halo b"></div>
   <div class="runhead"><span class="left"><img src="assets/logo-black.png" alt="Kokoro"><span class="sec">Phase 1 · Gouvernance</span></span><span class="folio">11</span></div>
@@ -557,7 +579,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 1 · Gouvernance</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== PHASE 2 — DIVIDER ===== -->
+<!-- ===== PHASE 2 · DIVIDER ===== -->
 <section class="page divider">
   <div class="orb o1"></div><div class="orb o2"></div>
   <div class="ghost">02</div>
@@ -774,7 +796,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 2 · Acculturation et cas d’usage</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== PHASE 3 — DIVIDER ===== -->
+<!-- ===== PHASE 3 · DIVIDER ===== -->
 <section class="page divider">
   <div class="orb o1"></div><div class="orb o2"></div>
   <div class="ghost">03</div>
@@ -981,7 +1003,7 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Phase 3 · Production</span><span>Kokoro</span></div>
 </section>
 
-<!-- ===== PHASE 4 — DIVIDER ===== -->
+<!-- ===== PHASE 4 · DIVIDER ===== -->
 <section class="page divider">
   <div class="orb o1"></div><div class="orb o2"></div>
   <div class="ghost">04</div>
@@ -1208,5 +1230,24 @@ table.deliv tr td:first-child{ font-weight:700; color:var(--ink); }
   <div class="pagefoot"><span>Playbook · Déployer l’IA en entreprise</span><span>Kokoro</span></div>
 </section>
 
+
+<!-- ===== CTA · ACCOMPAGNEMENTS ===== -->
+<section class="page cta">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="block">
+    <span class="eyebrow">Travailler avec Kokoro</span>
+    <h2>On déploie l’IA<br><span class="hl">avec vous.</span></h2>
+    <p class="intro">Quatre façons d’avancer, selon où vous en êtes. On entre par celle qui a du sens
+      pour votre entreprise, et on vous mène jusqu’à l’autonomie.</p>
+    <div class="grid4">
+      <div class="c"><div class="ic">01</div><div><div class="h">Formation</div><div class="p">Mettre vos équipes au niveau, par métier, sur leurs vrais cas. Le langage commun qui débloque tout.</div></div></div>
+      <div class="c"><div class="ic">02</div><div><div class="h">Audit IA</div><div class="p">Cartographier vos process et faire émerger, avec le terrain, les cas d’usage qui comptent vraiment.</div></div></div>
+      <div class="c"><div class="ic">03</div><div><div class="h">Agents IA</div><div class="p">Construire et déployer les agents avec vos équipes, service par service, jusqu’au run.</div></div></div>
+      <div class="c"><div class="ic">04</div><div><div class="h">Direction IA externalisée</div><div class="p">Piloter votre transformation dans la durée, jusqu’à ce qu’elle tienne sans nous.</div></div></div>
+    </div>
+    <div class="actions"><span class="btn">kokoro-ai.fr</span><span class="mail">samuel@kokoro-ai.fr</span></div>
+  </div>
+  <div class="foot"><img src="assets/logo-black.png" alt="Kokoro"><span class="u">Déployer l’IA en entreprise · Édition 2026</span></div>
+</section>
 </body>
 </html>
